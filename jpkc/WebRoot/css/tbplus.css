@@ -1,0 +1,19 @@
+
+.wrap { padding: 5px; margin: 5px; }
+
+.wrap table.tbplus {
+	margin: 5px;
+	border-collapse: collapse;
+}
+
+.wrap table.tbplus tr.headtr td,
+.wrap table.tbplus tr.foottr td {
+	background-color: #eeeeee;
+}
+
+.wrap table.tbplus td {
+	padding: 5px 10px;
+	border: 1px solid #cccccc;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+}

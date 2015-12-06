@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<% String hListActive = request.getParameter("hListActive"); %>
+
+<!-- begin: main navigation #nav -->
+<div id="nav" role="navigation">
+	<div class="page_margins">
+		<div class="page">
+			<div class="hlist">
+				<ul>
+				
+				<% if("OperationsManagement".equalsIgnoreCase(hListActive)) { %>
+					<li class="active"><strong>运营管理</strong></li>
+				<% } else { %>
+					<li><a href="${basePath}/console">运营管理</a></li>
+				<% } %>
+				
+				<% if("MobileDb".equalsIgnoreCase(hListActive)) { %>
+					<li class="active"><strong>取号库管理</strong></li>
+				<% } else { %>
+					<li><a href="#">取号库管理</a></li>
+				<% } %>
+				
+				<% if("System".equalsIgnoreCase(hListActive)) { %>
+					<li class="active"><strong>系统维护</strong></li>
+				<% } else { %>
+					<li><a href="#">系统维护</a></li>
+				<% } %>
+				
+				<% if("Example".equalsIgnoreCase(hListActive)) { %>
+					<li class="active"><strong>Example</strong></li>
+				<% } else { %>
+					<li><a href="${basePath}/book/list">Example</a></li>
+				<% } %>
+				
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end: main navigation -->

@@ -1,0 +1,147 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%
+	String vListActive = request.getParameter("vListActive");
+	String hListActive = request.getParameter("hListActive");
+%>
+
+<% if("OperationsManagement".equalsIgnoreCase(hListActive)) { %>
+<h6 class="vlist">运营管理</h6>
+<ul class="vlist">
+	
+	<li><strong>项目管理</strong>
+		<ul>
+			<li><a href="#">新建项目</a></li>
+			<li><a href="#">项目列表</a></li>
+		</ul>
+	</li>
+	
+	<li><strong>用户管理</strong>
+		<ul>
+			<li><a href="#">新建用户</a></li>
+			<li><a href="#">用户列表</a></li>
+			<li><a href="#">锁定用户列表</a></li>
+			<li><a href="#">用户取号预处理</a></li>
+			<li><a href="#">用户特殊价格管理</a></li>
+		</ul>
+	</li>
+	
+	<li><strong>验证码管理</strong>
+		<ul>
+			<li><a href="#">已获取号码</a></li>
+			<li><a href="#">当天短信记录</a></li>
+			<li><a href="#">历史短信记录</a></li>
+			<li><a href="#">资金管理</a></li>
+			<li><a href="#">消费提成记录</a></li>
+			<li><a href="#">待发短信记录</a></li>
+			<li><a href="#">号码使用列表</a></li>
+		</ul>
+	</li>
+	
+	<li><strong>财务管理</strong>
+		<ul>
+			<li><a href="#">用户充值</a></li>
+			<li class="active"><strong>充值列表</strong></li>
+		</ul>
+	</li>
+	
+	<li><strong>统计分析</strong>
+		<ul>
+			<li><a href="#">取号统计（实时）</a></li>
+			<li><a href="#">号码使用情况</a></li>
+			<li><a href="#">收入图形报表</a></li>
+			<li><a href="#">成功率统计图形报表</a></li>
+		</ul>
+	</li>
+	
+</ul>
+<% } %>
+
+<% if("MobileDb".equalsIgnoreCase(hListActive)) { %>
+<h6 class="vlist">取号库管理</h6>
+<ul class="vlist">
+	
+	<li><strong>项目管理</strong>
+		<ul>
+			<li><a href="#">项目管理</a></li>
+			<li><a href="#">项目迁移</a></li>
+		</ul>
+	</li>
+
+	<li><strong>号码管理</strong>
+		<ul>
+			<li><a href="#">在线号码列表</a></li>
+			<li><a href="#">释放号码列表</a></li>
+			<li><a href="#">锁定号码列表</a></li>
+			<li><a href="#">黑名单列表</a></li>
+			<li><a href="#">项目黑名单列表</a></li>
+			<li><a href="#">资源库列表</a></li>
+			<li><a href="#">已做号码列表</a></li>
+			<li><a href="#">平台请求号码情况</a></li>
+		</ul>
+	</li>
+	
+	<li><strong>其他</strong>
+		<ul>
+			<li><a href="#">卡商未勾选项列表</a></li>
+			<li><a href="#">平台运行状况</a></li>
+			<li><a href="#">用户可用号码预测</a></li>
+		</ul>
+	</li>
+	
+</ul>
+<% } %>
+
+<% if("System".equalsIgnoreCase(hListActive)) { %>
+<h6 class="vlist">系统维护</h6>
+<ul class="vlist">
+
+	<li><strong>系统维护</strong>
+		<ul>
+			<li><a href="#">管理员设置</a></li>
+			<li><a href="#">角色管理</a></li>
+			<li><a href="#">密码修改</a></li>
+			<li><a href="#">登录日志</a></li>
+		</ul>
+	</li>
+	
+	<li><strong>前端(WEB)配置</strong>
+		<ul>
+			<li><a href="#">新增公告</a></li>
+			<li><a href="#">公告列表</a></li>
+		</ul>
+	</li>
+	
+	<li><strong>客户端管理</strong>
+		<ul>
+			<li><a href="#">发包</a></li>
+		</ul>
+	</li>
+	
+</ul>
+<% } %>
+
+<% if("Example".equalsIgnoreCase(hListActive)) { %>
+<h6 class="vlist">Example</h6>
+<ul class="vlist">
+
+	<li><strong>图书管理</strong>
+		<ul>
+		<% if("Edit".equalsIgnoreCase(vListActive)) { %>
+			<li class="active"><strong>添加新图</strong></li>
+		<% } else { %>
+			<li><a href="#">添加新图</a></li>
+		<% } %>
+		
+		<% if("List".equalsIgnoreCase(vListActive)) { %>
+			<li class="active"><strong>图书列表</strong></li>
+		<% } else { %>
+			<li><a href="#">图书列表</a></li>
+		<% } %>
+		</ul>
+	</li>
+	
+</ul>
+<% } %>
+
+

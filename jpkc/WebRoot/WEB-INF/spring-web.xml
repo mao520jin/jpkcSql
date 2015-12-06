@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<mvc:annotation-driven />
+	<context:component-scan base-package="com.jpkc.web.controller" />
+
+	<bean id="handlerAdapter" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="cacheSeconds" value="0" />
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- ========== 视图解析器 ============================== -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	 <!-- 支持上传文件 -->  
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>  
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/notice/**"/>
+			<mvc:mapping path="/resources/**"/>
+			<mvc:mapping path="/result/**"/>
+			<mvc:mapping path="/team/**"/>
+			<mvc:mapping path="/user/**"/>
+			<mvc:exclude-mapping path="/user/login"/>
+			<bean id="loginInteceptor" class="com.jpkc.inteceptor.LoginInteceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- ========== 公共资源目录 ============================== -->
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/images/" mapping="/images/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/editor/" mapping="/editor/**" />
+	<mvc:resources location="/upload/" mapping="/upload/**" />
+
+</beans>

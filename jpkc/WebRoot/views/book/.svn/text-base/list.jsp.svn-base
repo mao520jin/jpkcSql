@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="/views/include/base.jsp" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>jumapt</title>
+
+<jsp:include page="/views/include/style.jsp"></jsp:include>
+<jsp:include page="/views/include/script.jsp"></jsp:include>
+<script type="text/javascript" src="${basePath}/js/book.js"></script>
+
+</head>
+<body>
+
+<div class="wrap">
+
+<table class="tbplus">
+	<tr class="headtr"><td colspan="13">Book ID: <input type="text" id="bookId" /> <input type="button" value="Ajax Search" onclick="ajaxSearch();" /></td></tr>
+	<tr class="headtr"><td colspan="13"><input type="button" value="新增" /> <input type="button" value="删除" /></td></tr>
+	<tr class="headtr"><td><input type="checkbox" /></td><td>ID</td><td>书名</td><td>作者</td><td>出版社</td><td>出版日期</td><td>语种</td><td>ISBN</td><td>创建人</td><td>创建时间</td><td>最后更新人</td><td>最后更新时间</td><td>操作</td></tr>
+	<c:forEach items="${books}" var="o">
+	<tr>
+		<td><input type="checkbox" /></td>
+		<td>${o.id}</td>
+		<td>${o.title}</td>
+		<td>${o.author}</td>
+		<td>${o.publisher}</td>
+		<td><fmt:formatDate value="${o.pubDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+		<td>${o.language}</td>
+		<td>${o.isbn}</td>
+		<td>${o.createdBy}</td>
+		<td><fmt:formatDate value="${o.createdDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+		<td>${o.lastModifiedBy}</td>
+		<td><fmt:formatDate value="${o.lastModifiedDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+		<td><a href="javascript:;">编辑</a>&nbsp;|&nbsp;<a href="javascript:;" onclick="del('${o.id}');">删除</a></td>
+	</tr>
+	</c:forEach>
+	<tr class="foottr">
+		<td colspan="13">
+			<input type="button" value="首页" />
+			<input type="button" value="上一页" />
+			<input type="button" value="..." />
+			<input type="button" value="13" />
+			<input type="button" value="14" />
+			<input type="button" value="15" />
+			<input type="button" value="16" />
+			<input type="button" value="17" />
+			<input type="button" value="..." />
+			<input type="button" value="下一页" />
+			<input type="button" value="末页" />
+		</td>
+	</tr>
+</table>
+
+</div>
+
+</body>
+</html>
