@@ -59,8 +59,6 @@ function loginSubmit() {
 	$("#loginForm").submit();
 }
 
-function goPage(currentPage,pageSize,pageCount) {
-	currentPage = currentPage < pageCount ? currentPage :pageCount;  
-	currentPage = currentPage < 1 ? 1 : currentPage;
-	window.location.href = basePath + "/user/list/"+ currentPage + "/" + pageSize;
+function goPage(pageNumber,pageSize) {
+	window.location.href = basePath + "/user/list/"+ pageNumber + "/" + pageSize;
 }

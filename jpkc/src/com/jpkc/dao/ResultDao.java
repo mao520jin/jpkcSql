@@ -19,8 +19,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.jpkc.commons.MySQLPage;
 import com.jpkc.commons.Page;
-import com.jpkc.commons.PageMap;
 import com.jpkc.model.Result;
 import com.jpkc.model.Team;
 import com.jpkc.util.VerifyUtil;
@@ -75,7 +75,7 @@ public class ResultDao {
 		return row;
 	}
 
-	public Page<Object> getNoticeByPage(Result result, Team team, Integer pageSize, Integer currentPage) {
+	public Page<Map<String, Object>> getNoticeByPage(Result result, Team team, Integer pageSize, Integer currentPage) {
 		StringBuffer sql = new StringBuffer();
 		sql.append("select t.`member_name`,r.`id`,r.`team_id`,r.`content`,r.`type`,r.`delete_status`,r.`create_time`,r.`create_by` from `result` r,`team` t where r.`team_id` = t.`id` and r.`delete_status` = 0 and t.`delete_status` = 0");
 
@@ -90,7 +90,7 @@ public class ResultDao {
 			args.add(team.getMemberName());
 		}
 
-		return new PageMap<Object>(jdbcTemplate, new ColumnMapRowMapper(), pageSize, currentPage, sql.toString(), args.toArray());
+		return new MySQLPage<Map<String, Object>>(currentPage,pageSize, jdbcTemplate, sql.toString(), new ColumnMapRowMapper(), args.toArray());
 	}
 
 	public List<Map<String, Object>> select(Result result) {

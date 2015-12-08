@@ -18,9 +18,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.jpkc.commons.MySQLPage;
 import com.jpkc.commons.Page;
-import com.jpkc.commons.PageMap;
-import com.jpkc.model.Notice;
 import com.jpkc.model.Result;
 import com.jpkc.model.Team;
 import com.jpkc.util.VerifyUtil;
@@ -140,9 +139,7 @@ public class TeamDao {
 		log.debug("sql : " + sql);
 		log.debug("args : " + JSONArray.fromObject(args));
 
-		// return jdbcTemplate.query(sql.toString(), args.toArray(), new
-		// UserMapper());
-		return new PageMap<Team>(jdbcTemplate, new TeamMapper(), pageSize, currentPage, sql.toString(), args.toArray());
+		return new MySQLPage<Team>(currentPage,pageSize,jdbcTemplate, sql.toString(),new TeamMapper(),args.toArray());
 	}
 
 	public List<Team> select(Team team) {

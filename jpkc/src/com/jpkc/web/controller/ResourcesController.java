@@ -48,24 +48,24 @@ public class ResourcesController {
 	}
 	
 	@RequestMapping("/list")
-	public String resourcesList(Model model,String title,Integer pageSize, Integer currentPage) {
+	public String resourcesList(Model model,String title) {
 		Resources resources = new Resources();
 		if(!VerifyUtil.isEmpty(title)) {
 			resources.setTitle(title);
 		}
-		currentPage = 1;
-		pageSize = 3;
-		Page<Resources> page = resourcesService.getResourcesByPage(resources,pageSize,currentPage);
+		int pageNumber = 1;
+		int pageSize = 3;
+		Page<Resources> page = resourcesService.getResourcesByPage(resources,pageSize,pageNumber);
 		model.addAttribute("page", page);
 		model.addAttribute("title", title);
 		
 		return "console/resources/resourceslist";
 	}
 	
-	@RequestMapping("/list/{currentPage}/{pageSize}")
-	public String resourcesList(Model model,@PathVariable int currentPage, @PathVariable int pageSize ) {
+	@RequestMapping("/list/{pageNumber}/{pageSize}")
+	public String resourcesList(Model model,@PathVariable int pageNumber, @PathVariable int pageSize ) {
 		Resources resources = new Resources();
-		Page<Resources> page = resourcesService.getResourcesByPage(resources,pageSize,currentPage);
+		Page<Resources> page = resourcesService.getResourcesByPage(resources,pageSize,pageNumber);
 		model.addAttribute("page", page);
 		return "console/resources/resourceslist";
 	}

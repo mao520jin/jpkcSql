@@ -97,15 +97,15 @@ public class UserController {
 	 * @2015-11-8
 	 */
 	@RequestMapping("/list")
-	public String list(Model model,String username,Integer pageSize, Integer currentPage ) {
+	public String list(Model model,String username ) {
 		User user = new User();
 		user.setDeleteStatus(0);
 		if(!VerifyUtil.isEmpty(username)){
 			user.setUsername(username);
 		}
-		 currentPage = 1;
-		 pageSize = 3;
-		Page<User> page = userService.getUserByPage(user,pageSize,currentPage);
+		int pageSize = 10;
+		int pageNumber= 1;
+		Page<User> page = userService.getUserByPage(user,pageSize,pageNumber);
 		model.addAttribute("page", page);
 		model.addAttribute("username", username);
 		
@@ -118,10 +118,10 @@ public class UserController {
 	 * @author zhangyi
 	 * @2015-11-8
 	 */
-	@RequestMapping("/list/{currentPage}/{pageSize}")
-	public String list(Model model,@PathVariable int currentPage, @PathVariable int pageSize) {
+	@RequestMapping("/list/{pageNumber}/{pageSize}")
+	public String list(Model model,@PathVariable int pageNumber, @PathVariable int pageSize) {
 		User user = new User();
-		Page<User> page = userService.getUserByPage(user,pageSize,currentPage);
+		Page<User> page = userService.getUserByPage(user,pageSize,pageNumber);
 		model.addAttribute("page", page);
 		return "console/user/userlist";
 	}

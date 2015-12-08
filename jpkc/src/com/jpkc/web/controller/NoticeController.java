@@ -8,16 +8,13 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jpkc.commons.Page;
 import com.jpkc.model.Notice;
 import com.jpkc.model.User;
 import com.jpkc.service.NoticeService;
-import com.jpkc.service.UserService;
 import com.jpkc.util.VerifyUtil;
 
 /**
@@ -55,14 +52,14 @@ public class NoticeController {
 	 * @2015-11-8
 	 */
 	@RequestMapping("/list")
-	public String noticeList(Model model,String title,Integer pageSize, Integer currentPage ) {
+	public String noticeList(Model model,String title) {
 		Notice notice = new Notice();
 		if(!VerifyUtil.isEmpty(title)) {
 			notice.setTitle(title);
 		}
-		currentPage = 1;
-		pageSize = 3;
-		Page<Notice> page = noticeService.getNoticeByPage(notice,pageSize,currentPage);
+		int pageNumber = 1;
+		int pageSize = 3;
+		Page<Notice> page = noticeService.getNoticeByPage(notice,pageSize,pageNumber);
 		model.addAttribute("page", page);
 		model.addAttribute("title", title);
 		
@@ -75,10 +72,10 @@ public class NoticeController {
 	 * @author zhangyi
 	 * @2015-11-8
 	 */
-	@RequestMapping("/list/{currentPage}/{pageSize}")
-	public String noticeList(Model model,String content,@PathVariable int currentPage, @PathVariable int pageSize ) {
+	@RequestMapping("/list/{pageNumber}/{pageSize}")
+	public String noticeList(Model model,String content,@PathVariable int pageNumber, @PathVariable int pageSize ) {
 		Notice notice = new Notice();
-		Page<Notice> page = noticeService.getNoticeByPage(notice,pageSize,currentPage);
+		Page<Notice> page = noticeService.getNoticeByPage(notice,pageSize,pageNumber);
 		model.addAttribute("page", page);
 		return "console/notice/noticelist";
 	}

@@ -47,12 +47,10 @@ public class test {
 	public void selectTest() {
 		System.out.println(jdbcTemplate);
 		String sql = "select id,username,password,delete_status,create_time from user ";
-		Page<User> page = new PageMap<User>(jdbcTemplate, new UserMapper() , 1, 7, sql,null);
+		Page<User> page = new MySQLPage<User>(1, 7,jdbcTemplate, sql,new UserMapper());
 		System.out.println(JSONObject.fromObject(page));
 	}
+	
 	public static void main(String[] args) {
-		Page<User> pa = new PageMap<User>();
-		test t = new test();
-		t.selectTest();
 	}
 }

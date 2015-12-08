@@ -52,21 +52,21 @@ public class ResultController {
 	}
 
 	@RequestMapping("/list")
-	public String resultList(Model model, Team team, Integer pageSize, Integer currentPage) {
+	public String resultList(Model model, Team team) {
 		Result result = new Result();
-		currentPage = 1;
-		pageSize = 3;
-		Page<Object> page = resultService.getTeamByPage(result, team, pageSize, currentPage);
+		int pageSize = 10;
+		int pageNumber= 1;
+		Page<Map<String, Object>> page = resultService.getTeamByPage(result, team, pageSize, pageNumber);
 		model.addAttribute("page", page);
 		model.addAttribute("memberName", team.getMemberName());
 
 		return "/console/result/resultlist";
 	}
 
-	@RequestMapping("/list/{currentPage}/{pageSize}")
-	public String resultList(Model model, Team team, @PathVariable int currentPage, @PathVariable int pageSize) {
+	@RequestMapping("/list/{pageNumber}/{pageSize}")
+	public String resultList(Model model, Team team, @PathVariable int pageNumber, @PathVariable int pageSize) {
 		Result result = new Result();
-		Page<Object> page = resultService.getTeamByPage(result, team, pageSize, currentPage);
+		Page<Map<String, Object>> page = resultService.getTeamByPage(result, team, pageSize, pageNumber);
 		model.addAttribute("page", page);
 		return "console/result/resultlist";
 	}

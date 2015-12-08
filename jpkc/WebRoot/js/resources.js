@@ -1,7 +1,5 @@
-function goPage(currentPage,pageSize,pageCount) {
-	currentPage = currentPage < pageCount ? currentPage :pageCount;  
-	currentPage = currentPage < 1 ? 1 : currentPage;
-	window.location.href = basePath + "/resources/list/"+ currentPage + "/" + pageSize;
+function goPage(pageNumber,pageSize) {
+	window.location.href = basePath + "/resources/list/"+ pageNumber + "/" + pageSize;
 }
 
 function doSubmit() {

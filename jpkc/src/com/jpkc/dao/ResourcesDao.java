@@ -18,8 +18,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.jpkc.commons.MySQLPage;
 import com.jpkc.commons.Page;
-import com.jpkc.commons.PageMap;
 import com.jpkc.model.Resources;
 import com.jpkc.util.VerifyUtil;
 
@@ -120,7 +120,7 @@ public class ResourcesDao {
 		log.debug("sql : " + sql);
 		log.debug("args : " + JSONArray.fromObject(args));
 
-		return new PageMap<Resources>(jdbcTemplate, new ResourcesMapper(), pageSize, currentPage, sql.toString(), args.toArray());
+		return new MySQLPage<Resources>(currentPage,pageSize,jdbcTemplate, sql.toString(),new ResourcesMapper(),args.toArray());
 	}
 
 	public List<Resources> select(Resources resources) {

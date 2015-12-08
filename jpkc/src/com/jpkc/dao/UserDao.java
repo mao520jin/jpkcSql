@@ -15,8 +15,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.jpkc.commons.MySQLPage;
 import com.jpkc.commons.Page;
-import com.jpkc.commons.PageMap;
 import com.jpkc.model.User;
 import com.jpkc.util.VerifyUtil;
 
@@ -89,7 +89,7 @@ public class UserDao {
 		log.debug("sql : " + sql);
 		log.debug("args : " + JSONArray.fromObject(args));
 
-		return new PageMap<User>(jdbcTemplate, new UserMapper(), pageSize, currentPage, sql.toString(), args.toArray());
+		return new MySQLPage<User>(currentPage,pageSize, jdbcTemplate, sql.toString(),new UserMapper(),args.toArray());
 	}
 
 	public int save(User user) {

@@ -15,14 +15,15 @@
 <body>
 	<div>
 		<p>
-		当前第${page.currentPage } 页
-		每页${page.pageSize }条
-		<a href="#" onclick = "goPage(1,${page.pageSize },${page.pageCount });">首页</a>
-		<a href="#" onclick = "goPage(${page.currentPage - 1} ,${page.pageSize },${page.pageCount });">上一页</a>
-		<a href="#" onclick = "goPage(${page.currentPage + 1} ,${page.pageSize },${page.pageCount });">下一页</a>
-		<a href="#" onclick = "goPage(${page.totalCount},${page.pageSize },${page.pageCount });">尾页</a>
-		共${page.totalCount }条数据
-		共${page.pageCount } 页
+		<strong>总数&nbsp;${page.totalElements}&nbsp;条，</strong>
+		<strong>每页&nbsp;</strong>${page.pageSize}<strong>&nbsp;条，</strong>
+		<strong>页码&nbsp;${page.pageNumber}/${page.totalPages}&nbsp;，</strong>
+		<a href="#" onclick = "goPage(1,${page.pageSize });">首页</a>
+		<a href="#" onclick = "goPage(${page.previous} ,${page.pageSize });">上一页</a>
+		<a href="#" onclick = "goPage(${page.next} ,${page.pageSize });">下一页</a>
+		<a href="#" onclick = "goPage(${page.totalPages},${page.pageSize });">尾页</a>
+		共${page.totalElements}条数据
+		共${page.totalPages} 页
 		</p>
 	</div>
 </body>

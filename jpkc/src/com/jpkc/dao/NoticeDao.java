@@ -18,8 +18,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.jpkc.commons.MySQLPage;
 import com.jpkc.commons.Page;
-import com.jpkc.commons.PageMap;
 import com.jpkc.model.Notice;
 import com.jpkc.util.VerifyUtil;
 
@@ -97,9 +97,7 @@ public class NoticeDao {
 		log.debug("sql : " + sql);
 		log.debug("args : " + JSONArray.fromObject(args));
 
-		// return jdbcTemplate.query(sql.toString(), args.toArray(), new
-		// UserMapper());
-		return new PageMap<Notice>(jdbcTemplate, new NoticeMapper(), pageSize, currentPage, sql.toString(), args.toArray());
+		return new MySQLPage<Notice>(currentPage,pageSize,jdbcTemplate, sql.toString(),new NoticeMapper(),args.toArray());
 	}
 
 	public int add(Notice notice) {
