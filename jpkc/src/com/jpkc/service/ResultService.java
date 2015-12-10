@@ -45,9 +45,8 @@ public class ResultService {
 
 	}
 
-	public Page<Map<String, Object>> getTeamByPage(Result result, Team team, Integer pageSize, Integer currentPage) {
-		result.setDeleteStatus(0);
-		return resultDao.getNoticeByPage(result, team, pageSize, currentPage);
+	public Page<Map<String, Object>> getResultByPage(Result result, Team team, Integer pageSize, Integer currentPage) {
+		return resultDao.getResultByPage(result, team, pageSize, currentPage);
 	}
 
 	public List<Team> getTeam() {

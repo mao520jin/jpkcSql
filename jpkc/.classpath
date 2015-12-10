@@ -47,6 +47,17 @@
 	<classpathentry kind="lib" path="WebRoot/editor/jsp/lib/commons-fileupload-1.2.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/editor/jsp/lib/commons-io-1.4.jar"/>
 	<classpathentry kind="lib" path="WebRoot/editor/jsp/lib/json_simple-1.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/doc/commons-cli-1.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/doc/commons-io-1.4.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/doc/jodconverter-2.2.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/doc/jodconverter-cli-2.2.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/doc/juh-3.0.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/doc/jurt-3.0.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/doc/ridl-3.0.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/doc/slf4j-api-1.5.6.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/doc/slf4j-jdk14-1.5.6.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/doc/unoil-3.0.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/doc/xstream-1.3.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>

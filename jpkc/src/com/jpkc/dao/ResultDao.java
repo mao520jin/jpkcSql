@@ -75,7 +75,7 @@ public class ResultDao {
 		return row;
 	}
 
-	public Page<Map<String, Object>> getNoticeByPage(Result result, Team team, Integer pageSize, Integer currentPage) {
+	public Page<Map<String, Object>> getResultByPage(Result result, Team team, Integer pageSize, Integer currentPage) {
 		StringBuffer sql = new StringBuffer();
 		sql.append("select t.`member_name`,r.`id`,r.`team_id`,r.`content`,r.`type`,r.`delete_status`,r.`create_time`,r.`create_by` from `result` r,`team` t where r.`team_id` = t.`id` and r.`delete_status` = 0 and t.`delete_status` = 0");
 

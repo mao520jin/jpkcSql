@@ -14,7 +14,7 @@ function check(id) {
 	content = content.replace(/(^\s*)|(\s*$)/g, "");
 	if(id == 'title') {
 		if(content == "" || content == null ) {
-			$("#" + id + "Msg").remove();
+				$("#" + id + "Msg").remove();
 			$("#" + id + "Div").addClass("error");
 			$("#" + id + "Div").append("<strong class='message' id='"+id+"Msg'>标题不能为空!!!</strong>");
 			return false;

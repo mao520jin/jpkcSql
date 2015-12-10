@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jpkc.commons.Page;
+import com.jpkc.commons.Render;
 import com.jpkc.model.Result;
 import com.jpkc.model.Team;
 import com.jpkc.model.User;
 import com.jpkc.service.ResultService;
+import com.jpkc.util.VerifyUtil;
 
 @Controller
 @RequestMapping("/result")
@@ -52,11 +54,19 @@ public class ResultController {
 	}
 
 	@RequestMapping("/list")
-	public String resultList(Model model, Team team) {
+
+	public String resultList(Model model, String memberName) {
+		Team team = new Team();
+		if(!VerifyUtil.isEmpty(memberName)) {
+			team.setMemberName(memberName);
+			team.setDeleteStatus(0);
+		}
 		Result result = new Result();
+		result.setDeleteStatus(0);
+		
 		int pageSize = 10;
 		int pageNumber= 1;
-		Page<Map<String, Object>> page = resultService.getTeamByPage(result, team, pageSize, pageNumber);
+		Page<Map<String, Object>> page = resultService.getResultByPage(result, team, pageSize, pageNumber);
 		model.addAttribute("page", page);
 		model.addAttribute("memberName", team.getMemberName());
 
@@ -64,11 +74,41 @@ public class ResultController {
 	}
 
 	@RequestMapping("/list/{pageNumber}/{pageSize}")
-	public String resultList(Model model, Team team, @PathVariable int pageNumber, @PathVariable int pageSize) {
+	public String resultList(Model model, @PathVariable int pageNumber, @PathVariable int pageSize) {
 		Result result = new Result();
-		Page<Map<String, Object>> page = resultService.getTeamByPage(result, team, pageSize, pageNumber);
+		result.setDeleteStatus(0);
+		
+		Team team = new Team();
+		team.setDeleteStatus(0);
+		Page<Map<String, Object>> page = resultService.getResultByPage(result, team, pageSize, pageNumber);
 		model.addAttribute("page", page);
 		return "console/result/resultlist";
+	}
+	
+	/***
+	 * API
+	 * 
+	 * @param model
+	 * @param pageNumber
+	 * @param pageSize
+	 * @param type
+	 * @return
+	 */
+	@RequestMapping("/resultList")
+	public Render<Object> resultList(Model model, int pageNumber,  int pageSize,int type) {
+		Render<Object> render = new Render<Object>();
+		
+		Result result = new Result();
+		result.setDeleteStatus(0);
+		result.setType(type);
+		
+		Team team = new Team();
+		team.setType(type);
+		team.setDeleteStatus(0);
+		Page<Map<String, Object>> page = resultService.getResultByPage(result, team, pageSize, pageNumber);
+		render.setData(page);
+		render.setCode("20000");
+		return render;
 	}
 
 	@RequestMapping("/edit/{id}")

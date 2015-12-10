@@ -3,6 +3,7 @@ package com.jpkc.web.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jpkc.commons.Page;
+import com.jpkc.commons.Render;
 import com.jpkc.model.Notice;
 import com.jpkc.model.User;
 import com.jpkc.service.NoticeService;
@@ -78,6 +80,25 @@ public class NoticeController {
 		Page<Notice> page = noticeService.getNoticeByPage(notice,pageSize,pageNumber);
 		model.addAttribute("page", page);
 		return "console/notice/noticelist";
+	}
+	
+	/***
+	 * 公告API
+	 * 
+	 * @param pageNumber
+	 * @param pageSize
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/noticeList")
+	public Render<Object> noticeList(int pageNumber, int pageSize, HttpServletRequest request, Model model) {
+		Render<Object> render = new Render<Object>();
+		Notice notice = new Notice();
+		Page<Notice> page = noticeService.getNoticeByPage(notice,pageSize,pageNumber);
+		render.setData(page);
+		render.setCode("2000");
+		return render;
 	}
 	
 	/**

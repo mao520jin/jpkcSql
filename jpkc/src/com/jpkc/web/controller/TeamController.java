@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jpkc.commons.Page;
+import com.jpkc.commons.Render;
 import com.jpkc.model.Team;
 import com.jpkc.model.User;
 import com.jpkc.service.TeamService;
@@ -60,6 +61,23 @@ public class TeamController {
 		Page<Team> page = teamService.getTeamByPage(team,pageSize,pageNumber);
 		model.addAttribute("page", page);
 		return "console/team/teamlist";
+	}
+	
+	/**
+	 * 团队成员列表API
+	 * 
+	 * @author zhangyi
+	 * @2015-11-8
+	 */
+	@RequestMapping("/teamList")
+	public Render<Object> teamList(Model model,int pageNumber,int pageSize,int type) {
+		Render<Object> render = new Render<Object>();
+		Team team = new Team();
+		team.setType(type);
+		Page<Team> page = teamService.getTeamByPage(team,pageSize,pageNumber);
+		render.setData(page);
+		render.setCode("20000");
+		return render;
 	}
 	
 	/**

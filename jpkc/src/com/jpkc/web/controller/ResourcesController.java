@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jpkc.commons.Page;
+import com.jpkc.commons.Render;
 import com.jpkc.model.Resources;
 import com.jpkc.model.User;
 import com.jpkc.service.ResourcesService;
@@ -68,6 +69,25 @@ public class ResourcesController {
 		Page<Resources> page = resourcesService.getResourcesByPage(resources,pageSize,pageNumber);
 		model.addAttribute("page", page);
 		return "console/resources/resourceslist";
+	}
+	/***
+	 * API
+	 * 
+	 * @param model
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping("/resourcesList")
+	public Render<Object> resourcesList(Model model, int pageNumber, int pageSize ,int type) {
+		Render<Object> render = new Render<Object>();
+		Resources resources = new Resources();
+		resources.setType(type);
+		Page<Resources> page = resourcesService.getResourcesByPage(resources,pageSize,pageNumber);
+		model.addAttribute("page", page);
+		render.setData(page);
+		render.setCode("20000");
+		return render;
 	}
 	
 	@RequestMapping("/edit/{id}")
