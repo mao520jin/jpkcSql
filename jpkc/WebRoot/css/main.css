@@ -1,0 +1,11 @@
+
+/* ----- [ JOptionPane ] ----------------------------------------------------------------- */
+.joptionpane { padding: 10px 0px 0px 0px; text-align: left; }
+.joptionpane .joptionpane-icon { margin: 0px 10px 0px 0px; padding: 32px; float: left; background-position: center center; background-repeat: no-repeat; }
+
+.joptionpane .joptionpane-icon-error { background-image: url("../images/widepixel/error5.png"); }
+.joptionpane .joptionpane-icon-information { background-image: url("../images/widepixel/exclamation2.png"); }
+.joptionpane .joptionpane-icon-warning { background-image: url("../images/widepixel/exclamation3.png"); }
+.joptionpane .joptionpane-icon-question { background-image: url("../images/widepixel/question1.png"); }
+.joptionpane .joptionpane-icon-plain { background-image: url("../images/widepixel/exclamation1.png"); }
+.joptionpane .joptionpane-icon-shield { background-image: url("../images/widepixel/shield1.png"); }

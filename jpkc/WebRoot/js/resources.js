@@ -54,3 +54,21 @@ function check(id) {
 		}
 	}
 }
+
+$(function() {
+	$("#resource_form").dialog({
+		autoOpen: false,
+		width: 400,
+		modal: true,
+		buttons: [
+			{ text: "关闭", click: function() { $( this ).dialog( "close" ); } }
+		]
+	});
+});
+
+/*打开资源内容*/
+function open() {
+	alert(111);
+	//	$("resource_content").append(content);
+		$( "#resource_form" ).dialog( "open" );
+}

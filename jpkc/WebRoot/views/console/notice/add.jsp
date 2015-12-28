@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="/views/include/base.jsp"%>
+<%@ include file="/views/console//include/base.jsp"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,7 +8,7 @@
 <title>添加公告 - ${APP_CONSOLE_NAME_CN} - ${APP_NAME_CN}</title>
 
 <jsp:include page="/views/console/include/style.jsp"></jsp:include>
-<jsp:include page="/views/include/script.jsp"></jsp:include>
+<jsp:include page="/views/console/include/script.jsp"></jsp:include>
 <script type="text/javascript" src="${basePath}/js/notice.js"></script>
 
 	<link rel="stylesheet" href="${basePath}/editor/themes/default/default.css" />

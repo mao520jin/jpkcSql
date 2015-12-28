@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="/views/include/base.jsp"%>
+<%@ include file="/views/console/include/base.jsp"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,6 +8,7 @@
 <title>通告列表 - ${APP_CONSOLE_NAME_CN} - ${APP_NAME_CN}</title>
 
 <jsp:include page="/views/console/include/style.jsp"></jsp:include>
+<jsp:include page="/views/console/include/script.jsp" flush="true" />
 <script type="text/javascript" src="${basePath}/js/resources.js"></script>
 
 </head>
@@ -57,7 +58,7 @@
 		</form>
 		
 		<table border="0" cellpadding="0" cellspacing="0" class="full">
-			<thead><tr><th scope="col" colspan="13">
+			<thead><tr><th scope="col" colspan="5">
 				<div>
 					<jsp:include page="/views/page/page.jsp"/>				
 				</div>
@@ -67,7 +68,7 @@
 				<c:forEach items="${page.content}" var="o" varStatus="status">
 				<tr>
 				<td>${status.index +1}</td>
-				<td><a>${o.title}</a></td>
+				<td><a href="javascript:#;" onclick="open();">${o.title}</a></td>
 				<td>  
 					<c:choose> 
 						<c:when test="${o.type eq 1}">电子教案 
@@ -103,6 +104,13 @@
 
 <jsp:include page="/views/console/include/footer.jsp"></jsp:include>
 <jsp:include page="/views/console/include/yamlfocusfix.jsp"></jsp:include>
+
+<div id="resource_form" title="资料内容">
+	<form method="post" action="" class="yform full" role="application">
+			<div class="type-text" id="resource_content">
+			</div>
+	</form>
+</div>
 
 </body>
 </html>
