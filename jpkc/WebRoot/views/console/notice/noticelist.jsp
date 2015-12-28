@@ -68,7 +68,7 @@
 				<tr>
 				<td>${status.index +1}</td>
 				<td><a>${o.title}</a></td>
-				<td>${o.createTime}</td>
+				<td><fmt:formatDate value="${o.createTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 				<td>
 					<a href="${basePath}/notice/edit/${o.id}">编辑</a>         
 					<a href="${basePath}/notice/del/${o.id}">删除</a>         

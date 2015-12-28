@@ -83,7 +83,7 @@
 						</c:when>
 					</c:choose> 
 				</td>
-				<td>${o.create_time}</td>
+				<td><fmt:formatDate value="${o.create_time}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 				<td>
 					<a href="${basePath}/result/edit/${o.id}">编辑</a>         
 					<a href="${basePath}/result/del/${o.id}">删除</a>         

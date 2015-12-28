@@ -47,6 +47,7 @@
 	<mvc:resources location="/js/" mapping="/js/**" />
 	<mvc:resources location="/editor/" mapping="/editor/**" />
 	<mvc:resources location="/upload/" mapping="/upload/**" />
+	<mvc:resources location="/kc-images/" mapping="/kc-images/**" />
 	<mvc:resources location="/" mapping="/*.html" />
 
 </beans>

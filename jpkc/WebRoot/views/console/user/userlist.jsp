@@ -59,7 +59,7 @@
 		
 		
 		<table border="0" cellpadding="0" cellspacing="0" class="full">
-			<thead><tr><th scope="col" colspan="13">
+			<thead><tr><th scope="col" colspan="4">
 				<div>
 					<jsp:include page="/views/page/page.jsp"/>				
 				</div>
@@ -68,9 +68,9 @@
 				<tr><th scope="col">序号</th><th scope="col">用户名</th><th scope="col">密码</th><th scope="col">操作</th></tr>
 				<c:forEach items="${page.content}" var="o" varStatus="status">
 				<tr>
-				<td>${status.index +1}</td>
-				<td>${o.username}</td>
-				<td>${o.password}</td>
+					<td>${status.index +1}</td>
+					<td>${o.username}</td>
+					<td>${o.password}</td>
 				<td>
 					<a href="${basePath}/user/del/${o.id}">删除</a>         
 				</td>
@@ -83,6 +83,7 @@
 	<div id="ie_clearing">&nbsp;</div>
 	<!-- End: IE Column Clearing -->
 </div>
+
 <!-- end: #col3 -->
 
 </div></div></div>
