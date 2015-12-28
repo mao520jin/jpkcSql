@@ -29,7 +29,7 @@
 			<jsp:param name="vListActive" value="resourcesList" />
 			<jsp:param name="hListActive" value="OperationsManagement" />
 		</jsp:include>
-		</div>
+	</div>
 </div>
 <!-- end: #col1 -->
 
@@ -38,38 +38,40 @@
 <!-- end: #col2 -->
 
 <!-- begin: #col3 static column -->
-<div id="col3" role="main">
-	<div id="col3_content" class="clearfix">
-		<form method="post" action="${basePath}/resources/list" class="yform columnar" role="application">
-			<fieldset>
-				<div class="subcolumns">
-					<div class="c25l">
-						<div class="subcl type-text">
-							<label for="title">标题检索：</label><input type="text" name="title" id="title" size="15" value="${title }"/>
-						</div>
-					</div>
-					<div class="c25r">
-							<div class="subcr type-button">
-									<input type="submit" value="提交查询" class="submit"  />
-							</div>
-										</div>
-					</div>
-			</fieldset>
-		</form>
+<div id="col3" role="main"><div id="col3_content" class="clearfix">
 		
-		<table border="0" cellpadding="0" cellspacing="0" class="full">
-			<thead><tr><th scope="col" colspan="5">
-				<div>
-					<jsp:include page="/views/page/page.jsp"/>				
+	<form method="post" action="${basePath}/resources/list" class="yform columnar" role="application">
+		<fieldset>
+			<div class="subcolumns">
+				<div class="c25l">
+					<div class="subcl type-text">
+						<label for="title">标题检索：</label><input type="text" name="title" id="title" size="15" value="${title }"/>
+					</div>
 				</div>
-			</th></tr></thead>
-			<tbody>
-				<tr><th scope="col">序号</th><th scope="col">标题</th><th scope="col">资源类型</th><th scope="col">发布时间</th><th scope="col">操作</th></tr>
-				<c:forEach items="${page.content}" var="o" varStatus="status">
-				<tr>
-				<td>${status.index +1}</td>
-				<td><a href="javascript:#;" onclick="open();">${o.title}</a></td>
-				<td>  
+				<div class="c25r">
+					<div class="subcr type-button">
+						<input type="submit" value="提交查询" class="submit"  />
+					</div>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+		
+	<table border="0" cellpadding="0" cellspacing="0" class="full">
+		<thead><tr><th scope="col" colspan="5">
+			<div>
+				<jsp:include page="/views/page/page.jsp"/>				
+			</div>
+		</th></tr></thead>
+		
+		<tbody>
+			<tr><th scope="col">序号</th><th scope="col">标题</th><th scope="col">资源类型</th><th scope="col">发布时间</th><th scope="col">操作</th></tr>
+			<c:forEach items="${page.content}" var="o" varStatus="status">
+			<input type="hidden" id="content_${o.id }" value="${fn:replace(o.path,'\"','&quot;')}" />
+			<tr>
+				 <td>${status.index +1}</td>
+				 <td><a href="javascript:;" onclick="openContent('${o.id}');">${o.title}</a></td>
+				 <td>  
 					<c:choose> 
 						<c:when test="${o.type eq 1}">电子教案 
 					</c:when> 
@@ -82,17 +84,17 @@
 						<c:when test="${o.type eq 5}">实验教学资料   
 						</c:when> 
 					</c:choose> 
-				</td>
-				<td><fmt:formatDate value="${o.createTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-				<td>
+				 </td>
+				 <td><fmt:formatDate value="${o.createTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+				 <td>
 					<a href="${basePath}/resources/edit/${o.id}">编辑</a>         
 					<a href="${basePath}/resources/del/${o.id}">删除</a>         
-				</td>
-				 </tr>
-				</c:forEach>
+				 </td>
+			 </tr>
+			</c:forEach>
 
-			</tbody>
-		</table>
+		</tbody>
+	</table>
 	</div>
 	<div id="ie_clearing">&nbsp;</div>
 	<!-- End: IE Column Clearing -->
@@ -108,6 +110,7 @@
 <div id="resource_form" title="资料内容">
 	<form method="post" action="" class="yform full" role="application">
 			<div class="type-text" id="resource_content">
+				
 			</div>
 	</form>
 </div>

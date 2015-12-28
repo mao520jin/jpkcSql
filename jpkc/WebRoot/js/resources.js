@@ -1,7 +1,10 @@
+
+/*分页查询*/
 function goPage(pageNumber,pageSize) {
 	window.location.href = basePath + "/resources/list/"+ pageNumber + "/" + pageSize;
 }
 
+/*搜索*/
 function doSubmit() {
 	if(!check('title')||!check('editor')||!check('type')) {
 		return false;
@@ -67,8 +70,9 @@ $(function() {
 });
 
 /*打开资源内容*/
-function open() {
-	alert(111);
-	//	$("resource_content").append(content);
-		$( "#resource_form" ).dialog( "open" );
+function openContent(id) {
+	$("#resource_content").empty();
+	var content = $("#content_" + id).val();
+	$("#resource_content").append(content);
+	$( "#resource_form" ).dialog( "open" );
 }
