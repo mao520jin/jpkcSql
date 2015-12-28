@@ -78,7 +78,7 @@ KindEditor.ready(function(K) {
 			<div class="subcolumns">
 			  <div class="c50l">
 				 	<div class="type-text" id="teamIdDiv">
-						<label for="teamId">项目人:${ o.id	 }<sup >*</sup></label>
+						<label for="teamId">项目人:${ o.id	}</label>
 						<select name="teamId" id="teamId" size="1" style="width: 200px;" >
 								<option value="0" selected="selected" disabled="disabled">-----------------请选择-----------------</option>
 							<c:forEach items="${teamList}" var="o" varStatus="status">
@@ -95,7 +95,7 @@ KindEditor.ready(function(K) {
 					</div>
 					<input type="hidden" name="id" id="id" size="20" style="width: 300px;" value="${list[0].id}" />
 					<div class="type-text" id="editorDiv">
-						<label for=content>成果简介：<sup >*</sup></label>
+						<label for="editor">成果简介：</label>
 						<textarea id="editor" name="content" style="width:700px;height:300px; visibility:hidden;" onblur="check(id);">${list[0].content }
 						</textarea>
 					</div>
@@ -103,7 +103,7 @@ KindEditor.ready(function(K) {
 			  </div>
 			  <div class="c50r">
 				  	<div class="subcl type-select" id="typeDiv">
-							<label for="select-1">成果类别:</label>
+							<label for="type">成果类别:</label>
 							<select name="type" id="type" size="1" style="width: 200px;" >
 								  <c:choose> 
 									  <c:when test="${list[0].type eq 1 }">   
@@ -142,11 +142,10 @@ KindEditor.ready(function(K) {
 					 </div>
 			  </div>
 			</div>
-				
-			<div class="type-button">
-				<input type="button" value="确认提交"    onclick="doSubmit();"/>
-			</div>
 		</form>
+			<div class="type-button ">
+				<a href="javascrip:;" onclick="doSubmit();"  class="ui-button ">提交</a>
+			</div> 	
 	</div>
 	<div id="ie_clearing">&nbsp;</div>
 	<!-- End: IE Column Clearing -->

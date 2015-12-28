@@ -5,9 +5,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>用户列表 - ${APP_CONSOLE_NAME_CN} - ${APP_NAME_CN}</title>
+<title>用户列表 ${APP_CONSOLE_NAME_CN}  ${APP_NAME_CN}</title>
 
 <jsp:include page="/views/console/include/style.jsp"></jsp:include>
+<jsp:include page="/views/console/include/script.jsp" flush="true" />
 <script type="text/javascript" src="${basePath}/js/user.js"></script>
 
 </head>
@@ -38,49 +39,60 @@
 <!-- end: #col2 -->
 
 <!-- begin: #col3 static column -->
-<div id="col3" role="main">
-	<div id="col3_content" class="clearfix">
-		<form method="post" action="${basePath}/user/list" class="yform columnar" role="application">
+<div id="col3" role="main"><div id="col3_content" class="clearfix">
+		
+		<form method="post" id="serach_form" action="${basePath}/user/list" class="yform full" role="application">
 			<fieldset>
+				<jsp:include page="/views/console/include/render.jsp" />
 				<div class="subcolumns">
-					<div class="c25l">
+					<div class="c20l">
 						<div class="subcl type-text">
-							<label for="username">用户名：</label><input type="text" name="username" id="username" size="15" value="${username }"/>
+							<label for="Uname">用户名：</label>
+							<input type="text" name="Uname" id="Uname" size="15" value="${Uname }"/>
 						</div>
 					</div>
-					<div class="c25r">
-							<div class="subcr type-button">
-									<input type="submit" value="提交查询" class="submit"  />
-							</div>
-										</div>
-					</div>
+					<div class="c20l"><div class="subc"></div></div>
+					<div class="c20l"><div class="subc"></div></div>
+					<div class="c20l"><div class="subc"></div></div>
+					<div class="c20r"><div class="subcr"></div></div>
+				</div>
 			</fieldset>
-		</form>
-		
+			
+			<div class="type-button">
+					<a href="javascrip:;" onclick="doSearch();" class="ui-button">查询</a>
+			</div>
+	</form>
 		
 		<table border="0" cellpadding="0" cellspacing="0" class="full">
-			<thead><tr><th scope="col" colspan="4">
-				<div>
-					<jsp:include page="/views/page/page.jsp"/>				
-				</div>
-			</th></tr></thead>
+			<thead>
+				<tr><th scope="col" colspan="3">
+						<a href="javascript:;" onclick="doAdd();">添加</a>
+						<span>&nbsp;|&nbsp;</span>
+						<a href="javascript:;" onclick="doDelete();">删除</a>
+				</th></tr>
+			</thead>
+			
 			<tbody>
-				<tr><th scope="col">序号</th><th scope="col">用户名</th><th scope="col">密码</th><th scope="col">操作</th></tr>
+				<tr>
+					<th scope="col"><input id="checkAll" type="checkbox" onclick="doCheckAll(this);"/></th>
+					<th scope="col">用户名</th>
+					<th scope="col">密码</th>
+				</tr>
 				<c:forEach items="${page.content}" var="o" varStatus="status">
 				<tr>
-					<td>${status.index +1}</td>
+					<td><input id="item_${i}" type="checkbox" onclick="doCheckItem(this);" value="${o.id}"/></td>
 					<td>${o.username}</td>
 					<td>${o.password}</td>
-				<td>
-					<a href="${basePath}/user/del/${o.id}">删除</a>         
-				</td>
 				 </tr>
 				</c:forEach>
 
 			</tbody>
 		</table>
-	</div>
-	<div id="ie_clearing">&nbsp;</div>
+
+		<div>
+				<jsp:include page="/views/page/page.jsp"/>				
+		</div>
+	</div><div id="ie_clearing">&nbsp;</div>
 	<!-- End: IE Column Clearing -->
 </div>
 
@@ -91,6 +103,21 @@
 
 <jsp:include page="/views/console/include/footer.jsp"></jsp:include>
 <jsp:include page="/views/console/include/yamlfocusfix.jsp"></jsp:include>
+
+<div id="user_form_div" title="资料内容">
+	<form id="add_user_form" method="post" action="${basePath}/user/addUser" class="yform full" role="application">
+			<div class="type-text" id="user_content">
+				<div class="type-text">
+					<label for="username">账号</label>
+					<input type="text"  name="username" id="username" />
+				</div>
+				<div class="type-text">
+					<label for="password">密码</label>
+					<input type="text"  name="password" id="password" />
+				</div>
+			</div>
+	</form>
+</div>
 
 </body>
 </html>

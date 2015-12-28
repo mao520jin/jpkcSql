@@ -78,17 +78,17 @@
 			<div class="subcolumns">
 			  <div class="c50l">
 				 	<div class="type-text" id="memberNameDiv">
-						<label for="memberName">成员名称:<sup >*</sup></label>
-						<input type="text" name="memberName" id="memberName" size="20" style="width: 300px;" value="${teamList[0].memberName}" onblur="check(id);"/>
+						<label for="memberName">成员名称:</label>
+						<input type="text" name="memberName" id="memberName" size="20" style="width: 300px;" value="${teamList[0].memberName}" />
 					</div>
 					<input type="hidden" name="id" id="id" size="20" style="width: 300px;" value="${teamList[0].id}" />
 					<div class="type-text" id="emailDiv">
-						<label for="email">邮箱:<sup >*</sup></label>
-						<input type="text" name="email" id="email" size="20" style="width: 300px;" value="${teamList[0].email}" onblur="check(id);"/>
+						<label for="email">邮箱:</label>
+						<input type="text" name="email" id="email" size="20" style="width: 300px;" value="${teamList[0].email}" />
 					</div>
 					
 					<div class="type-text" id="editorDiv">
-						<label for=content>成员简介：<sup >*</sup></label>
+						<label for="editor">成员简介：</label>
 						<textarea id="editor" name="content" style="width:700px;height:300px; visibility:hidden;" >${teamList[0].content}
 						</textarea>
 					</div>
@@ -96,12 +96,12 @@
 			  </div>
 			  <div class="c50r">
 			  		 <div class="type-text" id="telDiv">
-						<label for="tel">电话:<sup >*</sup></label>
-						<input type="text" name="tel" id="tel" size="20" style="width: 300px;" value="${teamList[0].tel}" onblur="check(id);"/>
+						<label for="tel">电话:</label>
+						<input type="text" name="tel" id="tel" size="20" style="width: 300px;" value="${teamList[0].tel}" />
 					</div>
 				  	<div class="subcl type-select" id="typeDiv">
 							<label for="select-1">成员类别:</label>
-							<select name="type" id="type" size="1" style="width: 200px;" onblur="check(id);">
+							<select name="type" id="type" size="1" style="width: 200px;" >
 								  <c:choose> 
 									  <c:when test="${teamList[0].type eq 1 }">   
 									    <option value="1" selected="selected">导师</option>
@@ -121,11 +121,10 @@
 					 </div>
 			  </div>
 			</div>
-				
-			<div class="type-button">
-				<input type="button" value="确认提交"    onclick="doSubmit();"/>
-			</div>
 		</form>
+			<div class="type-button ">
+				<a href="javascrip:;" onclick="doSubmit();"  class="ui-button">提交</a>
+			</div> 
 	</div>
 	<div id="ie_clearing">&nbsp;</div>
 	<!-- End: IE Column Clearing -->

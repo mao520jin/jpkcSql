@@ -37,7 +37,7 @@ public class UserController {
 	 * @2015-11-7
 	 */
 	@RequestMapping("/login")
-	public String getUsers(User user,Model model,HttpServletRequest request) {
+	public String getUsers(User user, Model model, HttpServletRequest request) {
 		Boolean result = userService.login(user);
 		if (result) {
 			request.getSession().setAttribute("user", user);
@@ -60,8 +60,7 @@ public class UserController {
 	 * @2015-11-7
 	 */
 	@RequestMapping("/checkUsername")
-	public @ResponseBody
-	Render<Object> checkUsername(String username) {
+	public @ResponseBody Render<Object> checkUsername(String username) {
 		Render<Object> render = new Render<Object>();
 		User user = new User();
 		user.setUsername(username);
@@ -73,7 +72,7 @@ public class UserController {
 		}
 		return render;
 	}
-	
+
 	/***
 	 * 添加用户
 	 * 
@@ -89,7 +88,7 @@ public class UserController {
 		}
 		return "redirect:/user/error";
 	}
-	
+
 	/**
 	 * 用户列表默认分页参数
 	 * 
@@ -97,21 +96,21 @@ public class UserController {
 	 * @2015-11-8
 	 */
 	@RequestMapping("/list")
-	public String list(Model model,String username ) {
+	public String list(Model model, String Uname) {
 		User user = new User();
 		user.setDeleteStatus(0);
-		if(!VerifyUtil.isEmpty(username)){
-			user.setUsername(username);
+		if (!VerifyUtil.isEmpty(Uname)) {
+			user.setUsername(Uname);
 		}
 		int pageSize = 10;
-		int pageNumber= 1;
-		Page<User> page = userService.getUserByPage(user,pageSize,pageNumber);
+		int pageNumber = 1;
+		Page<User> page = userService.getUserByPage(user, pageSize, pageNumber);
 		model.addAttribute("page", page);
-		model.addAttribute("username", username);
-		
+		model.addAttribute("Uname", Uname);
+
 		return "console/user/userlist";
 	}
-	
+
 	/**
 	 * 用户列表指定分页参数
 	 * 
@@ -119,12 +118,13 @@ public class UserController {
 	 * @2015-11-8
 	 */
 	@RequestMapping("/list/{pageNumber}/{pageSize}")
-	public String list(Model model,@PathVariable int pageNumber, @PathVariable int pageSize) {
+	public String list(Model model, @PathVariable int pageNumber, @PathVariable int pageSize) {
 		User user = new User();
-		Page<User> page = userService.getUserByPage(user,pageSize,pageNumber);
+		Page<User> page = userService.getUserByPage(user, pageSize, pageNumber);
 		model.addAttribute("page", page);
 		return "console/user/userlist";
 	}
+
 	/**
 	 * 删除用户
 	 * 
@@ -137,7 +137,7 @@ public class UserController {
 		userService.delete(user);
 		return "redirect:/user/list";
 	}
-	
+
 	/**
 	 * 文件上传
 	 * 
@@ -163,7 +163,7 @@ public class UserController {
 		model.addAttribute("fileUrl", request.getContextPath() + "/upload/" + fileName);
 		return "upload";
 	}
-	
+
 	@RequestMapping("/signOut")
 	public String signOut(HttpServletRequest request) {
 		request.getSession().removeAttribute("user");

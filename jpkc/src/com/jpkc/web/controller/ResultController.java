@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jpkc.commons.Page;
 import com.jpkc.commons.Render;
@@ -20,6 +21,13 @@ import com.jpkc.model.User;
 import com.jpkc.service.ResultService;
 import com.jpkc.util.VerifyUtil;
 
+/**
+ * 
+ * 成果 Controller
+ * 
+ * @author zhangyi
+ * @version 1.0 2015年12月28日
+ */
 @Controller
 @RequestMapping("/result")
 public class ResultController {
@@ -29,6 +37,13 @@ public class ResultController {
 	@Resource
 	private ResultService resultService;
 
+	/**
+	 * 
+	 * 添加页面
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/add")
 	public String addIndex(Model model) {
 		List<Team> teamList = resultService.getTeam();
@@ -53,38 +68,58 @@ public class ResultController {
 		return "redirect:/result/list";
 	}
 
+	/**
+	 *
+	 * 列表
+	 * 
+	 * @param model
+	 * @param memberName
+	 * @return
+	 */
 	@RequestMapping("/list")
-
-	public String resultList(Model model, String memberName) {
+	public String resultList(Model model, String memberName, Integer resultType) {
 		Team team = new Team();
-		if(!VerifyUtil.isEmpty(memberName)) {
+		if (!VerifyUtil.isEmpty(memberName)) {
 			team.setMemberName(memberName);
 			team.setDeleteStatus(0);
 		}
 		Result result = new Result();
 		result.setDeleteStatus(0);
-		
+		if (!VerifyUtil.isEmpty(resultType) && resultType != 0) {
+			result.setType(resultType);
+		}
+
 		int pageSize = 10;
-		int pageNumber= 1;
+		int pageNumber = 1;
 		Page<Map<String, Object>> page = resultService.getResultByPage(result, team, pageSize, pageNumber);
 		model.addAttribute("page", page);
 		model.addAttribute("memberName", team.getMemberName());
+		model.addAttribute("resultType", resultType);
 
 		return "/console/result/resultlist";
 	}
 
+	/***
+	 * 
+	 * 分页
+	 * 
+	 * @param model
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
 	@RequestMapping("/list/{pageNumber}/{pageSize}")
 	public String resultList(Model model, @PathVariable int pageNumber, @PathVariable int pageSize) {
 		Result result = new Result();
 		result.setDeleteStatus(0);
-		
+
 		Team team = new Team();
 		team.setDeleteStatus(0);
 		Page<Map<String, Object>> page = resultService.getResultByPage(result, team, pageSize, pageNumber);
 		model.addAttribute("page", page);
 		return "console/result/resultlist";
 	}
-	
+
 	/***
 	 * API
 	 * 
@@ -95,13 +130,13 @@ public class ResultController {
 	 * @return
 	 */
 	@RequestMapping("/resultList")
-	public Render<Object> resultList(Model model, int pageNumber,  int pageSize,int type) {
+	public Render<Object> resultList(Model model, int pageNumber, int pageSize, int type) {
 		Render<Object> render = new Render<Object>();
-		
+
 		Result result = new Result();
 		result.setDeleteStatus(0);
 		result.setType(type);
-		
+
 		Team team = new Team();
 		team.setType(type);
 		team.setDeleteStatus(0);
@@ -111,6 +146,14 @@ public class ResultController {
 		return render;
 	}
 
+	/**
+	 * 
+	 * 编辑
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/edit/{id}")
 	public String editResult(@PathVariable int id, Model model) {
 		Result result = new Result();
@@ -122,11 +165,27 @@ public class ResultController {
 		return "console/result/add";
 	}
 
-	@RequestMapping("/del/{id}")
-	public String delResult(@PathVariable int id) {
-		Result result = new Result();
-		result.setId(id);
-		resultService.delete(result);
+	/**
+	 * 
+	 * 删除
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/del/{ids}")
+	public String delResult(@PathVariable int[] ids, RedirectAttributes ra) {
+		Render<Object> render = new Render<Object>();
+		if (VerifyUtil.isEmpty(ids)) {
+			log.info("删除资源信息的id是空!");
+			render.setCode("20000");
+			render.setData("删除资源id是空!");
+			ra.addFlashAttribute("render", render);
+			return "redirect:/result/list";
+		}
+		for (int i = 0; i < ids.length; i++) {
+			Result result = new Result(ids[i]);
+			resultService.delete(result);
+		}
 		return "redirect:/result/list";
 	}
 }

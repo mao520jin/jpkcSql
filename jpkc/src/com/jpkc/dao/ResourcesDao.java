@@ -92,10 +92,10 @@ public class ResourcesDao {
 
 		if (!VerifyUtil.isEmpty(resources.getTitle())) {
 			sql.append(" AND");
-			sql.append(" ").append("`title` = ?");
-			args.add(resources.getTitle());
+			sql.append(" ").append("`title` like ?");
+			args.add("%" + resources.getTitle() + "%");
 		}
-
+		
 		if (!VerifyUtil.isEmpty(resources.getPath())) {
 			sql.append(" AND");
 			sql.append(" ").append("`path` = ?");

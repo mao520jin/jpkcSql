@@ -1,7 +1,5 @@
 package com.jpkc.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +13,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.jdbc.core.ColumnMapRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -34,30 +31,6 @@ public class ResultDao {
 
 	@Resource
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
-	/**
-	 * result 映射类
-	 * 
-	 * @author zhangyi
-	 * @version 1.0, 2015-11-6
-	 */
-	private static final class ResultMapper implements RowMapper<Result> {
-
-		public Result mapRow(ResultSet rs, int rowNum) throws SQLException {
-
-			Result result = new Result();
-			result.setId(rs.getInt("id"));
-			result.setTeamId(rs.getInt("team_id"));
-			result.setContent(rs.getString("content"));
-			result.setType(rs.getInt("type"));
-			result.setDeleteStatus(rs.getInt("delete_status"));
-			result.setCreateTime(rs.getTimestamp("create_time"));
-			result.setCreateBy(rs.getString("create_by"));
-
-			return result;
-		}
-
-	}
 
 	public int add(Result result) {
 		String sql = "INSERT INTO `result`(`team_id`,`content`,`type`,`create_time`,`create_by`) VALUES(?,?,?,?,?)";
@@ -85,12 +58,17 @@ public class ResultDao {
 			args.add(result.getTeamId());
 		}
 
-		if (!VerifyUtil.isEmpty(team.getMemberName())) {
-			sql.append(" ").append("and t.`member_name` = ?");
-			args.add(team.getMemberName());
+		if (!VerifyUtil.isEmpty(result.getType())) {
+			sql.append(" ").append(" and r.`type` = ?");
+			args.add(result.getType());
 		}
 
-		return new MySQLPage<Map<String, Object>>(currentPage,pageSize, jdbcTemplate, sql.toString(), new ColumnMapRowMapper(), args.toArray());
+		if (!VerifyUtil.isEmpty(team.getMemberName())) {
+			sql.append(" ").append("and t.`member_name` = ?");
+			args.add("%" + team.getMemberName() + "%");
+		}
+
+		return new MySQLPage<Map<String, Object>>(currentPage, pageSize, jdbcTemplate, sql.toString(), new ColumnMapRowMapper(), args.toArray());
 	}
 
 	public List<Map<String, Object>> select(Result result) {

@@ -11,4 +11,11 @@
 
 var basePath = "${basePath}";
 
+
+$(function() {
+	
+	$(".ui-button").button().click( function(event) { event.preventDefault(); } ); // jQuery UI 按钮
+	
+});
+
 </script>

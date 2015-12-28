@@ -9,6 +9,9 @@
 
 <jsp:include page="/views/console/include/style.jsp"></jsp:include>
 <jsp:include page="/views/console/include/script.jsp"></jsp:include>
+<style type="text/css">
+</style>
+
 <script type="text/javascript" src="${basePath}/js/resources.js"></script>
 
 	<link rel="stylesheet" href="${basePath}/editor/themes/default/default.css" />
@@ -78,13 +81,13 @@
 			<div class="subcolumns">
 			  <div class="c50l">
 				 	<div class="type-text" id="titleDiv">
-						<label for="title">资源标题:<sup >*</sup></label>
+						<label for="title">资源标题:</label>
 						<input type="text" name="title" id="title" size="20" style="width: 300px;" value="${resourcesList[0].title}" onblur="check(id);"/>
 					</div>
 					<input type="hidden" name="id" id="id" size="20" style="width: 300px;" value="${resourcesList[0].id}" />
 					
 					<div class="type-text" id="editorDiv">
-						<label for="path">资源简介：<sup >*</sup></label>
+						<label for="path">资源内容：</label>
 						<textarea id="editor" name="path" style="width:700px;height:300px; visibility:hidden;" onblur="check(id);">${resourcesList[0].path}
 						</textarea>
 					</div>
@@ -143,11 +146,11 @@
 			  </div>
 			</div>
 				
-			<div class="type-button">
-				<input type="button" value="确认提交"    onclick="doSubmit();"/>
-			</div>
 		</form>
-	</div>
+			<div class="type-button ">
+				<a href="javascrip:;" onclick="doSubmit();"  class="ui-button ">提交</a>
+			</div> 
+	</div> 
 	<div id="ie_clearing">&nbsp;</div>
 	<!-- End: IE Column Clearing -->
 </div>
