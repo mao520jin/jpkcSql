@@ -113,7 +113,7 @@
 				</div>
 				<div class="type-text">
 					<label for="password">密码</label>
-					<input type="text"  name="password" id="password" />
+					<input type="password"  name="password" id="password" /> 
 				</div>
 			</div>
 	</form>

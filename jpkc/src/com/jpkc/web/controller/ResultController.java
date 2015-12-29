@@ -89,8 +89,8 @@ public class ResultController {
 			result.setType(resultType);
 		}
 
-		int pageSize = 10;
-		int pageNumber = 1;
+		int pageNumber = 0;
+		int pageSize = 0;
 		Page<Map<String, Object>> page = resultService.getResultByPage(result, team, pageSize, pageNumber);
 		model.addAttribute("page", page);
 		model.addAttribute("memberName", team.getMemberName());

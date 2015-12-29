@@ -75,8 +75,8 @@ public class NoticeDao {
 
 		if (!VerifyUtil.isEmpty(notice.getTitle())) {
 			sql.append(" AND");
-			sql.append(" ").append("`title` = ?");
-			args.add(notice.getTitle());
+			sql.append(" ").append("`title` like ?");
+			args.add("%" + notice.getTitle() + "%");
 		}
 
 		if (!VerifyUtil.isEmpty(notice.getContent())) {
@@ -97,7 +97,7 @@ public class NoticeDao {
 		log.debug("sql : " + sql);
 		log.debug("args : " + JSONArray.fromObject(args));
 
-		return new MySQLPage<Notice>(currentPage,pageSize,jdbcTemplate, sql.toString(),new NoticeMapper(),args.toArray());
+		return new MySQLPage<Notice>(currentPage, pageSize, jdbcTemplate, sql.toString(), new NoticeMapper(), args.toArray());
 	}
 
 	public int add(Notice notice) {

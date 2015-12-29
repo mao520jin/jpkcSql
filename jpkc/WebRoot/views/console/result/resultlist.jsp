@@ -107,7 +107,7 @@
 	<table border="0" cellpadding="0" cellspacing="0" class="full">
 		<thead>
 			<tr><th scope="col" colspan="6">
-					<a href="${basePath}/result/add">添加</a>
+					<a href="javascript:;" onclick="doAdd();" >添加</a>
 					<span>&nbsp;|&nbsp;</span>
 					<a href="javascript:;" onclick="doDelete();">删除</a>
 			</th></tr>
@@ -127,7 +127,7 @@
 				<tr>
 					<td><input id="item_${i}" type="checkbox" onclick="doCheckItem(this);" value="${o.id}"/></td>
 					<td>${o.member_name}</td>
-					<td><a href="javascript:;" onclick="openContent('${o.id}');">查看</a></td>
+					<td><a href="javascript:;" onclick="openContent('${o.id}');">详细</a></td>
 					<td>  
 						<c:choose> 
 							<c:when test="${o.type eq 1}">主持项目   
@@ -142,7 +142,7 @@
 					 </td>
 					 <td><fmt:formatDate value="${o.create_time}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					 <td>
-						<a href="${basePath}/result/edit/${o.id}">编辑</a>         
+						<a href="javascript:;" onclick="doEdit(${o.id});" >编辑</a>       
 					 </td>
 				 </tr>
 			</c:forEach>

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>登录 - ${APP_CONSOLE_NAME_CN} - ${APP_NAME_CN}</title>
+<title>登录 -  精品课程</title>
 
 <jsp:include page="/views/console/include/style.jsp"></jsp:include>
 <jsp:include page="/views/console/include/script.jsp"></jsp:include>
@@ -38,15 +38,15 @@
 				<strong class='message' id='"+id+"Msg' style="color: red;">${errorMsg }</strong>
 				<div class="type-text" id="usernameDiv">
 					<label for="username">用户名：</label>
-					<input type="text" name="username" id="username" size="20" />
+					<input type="text" name="username" id="username" size="20" value="${user.username }"/>
 				</div>
 				<div class="type-text" id="passwordDiv">
-					<label for="input-2">密　码：</label>
-					<input type="password" name="password" id="password" size="20" />
+					<label for="password">密　码：</label>
+					<input type="password" name="password" id="password" size="20" value="${user.password }"/>
 				</div>
 			</fieldset>
 			<div class="type-button">
-				<input type="button" value="登录"  onclick="loginSubmit();"/>
+					<a href="javascrip:;" onclick="loginSubmit();" class="ui-button">登录</a>
 			</div>
 		</form>
 	</div>

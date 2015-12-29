@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>通告列表 - ${APP_CONSOLE_NAME_CN} - ${APP_NAME_CN}</title>
+<title>通告列表 ${APP_CONSOLE_NAME_CN}  ${APP_NAME_CN}</title>
 
 <jsp:include page="/views/console/include/style.jsp"></jsp:include>
 <jsp:include page="/views/console/include/script.jsp" flush="true" />
@@ -29,7 +29,7 @@
 			<jsp:param name="vListActive" value="noticeList" />
 			<jsp:param name="hListActive" value="OperationsManagement" />
 		</jsp:include>
-		</div>
+	</div>
 </div>
 <!-- end: #col1 -->
 
@@ -40,47 +40,61 @@
 <!-- begin: #col3 static column -->
 <div id="col3" role="main">
 	<div id="col3_content" class="clearfix">
-		<form method="post" action="${basePath}/notice/list" class="yform columnar" role="application">
+		
+		<form method="post" id="serach_form" action="${basePath}/notice/list" class="yform full" role="application">
 			<fieldset>
+				<jsp:include page="/views/console/include/render.jsp" />
 				<div class="subcolumns">
-					<div class="c25l">
-						<div class="subcl type-text">
-							<label for="title">标题检索：</label><input type="text" name="title" id="title" size="15" value="${title }"/>
-						</div>
-					</div>
-					<div class="c25r">
-							<div class="subcr type-button">
-									<input type="submit" value="提交查询" class="submit"  />
-							</div>
-										</div>
-					</div>
+					<div class="c20l"><div class="subcl type-text">
+							<label for="title">标题检索：</label>
+							<input type="text" name="title" id="title" size="15" value="${title }"/>
+					</div></div>
+					<div class="c20l"><div class="subc"></div></div>
+					<div class="c20l"><div class="subc"></div></div>
+					<div class="c20l"><div class="subc"></div></div>
+					<div class="c20r"><div class="subcr"></div></div>
+				</div>
 			</fieldset>
+			<div class="type-button">
+					<a href="javascrip:;" onclick="doSearch();" class="ui-button">查询</a>
+			</div>
 		</form>
 		
 		<table border="0" cellpadding="0" cellspacing="0" class="full">
-			<thead><tr><th scope="col" colspan="13">
-				<div>
-					<jsp:include page="/views/page/page.jsp"/>				
-				</div>
-			</th></tr></thead>
+			<thead>
+				<tr><th scope="col" colspan="5">
+						<a href="javascript:;" onclick="doAdd();" >添加</a>
+						<span>&nbsp;|&nbsp;</span>
+						<a href="javascript:;" onclick="doDelete();">删除</a>
+				</th></tr>
+			</thead>
 			<tbody>
-				<tr><th scope="col">序号</th><th scope="col">标题</th><th scope="col">发布时间</th><th scope="col">操作</th></tr>
-				<c:forEach items="${page.content}" var="o" varStatus="status">
 				<tr>
-				<td>${status.index +1}</td>
-				<td><a>${o.title}</a></td>
-				<td><fmt:formatDate value="${o.createTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-				<td>
-					<a href="${basePath}/notice/edit/${o.id}">编辑</a>         
-					<a href="${basePath}/notice/del/${o.id}">删除</a>         
-				</td>
+					<th scope="col"><input id="checkAll" type="checkbox" onclick="doCheckAll(this);"/></th>
+					<th scope="col">标题</th>
+					<th scope="col">内容</th>
+					<th scope="col">发布时间</th>
+					<th scope="col">操作</th>
+				</tr>
+			<c:forEach items="${page.content}" var="o" varStatus="i">
+				<input type="hidden" id="content_${o.id }" value="${fn:replace(o.content,'\"','&quot;')}" />
+				<tr>
+					<td><input id="item_${i}" type="checkbox" onclick="doCheckItem(this);" value="${o.id}"/></td>
+					<td>${o.title}</td>
+					<td><a href="javascript:;" onclick="openContent('${o.id}');">详细</a></td>
+					<td><fmt:formatDate value="${o.createTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+					<td>
+						<a href="javascript:;" onclick="doEdit(${o.id});" >编辑</a>      
+					</td>
 				 </tr>
-				</c:forEach>
-
+			</c:forEach>
 			</tbody>
 		</table>
-	</div>
-	<div id="ie_clearing">&nbsp;</div>
+			<div>
+				<jsp:include page="/views/page/page.jsp"/>				
+		</div>
+		
+	</div><div id="ie_clearing">&nbsp;</div>
 	<!-- End: IE Column Clearing -->
 </div>
 <!-- end: #col3 -->
@@ -90,6 +104,14 @@
 
 <jsp:include page="/views/console/include/footer.jsp"></jsp:include>
 <jsp:include page="/views/console/include/yamlfocusfix.jsp"></jsp:include>
+
+<div id="notice_form" title="资料内容">
+	<form method="post" action="" class="yform full" role="application">
+			<div class="type-text" id="notice_content">
+				
+			</div>
+	</form>
+</div>
 
 </body>
 </html>

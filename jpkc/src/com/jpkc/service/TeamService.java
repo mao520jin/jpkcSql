@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 
 import com.jpkc.commons.Page;
 import com.jpkc.dao.TeamDao;
-import com.jpkc.model.Notice;
 import com.jpkc.model.Team;
 import com.jpkc.util.VerifyUtil;
 

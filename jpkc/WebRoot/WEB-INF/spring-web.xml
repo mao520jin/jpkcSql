@@ -37,6 +37,7 @@
 			<mvc:mapping path="/team/**"/>
 			<mvc:mapping path="/user/**"/>
 			<mvc:exclude-mapping path="/user/login"/>
+			<mvc:exclude-mapping path="/notice/noticeList"/>
 			<bean id="loginInteceptor" class="com.jpkc.inteceptor.LoginInteceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

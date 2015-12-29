@@ -82,8 +82,8 @@ public class ResourcesController {
 		if (!VerifyUtil.isEmpty(resourcesType) && resourcesType != 0) {
 			resources.setType(resourcesType);
 		}
-		int pageNumber = 1;
-		int pageSize = 3;
+		int pageNumber = 0;
+		int pageSize = 0;
 		Page<Resources> page = resourcesService.getResourcesByPage(resources, pageSize, pageNumber);
 		model.addAttribute("page", page);
 		model.addAttribute("title", title);

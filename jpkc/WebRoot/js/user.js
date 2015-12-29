@@ -17,7 +17,12 @@ function doAdd() {
 //添加提交
 function doSubmit() {
 	var username = $("#username").val();
-		$.ajax({
+	var password = $("#password").val();
+	if(username == "" || username == null) {showMessageDialog("添加用户姓名不能为空!"); return;}
+	if(!username.match("^[a-zA-Z]\\w{1,64}$")){showMessageDialog("用户名只能有数字字母下划线构成且字母开头!"); return;} 
+	if(password == "" || password == null) {showMessageDialog("添加用户密码不能为空!"); return;}
+	if(password.length>32 ) {showMessageDialog("密码长度不合法!"); return;}
+	$.ajax({
 			type: "POST",
 			url: basePath + "/user/checkUsername",
 			data:{"username" : username},

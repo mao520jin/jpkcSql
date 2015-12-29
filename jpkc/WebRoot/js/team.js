@@ -76,3 +76,11 @@ function doCheckItem(obj) {
 	}
 	$("#checkAll").prop("checked", true);
 }
+
+function doAdd() {
+	location.href = basePath + "/team/add"
+}
+
+function doEdit(id) {
+	location.href = basePath + "/team/edit/"+id;
+}

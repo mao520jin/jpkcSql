@@ -10,12 +10,15 @@
     <script type="text/javascript" src="js/common.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/custom/template.css">
-    <script type="text/javascript">
+<script type="text/javascript">
+
     $(document).ready(function() {
+    	
         $(document).off('click.bs.dropdown.data-api');
         showDate();
         setInterval(showDate, 1000);
-
+        
+        
         // 通过ajax访问后台，拿到json数据
         var data = {
             "notice": [{
@@ -35,6 +38,7 @@
                 "time": " 2015-10-12  11:13"
             }]
         };
+        
 
         //注册一个Handlebars模版，通过id找到某一个模版，获取模版的html框架
         //$("#table-template").html()是jquery的语法，不懂的童鞋请恶补。。。
@@ -43,8 +47,24 @@
         //将json对象用刚刚注册的Handlebars模版封装，得到最终的html，插入到基础table中。
         $('#notice-details').html(myTemplate(data));
     });
-    </script>
-    <script id="list" type="text/x-handlebars-template">
+    function loadNoticeData() {
+    	$.ajax({
+    		method:"post",
+    		url:"./notice/noticeList",
+    		data:{"pageNumber":1,"pageSize":5}, 
+    		dataType:"json",
+    		success:function(msg){
+    			alert(1);
+    			data = msg.content;
+    			alert(data.length);
+				for(var i=0;i<data.length;i++) {
+					
+				}
+    		}
+    	}); 
+    }
+</script>
+<script id="list" type="text/x-handlebars-template">
         {{#each notice}}
         <dl>
             <dd>
@@ -52,12 +72,12 @@
             </dd>
         </dl>
         {{/each}}
-    </script>
+</script>
 </head>
 
-<body>
-    <div class="wrapper">
-        <div class="container-fluid" id="LG">
+<body onload="loadNoticeData();">
+    <div class="wrapper"><div class="container-fluid" id="LG">
+           
             <div class="row-fluid header">
                 <div class="col-xs-6 header-left">
                     <img src="kc-images/logo.png" alt="山东科技大学精品课程">
@@ -77,6 +97,7 @@
                 </div>
                 <div class="clear"></div>
             </div>
+            
             <div class="navbar navbar-default">
                 <div class="navbar-inner">
                     <div class="container-fluid">
@@ -131,6 +152,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="row-fluid" style="min-height: 500px;">
                 <div class="col-xs-2" style="width: 15%; padding-top: 10px;">
                     <ul class="nav nav-stacked nav-pills">

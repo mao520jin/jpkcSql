@@ -44,6 +44,7 @@ public class UserController {
 			return "redirect:/user/list";
 		} else {
 			model.addAttribute("errorMsg", "用户名或密码错误!!");
+			model.addAttribute("user", user);
 			return "console/login";
 		}
 	}
@@ -102,8 +103,8 @@ public class UserController {
 		if (!VerifyUtil.isEmpty(Uname)) {
 			user.setUsername(Uname);
 		}
-		int pageSize = 10;
-		int pageNumber = 1;
+		int pageNumber = 0;
+		int pageSize = 0;
 		Page<User> page = userService.getUserByPage(user, pageSize, pageNumber);
 		model.addAttribute("page", page);
 		model.addAttribute("Uname", Uname);

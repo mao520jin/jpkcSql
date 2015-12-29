@@ -114,8 +114,8 @@
 	<table border="0" cellpadding="0" cellspacing="0" class="full">
 	
 		<thead>
-			<tr><th scope="col" colspan="5">
-					<a href="${basePath}/resources/add">添加</a>
+			<tr><th scope="col" colspan="6">
+					<a href="javascript:;" onclick="doAdd();" >添加</a>
 					<span>&nbsp;|&nbsp;</span>
 					<a href="javascript:;" onclick="doDelete();">删除</a>
 			</th></tr>
@@ -124,6 +124,7 @@
 			<tr>
 				<th scope="col"><input id="checkAll" type="checkbox" onclick="doCheckAll(this);"/></th>
 				<th scope="col">标题</th>
+				<th scope="col">资源内容</th>
 				<th scope="col">资源类型</th>
 				<th scope="col">发布时间</th>
 				<th scope="col">操作</th>
@@ -133,7 +134,8 @@
 			<input type="hidden" id="content_${o.id }" value="${fn:replace(o.path,'\"','&quot;')}" />
 			<tr>
 				 <td><input id="item_${i}" type="checkbox" onclick="doCheckItem(this);" value="${o.id}"/></td>
-				 <td><a href="javascript:;" onclick="openContent('${o.id}');">${o.title}</a></td>
+				 <td>${o.title}</td>
+				 <td><a href="javascript:;" onclick="openContent('${o.id}');">详细</a></td>
 				 <td>  
 					<c:choose> 
 						<c:when test="${o.type eq 1}">电子教案 	 </c:when> 
@@ -145,7 +147,7 @@
 				 </td>
 				 <td><fmt:formatDate value="${o.createTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 				 <td>
-					<a href="${basePath}/resources/edit/${o.id}">编辑</a>         
+					<a href="javascript:;" onclick="doEdit(${o.id});" >编辑</a>       
 				 </td>
 			 </tr>
 			</c:forEach>

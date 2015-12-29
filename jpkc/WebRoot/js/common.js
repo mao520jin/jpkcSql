@@ -25,3 +25,4 @@ function showDate() {
     var dateStr = year + " 年 " + month + " 月 " + day + " 日 " + hour + ":" + minute + ":" + second;
     $("#date").html(dateStr);
 }
+

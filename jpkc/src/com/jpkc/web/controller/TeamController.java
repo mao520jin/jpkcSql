@@ -41,8 +41,8 @@ public class TeamController {
 		if (!VerifyUtil.isEmpty(memberName)) {
 			team.setMemberName(memberName);
 		}
-		int pageSize = 10;
-		int pageNumber = 1;
+		int pageNumber = 0;
+		int pageSize = 0;
 		Page<Team> page = teamService.getTeamByPage(team, pageSize, pageNumber);
 		model.addAttribute("page", page);
 		model.addAttribute("memberName", memberName);
@@ -99,7 +99,7 @@ public class TeamController {
 	 * @author zhangyi
 	 * @2015-11-13
 	 */
-	@RequestMapping(value="/addTeam",method=RequestMethod.POST)
+	@RequestMapping(value = "/addTeam", method = RequestMethod.POST)
 	public String addTeam(Model model, Team team) {
 		User user = new User();
 		user.setUsername("123");
@@ -108,7 +108,7 @@ public class TeamController {
 
 		return "redirect:/team/list";
 	}
-	
+
 	/**
 	 * 
 	 * 编辑
@@ -125,7 +125,7 @@ public class TeamController {
 		model.addAttribute("teamList", teamList);
 		return "console/team/add";
 	}
-	
+
 	/**
 	 * 
 	 * 批量删除

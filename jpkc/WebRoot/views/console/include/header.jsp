@@ -3,10 +3,10 @@
 	<div class="page_margins">
 		<div class="page">
 			<div id="topnav" role="contentinfo">
-				<span><a href="${basePath}/user/signOut">退出</a></span>
+				<span><a href="#">admin</a> |<a href="${basePath}/user/signOut">退出</a></span>
 			</div>
-			<span>管理员 你好！ &#8226; 欢迎进入精品课程后台管理平台！</span>
+			<h1>管理控制台</h1>
+			<span>&#8226; 欢迎进入精品课程后台管理平台！</span>
 		</div>
 	</div>
-</div>
-
+</div> 

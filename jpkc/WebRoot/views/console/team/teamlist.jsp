@@ -87,7 +87,7 @@
 		<table border="0" cellpadding="0" cellspacing="0" class="full">
 			<thead>
 				<tr><th scope="col" colspan="8">
-						<a href="${basePath}/team/add">添加</a>
+						<a href="javascript:;" onclick="doAdd();" >添加</a>
 						<span>&nbsp;|&nbsp;</span>
 						<a href="javascript:;" onclick="teamDelete();">删除</a>
 				</th></tr>
@@ -97,7 +97,7 @@
 				<tr>
 					<th scope="col"><input id="checkAll" type="checkbox" onclick="doCheckAll(this);"/></th>
 					<th scope="col">成员名称</th>
-					<th scope="col">简介</th>
+					<th scope="col">成员简介</th>
 					<th scope="col">邮箱</th>
 					<th scope="col">电话</th>
 					<th scope="col">类型</th>
@@ -122,7 +122,7 @@
 						</td>
 						<td><fmt:formatDate value="${o.createTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						<td>
-							<a href="${basePath}/team/edit/${o.id}">编辑</a>         
+							<a href="javascript:;" onclick="doEdit(${o.id});" >编辑</a>         
 						</td>
 					 </tr>
 				</c:forEach>

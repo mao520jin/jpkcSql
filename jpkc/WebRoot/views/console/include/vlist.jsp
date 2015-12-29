@@ -11,12 +11,6 @@
 	
 	<li><strong>用户管理</strong>
 		<ul>
-			<% if("UserCreate".equalsIgnoreCase(vListActive)) { %>
-			<li class="active"><strong>新建用户</strong></li>
-		<% } else { %>
-			<li><a href="${basePath}/user/add">新建用户</a></li>
-		<% } %>
-		
 		<% if("UserList".equalsIgnoreCase(vListActive)) { %>
 				<li class="active"><strong>用户列表</strong></li>
 		<% } else { %>

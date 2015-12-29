@@ -68,3 +68,11 @@ function doCheckItem(obj) {
 	}
 	$("#checkAll").prop("checked", true);
 }
+
+function doAdd() {
+	location.href = basePath + "/result/add"
+}
+
+function doEdit(id) {
+	location.href = basePath + "/result/edit/"+id;
+}
