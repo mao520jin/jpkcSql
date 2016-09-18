@@ -1,4 +1,7 @@
-/settings
+/.settings
+/.svn
+/.class
+/.svn-base
 /target
 /classpath
 /project
