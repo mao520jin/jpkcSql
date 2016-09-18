@@ -1,9 +1,4 @@
 
-/*使网页完全变为黑白的色彩*/
-/*html {
-    filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);-webkit-filter: grayscale(100%);
-}*/
-
 body {
     background: url("../../kc-images/background.png");
     background-size: cover;

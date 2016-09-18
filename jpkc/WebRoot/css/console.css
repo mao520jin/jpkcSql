@@ -1,0 +1,25 @@
+  .page_margins { max-width: 100%; }
+  
+  #col1 { width: 260px; }
+  #col2 { width: 260px; }
+  #col3 { margin: 0 260px; }
+  
+  .hidecol1 #col3 { margin-left: 0; margin-right: 260px; }
+  .hidecol2 #col3 { margin-left: 260px; margin-right: 0; }
+  
+  table thead th{ text-align: left; } /*表头左对齐*/
+  
+  
+  /* --- #console_render ----------------------------------------------------------------------------------------- */
+  .info_render,
+  .note_render,
+  .important_render,
+  .warning_render {
+  	font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  	font-size: 12px;
+  }
+  
+  .info_render { color:#555555; }
+  .note_render { color:#22b14c; }
+  .important_render { color:#ff7f27; }
+  .warning_render { color:#ed1c24; }
