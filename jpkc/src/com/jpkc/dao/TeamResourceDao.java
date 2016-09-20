@@ -45,8 +45,11 @@ public class TeamResourceDao implements Dao<TeamResource> {
 			resources.setId(rs.getLong("id"));
 			resources.setTitle(rs.getString("title"));
 			resources.setPath(rs.getString("path"));
+			resources.setPath(rs.getString("name"));
+			resources.setPath(rs.getString("denseName"));
 			resources.setType(rs.getInt("type"));
 			resources.setCount(rs.getInt("count"));
+			resources.setCount(rs.getInt("isconvert"));
 			resources.setDesc(rs.getString("desc"));
 			resources.setCreatedDate(DateUtil.toDate(rs.getString("createdDate")));
 			resources.setCreatedBy(rs.getString("createdBy"));
@@ -65,21 +68,27 @@ public class TeamResourceDao implements Dao<TeamResource> {
 		sql.append(" ").append("`id`");
 		sql.append(",").append("`title`");
 		sql.append(",").append("`path`");
+		sql.append(",").append("`name`");
+		sql.append(",").append("`dense_name`");
 		sql.append(",").append("`type`");
 		sql.append(",").append("`count`");
+		sql.append(",").append("`isconvert`");
 		sql.append(",").append("`desc`");
 		sql.append(",").append("`created_by`");
 		sql.append(",").append("`created_date`");
 		sql.append(",").append("`last_modified_by`");
 		sql.append(",").append("`last_modified_date`");
-		sql.append(") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		sql.append(") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		List<Object> params = new ArrayList<Object>();
 		params.add(o.getId());
 		params.add(o.getTitle());
 		params.add(o.getPath());
+		params.add(o.getName());
+		params.add(o.getDenseName());
 		params.add(o.getType());
 		params.add(o.getCount());
+		params.add(o.getIsconvert());
 		params.add(o.getDesc());
 		params.add(o.getCreatedBy());
 		params.add(o.getCreatedDate());
@@ -115,6 +124,16 @@ public class TeamResourceDao implements Dao<TeamResource> {
 			paramMap.put("path", o.getPath());
 		}
 
+		if (o.getName() != null) {
+			sql.append(", `name` = :name");
+			paramMap.put("name", o.getName());
+		}
+
+		if (o.getDenseName() != null) {
+			sql.append(", `dense_name` = :dense_name");
+			paramMap.put("dense_name", o.getDenseName());
+		}
+
 		if (o.getType() != null) {
 			sql.append(", `type` = :type");
 			paramMap.put("type", o.getType());
@@ -123,6 +142,11 @@ public class TeamResourceDao implements Dao<TeamResource> {
 		if (o.getCount() != null) {
 			sql.append(", `count` = :count");
 			paramMap.put("count", o.getCount());
+		}
+
+		if (o.getIsconvert() != null) {
+			sql.append(", `isconvert` = :isconvert");
+			paramMap.put("isconvert", o.getIsconvert());
 		}
 
 		if (o.getDesc() != null) {
@@ -156,8 +180,11 @@ public class TeamResourceDao implements Dao<TeamResource> {
 		sql.append(" ").append("t.`id`");
 		sql.append(",").append("t.`title`");
 		sql.append(",").append("t.`path`");
+		sql.append(",").append("t.`name`");
+		sql.append(",").append("t.`dense_name`").append(" AS ").append("denseName");
 		sql.append(",").append("t.`type`");
 		sql.append(",").append("t.`count`");
+		sql.append(",").append("t.`isconvert`");
 		sql.append(",").append("t.`desc`");
 		sql.append(",").append("t.`created_by`").append(" AS ").append("createdBy");
 		sql.append(",").append("t.`created_date`").append(" AS ").append("createdDate");
@@ -192,8 +219,11 @@ public class TeamResourceDao implements Dao<TeamResource> {
 		sql.append(" ").append("t.`id`");
 		sql.append(",").append("t.`title`");
 		sql.append(",").append("t.`path`");
+		sql.append(",").append("t.`name`");
+		sql.append(",").append("t.`dense_name`").append(" AS ").append("denseName");
 		sql.append(",").append("t.`type`");
 		sql.append(",").append("t.`count`");
+		sql.append(",").append("t.`isconvert`");
 		sql.append(",").append("t.`desc`");
 		sql.append(",").append("t.`created_by`").append(" AS ").append("createdBy");
 		sql.append(",").append("t.`created_date`").append(" AS ").append("createdDate");
@@ -242,8 +272,11 @@ public class TeamResourceDao implements Dao<TeamResource> {
 		sql.append(" ").append("t.`id`");
 		sql.append(",").append("t.`title`");
 		sql.append(",").append("t.`path`");
+		sql.append(",").append("t.`name`");
+		sql.append(",").append("t.`dense_name`").append(" AS ").append("denseName");
 		sql.append(",").append("t.`type`");
 		sql.append(",").append("t.`count`");
+		sql.append(",").append("t.`isconvert`");
 		sql.append(",").append("t.`desc`");
 		sql.append(",").append("t.`created_by`").append(" AS ").append("createdBy");
 		sql.append(",").append("t.`created_date`").append(" AS ").append("createdDate");

@@ -91,7 +91,7 @@
 					<th scope="col">操作</th>
 				</tr>
 				
-				<c:forEach items="${page.content}" var="o" varStatus="i">
+				<c:forEach items="${pager.content}" var="o" varStatus="i">
 					<input type="hidden" id="content_${o.id }" value="${fn:replace(o.path,'\"','&quot;')}" />
 					<tr>
 						<td><input id="item_${i}" type="checkbox" onclick="doCheckItem(this);" value="${o.id}"/></td>
@@ -106,9 +106,11 @@
 								<c:when test="${o.type eq 5}">实验教学资料   </c:when> 
 							</c:choose> 
 						</td>
-						<td><fmt:formatDate value="${o.createTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+						<td><fmt:formatDate value="${o.createdDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						<td>
-							<span id="convert_id"><a href="javascript:;" onclick="convert('${o.path}');">转换</a>&nbsp;|&nbsp;</span>
+							<c:if test="${o.isconvert eq 1 }">
+								<span><a href="javascript:;" onclick="convert('${o.path}');">转换</a>&nbsp;|&nbsp;</span>
+							</c:if>
 							<span><a href="javascript:;" onclick="doDelete('id', '${o.id }');">删除</a></span>
 						</td>
 					</tr>
@@ -150,7 +152,7 @@
 			
 			<div class="type-select">
 				<label for="edit_type">资源类别</label>
-				<select id="edit_type">
+				<select id="edit_type" name="resourcesType">
 					<option value="">-</option>
 					<option value="1">电子教案</option>
 					<option value="2">教学课件</option>
@@ -159,6 +161,11 @@
 					<option value="5">实验教学资料</option>
 				</select>
 			</div>
+			
+			<div class="subcolumns"><div class="c80l"><div class="subcl">
+				<div id="edit_render">&nbsp;</div>
+			</div></div><div class="c20r"><div class="subcr">&nbsp;</div></div></div>
+		
 		</fieldset>
 	</form>
 </div>

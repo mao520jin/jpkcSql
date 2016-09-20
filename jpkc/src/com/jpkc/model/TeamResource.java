@@ -15,22 +15,29 @@ public class TeamResource extends Model<Long, String> {
 
 	private String title; // 标题
 	private String path; // 资源路径
+	private String name; // 文件真实名称
+	private String denseName; // 加密名称
 	private Integer type; // 资源类型: 1=电子教案,2=教学课件,3=教学视频,4=教学大纲 ,5=实验教学资料
+	private Integer isconvert; // 是否已转换格式: 0=未转换 1=已转换
 	private Integer count; // 下载次数
 	private String desc; // 备注
 
 	public TeamResource() {
+
 	}
 
 	public TeamResource(Long id) {
 		super(id);
 	}
 
-	public TeamResource(Long id, String title, String path, Integer type, Integer count, String desc, String createdBy, Date createdDate, String lastModifiedBy, Date lastModifiedDate) {
+	public TeamResource(Long id, String title, String path, String name, String denseName, Integer type, Integer isconvert, Integer count, String desc, String createdBy, Date createdDate, String lastModifiedBy, Date lastModifiedDate) {
 		super(id, createdBy, createdDate, lastModifiedBy, lastModifiedDate);
 		this.title = title;
 		this.path = path;
+		this.name = name;
+		this.denseName = denseName;
 		this.type = type;
+		this.isconvert = isconvert;
 		this.count = count;
 		this.desc = desc;
 	}
@@ -51,12 +58,36 @@ public class TeamResource extends Model<Long, String> {
 		this.path = path;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDenseName() {
+		return denseName;
+	}
+
+	public void setDenseName(String denseName) {
+		this.denseName = denseName;
+	}
+
 	public Integer getType() {
 		return type;
 	}
 
 	public void setType(Integer type) {
 		this.type = type;
+	}
+
+	public Integer getIsconvert() {
+		return isconvert;
+	}
+
+	public void setIsconvert(Integer isconvert) {
+		this.isconvert = isconvert;
 	}
 
 	public Integer getCount() {
@@ -77,7 +108,7 @@ public class TeamResource extends Model<Long, String> {
 
 	@Override
 	public String toString() {
-		return "TeamResource [title=" + title + ", path=" + path + ", type=" + type + ", count=" + count + ", desc=" + desc + ", toString()=" + super.toString() + "]";
+		return "TeamResource [title=" + title + ", path=" + path + ", name=" + name + ", denseName=" + denseName + ", type=" + type + ", isconvert=" + isconvert + ", count=" + count + ", desc=" + desc + ", toString()=" + super.toString() + "]";
 	}
 
 }

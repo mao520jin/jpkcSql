@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.jpkc.commons.Page;
 import com.jpkc.dao.TeamResourceDao;
 import com.jpkc.model.TeamResource;
+import com.jpkc.util.IDMaker;
 
 @Service
 public class TeamResourceService {
@@ -27,6 +28,11 @@ public class TeamResourceService {
 
 	public boolean delete(Long id) throws SQLException {
 		return teamResourceDao.delete(id) > 0;
+	}
+
+	public int save(TeamResource o) throws SQLException {
+		o.setId(IDMaker.make());
+		return teamResourceDao.insert(o);
 	}
 
 }

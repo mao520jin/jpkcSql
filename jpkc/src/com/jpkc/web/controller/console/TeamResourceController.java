@@ -13,6 +13,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +24,7 @@ import com.jpkc.controller.BaseController;
 import com.jpkc.model.TeamResource;
 import com.jpkc.service.TeamResourceService;
 import com.jpkc.util.DocConverter;
+import com.jpkc.util.MD;
 import com.jpkc.util.Toolkit;
 
 /**
@@ -103,19 +106,42 @@ public class TeamResourceController extends BaseController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/save")
-	public String save(MultipartFile file, Model model, HttpServletRequest request) {
-		String type = file.getContentType();
-		Long size = file.getSize();
-        String path = request.getSession().getServletContext().getRealPath("file");  
-        String fileName = file.getOriginalFilename();
-        String p = "d://upload//resource//" + fileName;
-        
-        File f = new File(p);
-        
-        System.out.println(fileName);  
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public String save(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, String title, String resourcesType) {
+		// 创建你要保存的文件的路径
+		String path = "D://upload//";
+		// 获取该文件的文件名
+		String fileName = file.getOriginalFilename();
+
+		File targetFile = new File(path, fileName);
+		if (!targetFile.exists()) {
+			targetFile.mkdirs();
+		}
+		// 保存
+		try {
+			file.transferTo(targetFile);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		TeamResource teamResource = new TeamResource();
+		teamResource.setTitle(title);
+		teamResource.setType(Integer.parseInt(resourcesType));
+		teamResource.setPath(path + fileName);
+		teamResource.setName(fileName);
+		try {
+			teamResource.setDenseName(MD.md5(fileName));
+		} catch (Exception e) {
+		}
+		teamResource.setIsconvert(1);
+		prepare(teamResource, request.getSession());
+		try {
+			teamResourceService.save(teamResource);
+		} catch (Exception e) {
+		}
 
 		return "redirect:/console/resource/list";
+
 	}
 
 	/**

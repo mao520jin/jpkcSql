@@ -55,15 +55,11 @@ public class DocConverter {
 	}
 
 	/**
-	 * @throws IOException
-	 * @throws InterruptedException
+	 * @throws IOException @throws InterruptedException
 	 * 
-	 *             pdf转swf
+	 * pdf转swf
 	 * 
-	 * @param sourceFile
-	 * @param pdfFile
-	 * @throws IOException
-	 * @throws
+	 * @param sourceFile @param pdfFile @throws IOException @throws
 	 */
 	public static void convertPdfToSwf(File pdfFile, File swfFile) throws InterruptedException, IOException {
 		Runtime r = Runtime.getRuntime();

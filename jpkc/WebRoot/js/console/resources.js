@@ -13,7 +13,7 @@ function doClear(formId) {
 
 /*分页查询*/
 function goPage(pageNumber,pageSize) {
-	window.location.href = basePath + "/resources/list/"+ pageNumber + "/" + pageSize;
+	window.location.href = basePath + "/console/resource/list/"+ pageNumber + "/" + pageSize;
 }
 
 /*搜索*/
@@ -70,7 +70,7 @@ function convert(path) {
 		if(r != "OK") { return false; }
 		$.ajax({
 			type: "POST",
-			url: basePath + "/resources/convert",
+			url: basePath + "/console/resource/convert",
 			data: {"path": path},
 			dataType: "json",
 			async: false,
@@ -78,10 +78,9 @@ function convert(path) {
 			beforeSend: function(XMLHttpRequest) { },
 			success: function(data, textStatus) {
 				if(data == null || data.code != "25010" || data.data == null || data.data.length == 0) {
-					setRender("user_search_render", "", "转换失败，请联系技术支持！", "warning_render", 5000);
+					setRender("edit_render", "", "转换失败，请联系技术支持！", "warning_render", 5000);
 				} else {
-					setRender("user_search_render", "", "转换成功！", "warning_render", 5000);
-					$("#convert_id").hide();
+					setRender("edit_render", "", "转换成功！", "warning_render", 5000);
 				}
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) { },
@@ -103,7 +102,7 @@ function doDelete(type, val) {
 		if(r != "OK") { return false; }
 		$.ajax({
 			type: "POST",
-			url: basePath + "/resources/del",
+			url: basePath + "/console/resource/del",
 			data: { "ids": ids }, 
 			dataType: "json",
 			success: function(msg){
@@ -113,7 +112,7 @@ function doDelete(type, val) {
 					showMessageDialog("删除失败！"); return;
 					return ;
 				}
-				location.href = basePath + "/resources/list/";
+				location.href = basePath + "/console/resource/list/";
 			}
 		});
 	});
