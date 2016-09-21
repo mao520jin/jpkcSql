@@ -57,7 +57,14 @@
 							<option value="5" <c:if test="${type == 5}">selected="selected"</c:if>>实验教学资料</option>
 						</select>
 					</div></div>
-					<div class="c20l"><div class="subc"></div></div>
+					<div class="c20l"><div class="subc type-select">
+						<label for="isconvert">是否已转换</label>
+						<select id="isconvert" name="isconvert">
+							<option value="">-</option>
+							<option value="2" <c:if test="${isconvert == 2}">selected="selected"</c:if>>已转换</option>
+							<option value="1" <c:if test="${isconvert == 1}">selected="selected"</c:if>>未转换</option>
+						</select>
+					</div></div>
 					<div class="c20l"><div class="subc"></div></div>
 					<div class="c20r"><div class="subcr"></div></div>
 				</div>
@@ -76,7 +83,7 @@
 		
 		<table border="0" cellpadding="0" cellspacing="0" class="full"> 
 			<thead>
-				<tr><th scope="col" colspan="5">
+				<tr><th scope="col" colspan="7">
 					<a href="javascript:;" onclick="doEdit();" >添加</a>
 					<span>&nbsp;|&nbsp;</span>
 					<a href="javascript:;" onclick="doDelete('ids', '');">删除</a>
@@ -84,9 +91,12 @@
 			</thead>
 			<tbody>
 				<tr>
-					<th scope="col"><input id="checkAll" type="checkbox" onclick="doCheckAll(this);"/></th>
+					<th scope="col"><input id="checkAll" type="checkbox" onclick="setSelected(this,'checkAll','item_');"/></th>
+					
 					<th scope="col">标题</th>
+					<th scope="col">名称</th>
 					<th scope="col">资源类型</th>
+					<th scope="col">是否已转换</th>
 					<th scope="col">发布时间</th>
 					<th scope="col">操作</th>
 				</tr>
@@ -94,8 +104,9 @@
 				<c:forEach items="${pager.content}" var="o" varStatus="i">
 					<input type="hidden" id="content_${o.id }" value="${fn:replace(o.path,'\"','&quot;')}" />
 					<tr>
-						<td><input id="item_${i}" type="checkbox" onclick="doCheckItem(this);" value="${o.id}"/></td>
+						<td><input id="item_${i}" type="checkbox" onclick="setSelected(this,'checkAll','item_');" value="${o.id}"/></td>
 						<td><input type="hidden" id="title_${o.id}" value="${o.title }"/>${o.title}</td>
+						<td><input type="hidden" id="name_${o.id}" value="${o.name }"/>${o.name}</td>
 						<td>
 							<input type="hidden" id="type_${o.id}" value="${o.type }"/>  
 							<c:choose> 
@@ -105,11 +116,18 @@
 								<c:when test="${o.type eq 4}">教学大纲	 </c:when> 
 								<c:when test="${o.type eq 5}">实验教学资料   </c:when> 
 							</c:choose> 
+						<td>
+							<input type="hidden" id="isconvert_${o.id}" value="${o.isconvert }"/>  
+							<c:choose> 
+								<c:when test="${o.isconvert eq 2}">已转换</c:when>
+								<c:when test="${o.isconvert eq 1}">未转换</c:when> 
+							</c:choose>
+						</td> 
 						</td>
 						<td><fmt:formatDate value="${o.createdDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						<td>
 							<c:if test="${o.isconvert eq 1 }">
-								<span><a href="javascript:;" onclick="convert('${o.path}');">转换</a>&nbsp;|&nbsp;</span>
+								<span><a href="javascript:;" onclick="convert('${o.path}', '${o.id }', '${o.type }');">转换</a>&nbsp;|&nbsp;</span>
 							</c:if>
 							<span><a href="javascript:;" onclick="doDelete('id', '${o.id }');">删除</a></span>
 						</td>

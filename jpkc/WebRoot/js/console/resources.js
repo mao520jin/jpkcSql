@@ -4,6 +4,7 @@ function doClear(formId) {
 	if(formId == "serach_form") {
 		$("#title").val("");
 		$("#type").val("");
+		$("#isconvert").val("");
 	}else{
 		$("#edit_title").val("");
 		$("#edit_path").val("");
@@ -19,7 +20,7 @@ function goPage(pageNumber,pageSize) {
 /*搜索*/
 function doSearch() {
 	$("#serach_form").submit();
-}
+}		
 
 function doEdit() {
 	doBeforeEdit();
@@ -49,29 +50,46 @@ function doSave() {
 	var type = $("#edit_type").val();
 	var suffix = path.split('.').pop().toLowerCase();
 	$("#edit_resource_type").val(type);
-	
-	var filetype = new Array();
-	filetype.push("docx");
-	filetype.push("xlsx");
-	filetype.push("pptx");
-	filetype.push("flv");
-	
+	extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,mp4,rmvb");
+
 	if(title == "" || title == null) { showMessageDialog("资源标题不能为空！"); return; }
 	if(path == "" || path == null) { showMessageDialog("请选择文件！"); return; }
 	if(type == "") { showMessageDialog("请选择资源类别！"); return; }
-	if(filetype.indexOf(suffix) == -1) { showMessageDialog("允许上传的文件格式为：docx，xlsx，pptx，flv！");  return; }
+	if(type == 3) {
+		var filetype = new Array();
+		filetype.push("flv");
+		filetype.push("wav");
+		filetype.push("wma");
+		filetype.push("wmv");
+		filetype.push("mid");
+		filetype.push("avi");
+		filetype.push("mpg");
+		filetype.push("asf");
+		filetype.push("rm");
+		filetype.push("mp4");
+		filetype.push("rmvb");
+		if(filetype.indexOf(suffix) == -1) { showMessageDialog("允许上传的文件格式为：flv, wav, wma, wmv, mid, avi, mpg, asf, rm, mp4, rmvb！");  return; }
+	} else {
+		var filetype = new Array();
+		filetype.push("docx");
+		filetype.push("xlsx");
+		filetype.push("pptx");
+		filetype.push("pdf");
+		filetype.push("swf");
+		if(filetype.indexOf(suffix) == -1) { showMessageDialog("允许上传的文件格式为：docx, xlsx, pptx, swf, pdf！");  return; }
+	}
 	$("#resource_edit_form").submit();
 }
 
 
 /*打开资源内容*/
-function convert(path) {
+function convert(path, id, type) {
 	showConfirmDialog("确定要转换吗？", "操作提示", function(r) {
 		if(r != "OK") { return false; }
 		$.ajax({
 			type: "POST",
 			url: basePath + "/console/resource/convert",
-			data: {"path": path},
+			data: { "path": path, "id": id, "type": type},
 			dataType: "json",
 			async: false,
 			cache: false,
@@ -79,15 +97,14 @@ function convert(path) {
 			success: function(data, textStatus) {
 				if(data == null || data.code != "25010" || data.data == null || data.data.length == 0) {
 					setRender("edit_render", "", "转换失败，请联系技术支持！", "warning_render", 5000);
-				} else {
-					setRender("edit_render", "", "转换成功！", "warning_render", 5000);
+					return;
 				}
+				window.location.href = basePath + "/console/resource/list/";
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) { },
 			complete: function(XMLHttpRequest, textStatus) { }
 		});
 	});
-	
 }
 
 //删除

@@ -14,24 +14,16 @@ import com.artofsolving.jodconverter.openoffice.connection.OpenOfficeConnection;
 import com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection;
 import com.artofsolving.jodconverter.openoffice.converter.StreamOpenOfficeDocumentConverter;
 
-/****
+/**
  * 
- * @param dirName  转换后生成文件夹的名称
- * @param url  目标文件地址  如：//	"http://hf.cnitcloud.com:8899/swallow/down/c43ed7bbd955f367ed824f8736c3e2f0.doc"
- * @param desUrl  下载目标文件后存放的地址 如： "c:\\test"
- * @return   转换后文件的名称
- * @throws IOException
- */
-
-/****
- * 通过文件流下载文件到本地
- * 
- * @param fileName
- * @param fileUrl
- * @param downPath
+ * office文件转swf
+ *
+ * @param
  * @return
+ * @author zhangyi
+ * @date 2016年9月21日 下午1:34:38
+ * @version 1.0.0
  */
-
 public class DocConverter {
 
 	private static Log log = LogFactory.getLog(DocConverter.class);
@@ -55,16 +47,19 @@ public class DocConverter {
 	}
 
 	/**
-	 * @throws IOException @throws InterruptedException
 	 * 
-	 * pdf转swf
-	 * 
-	 * @param sourceFile @param pdfFile @throws IOException @throws
+	 * pdf 转 swf
+	 *
+	 * @param
+	 * @return
+	 * @author zhangyi
+	 * @date 2016年9月21日 下午1:34:38
+	 * @version 1.0.0
 	 */
 	public static void convertPdfToSwf(File pdfFile, File swfFile) throws InterruptedException, IOException {
 		Runtime r = Runtime.getRuntime();
 		Process p;
-		p = r.exec("D:/pc_tools/swftools/pdf2swf.exe " + pdfFile.getPath() + " -o " + swfFile.getPath() + " -T 9");
+		p = r.exec("D:/pc_tool/swftools/pdf2swf.exe " + pdfFile.getPath() + " -o " + swfFile.getPath() + " -T 9");
 		// 获取进程的标准输入流
 		final InputStream is1 = p.getInputStream();
 		// 获取进城的错误流

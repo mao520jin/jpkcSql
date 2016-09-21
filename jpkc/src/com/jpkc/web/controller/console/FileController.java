@@ -4,25 +4,21 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONObject;
-
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.jpkc.util.Toolkit;
+
+import net.sf.json.JSONObject;
 
 /**
  * 
@@ -34,6 +30,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/file")
 public class FileController {
+
+	// 允许上传文件后缀MAP数组
+	private static final HashMap<String, String> extMap = new HashMap<String, String>();
+
+	// 允许上传文件大小MAP数组
+	private static final HashMap<String, Long> sizeMap = new HashMap<String, Long>();
+
+	// 文件目录名称
+	private String fileDir;
+
+	// 文件后缀名称
+	private String fileExt;
+
+	static {
+		// 初始后缀名称MAP数组
+		extMap.put("image", "gif,jpg,jpeg,png,bmp,GIF,JPG,JPEG,PNG,BMP");
+		extMap.put("flash", "swf,flv");
+		extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
+		extMap.put("file", "doc,docx,xls,xlsx,ppt,txt,zip,rar");
+		// 初始文件大小MAP数组
+		sizeMap.put("image", 10 * 1024 * 1024l);
+		sizeMap.put("flash", 30 * 1024 * 1024 * 1024l);
+		sizeMap.put("media", 30 * 1024 * 1024 * 1024l);
+		sizeMap.put("file", 10 * 1024 * 1024 * 1024l);
+	}
 
 	/**
 	 * 
@@ -63,90 +84,86 @@ public class FileController {
 	 * @param request
 	 * @param response
 	 */
-	@SuppressWarnings("deprecation")
 	@RequestMapping("/upload")
-	public void upload(HttpServletRequest request, HttpServletResponse response) {
-		PrintWriter out;
+	public void upload(String dir, MultipartFile imgFile, HttpServletRequest request, HttpServletResponse response) {
+		PrintWriter out = null;
 		try {
 			out = response.getWriter();
-			// 定义允许上传的文件扩展名
-			HashMap<String, String> extMap = new HashMap<String, String>();
-			extMap.put("image", "gif,jpg,jpeg,png,bmp");
-			extMap.put("flash", "swf,flv");
-			extMap.put("media", "swf");// 部分格式在播放时提示需要安装插件，所以暂时注释了。
-			extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,mp4,rmvb");
-			extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
-
-			// 最大文件大小
-			long maxSize = 1000000000;
-
-			response.setContentType("text/html; charset=UTF-8");
-			if (!ServletFileUpload.isMultipartContent(request)) {
-				out.println(getError("请选择文件。"));
-				return;
-			}
-			String dirName = request.getParameter("dir");
-			if (dirName == null) {
-				dirName = "image";
-			}
-			if (!extMap.containsKey(dirName)) {
-				out.println(getError("目录名不正确。"));
-				return;
-			}
-			DiskFileItemFactory factory = new DiskFileItemFactory();
-			factory.setSizeThreshold(4096);
-			ServletFileUpload upload = new ServletFileUpload(factory);
-			upload.setHeaderEncoding("UTF-8");
-			@SuppressWarnings("rawtypes")
-			List items = upload.parseRequest(request);
-			@SuppressWarnings("rawtypes")
-			Iterator itr = items.iterator();
-			while (itr.hasNext()) {
-				FileItem item = (FileItem) itr.next();
-				String fileName = item.getName();
-				if (!item.isFormField()) {
-					// 检查文件大小
-					if (item.getSize() > maxSize) {
-						out.println(getError("上传文件大小超过限制。"));
-						return;
-					}
-					// 检查扩展名
-					String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
-					if (!Arrays.<String> asList(extMap.get(dirName).split(",")).contains(fileExt)) {
-						out.println(getError("上传文件扩展名是不允许的扩展名。\n只允许" + extMap.get(dirName) + "格式。"));
-						return;
-					}
-
-					SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-					String newFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + fileExt;
-					String path = "d://" + dirName + "//" + df.format(new Date()) + "//";
-					File f = new File(path);
-					if (!f.isDirectory()) {
-						f.mkdirs();
-					}
-					try {
-						File uploadedFile = new File(path, newFileName);
-						item.write(uploadedFile);
-					} catch (Exception e) {
-						out.println(getError("上传文件失败。"));
-						return;
-					}
-					String path1 = request.getContextPath();
-					String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path1;
-
-					JSONObject obj = new JSONObject();
-					obj.put("error", 0);
-					if (fileExt.endsWith("gif") || fileExt.endsWith("jpg") || fileExt.endsWith("jpeg") || fileExt.endsWith("png") || fileExt.endsWith("bmp")) {
-						obj.put("url", basePath + "/file/view?path=" + path + newFileName);
-					} else {
-						obj.put("url", path + newFileName);
-					}
-					out.println(obj.toString());
-				}
-			}
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		} catch (Exception e) {
 		}
+
+		JSONObject obj = new JSONObject();
+		obj.put("error", 0); // 成功
+
+		fileDir = dir;
+		if (null == dir || dir.isEmpty()) {
+			fileDir = "file";
+		}
+
+		// 检查是否有上传文件
+		if (null == imgFile) {
+			obj.put("error", 1);
+			obj.put("message", "请选择上传文件.");
+			out.println(obj.toString());
+			return;
+		}
+
+		// 检查目录名称是否正确
+		if (!extMap.containsKey(fileDir)) {
+			obj.put("error", 1);
+			obj.put("message", "目录名不正确,请检查.");
+			out.println(obj.toString());
+			return;
+		}
+
+		fileExt = FilenameUtils.getExtension(imgFile.getOriginalFilename());
+		// 检查上传文件类型
+		if (!Arrays.<String>asList(extMap.get(fileDir).split(",")).contains(fileExt)) {
+			obj.put("error", 1);
+			obj.put("message", "上传文件的格式被拒绝,\n只允许" + extMap.get(fileDir) + "格式的文件.");
+			out.println(obj.toString());
+			return;
+		}
+
+		// 检查上传文件的大小
+		long maxSize = sizeMap.get(fileDir);
+		if (imgFile.getSize() > maxSize) {
+			obj.put("error", 1);
+			String size = null;
+			if (maxSize < 1024) {
+				size = maxSize + "B";
+			}
+			if (maxSize > 1024 && maxSize < 1024 * 1024) {
+				size = maxSize / 1024 + "KB";
+			}
+			if (maxSize > 1024 * 1024) {
+				size = maxSize / (1024 * 1024) + "MB";
+			}
+			obj.put("message", "上传文件大小超过限制,只允\n许上传小于 " + size + " 的文件.");
+			out.println(obj.toString());
+			return;
+		}
+
+		// 创建你要保存的文件的路径
+		String path = "D://" + fileDir + "//" + Toolkit.time() + "//";
+
+		// 获取该文件的文件名
+		String fileName = imgFile.getOriginalFilename();
+		File targetFile = new File(path, fileName);
+		if (!targetFile.exists()) {
+			targetFile.mkdirs();
+		}
+		// 保存
+		try {
+			imgFile.transferTo(targetFile);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+
+		obj.put("url", basePath + "/file/view?path=" + path + fileName);
+		out.println(obj.toString());
 
 	}
 

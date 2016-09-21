@@ -26,6 +26,7 @@ import com.jpkc.service.TeamResourceService;
 import com.jpkc.util.DocConverter;
 import com.jpkc.util.MD;
 import com.jpkc.util.Toolkit;
+import com.jpkc.util.VideoConverter;
 
 /**
  * 
@@ -56,9 +57,11 @@ public class TeamResourceController extends BaseController {
 	public String resourcesList(Model model, HttpServletRequest request) {
 		String title = request.getParameter("title");
 		String type = request.getParameter("type");
+		String isconvert = request.getParameter("isconvert");
 
 		model.addAttribute("title", title);
 		model.addAttribute("type", type);
+		model.addAttribute("isconvert", isconvert);
 
 		if (!Toolkit.length(title, 1, 64)) {
 			title = null;
@@ -68,9 +71,14 @@ public class TeamResourceController extends BaseController {
 			type = null;
 		}
 
+		if (!Toolkit.contains(false, isconvert, "1", "2")) {
+			isconvert = null;
+		}
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("title", title);
 		map.put("type", type);
+		map.put("isconvert", isconvert);
 		map.put("pageNumber", getPageNumber(request));
 		map.put("pageSize", getPageSize(request));
 
@@ -109,9 +117,15 @@ public class TeamResourceController extends BaseController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, String title, String resourcesType) {
 		// 创建你要保存的文件的路径
-		String path = "D://upload//";
+		String path = "D://upload//" + Toolkit.time() + "//";
 		// 获取该文件的文件名
 		String fileName = file.getOriginalFilename();
+
+		String denseName = null;
+		try {
+			denseName = MD.md5(fileName);
+		} catch (Exception e) {
+		}
 
 		File targetFile = new File(path, fileName);
 		if (!targetFile.exists()) {
@@ -130,7 +144,7 @@ public class TeamResourceController extends BaseController {
 		teamResource.setPath(path + fileName);
 		teamResource.setName(fileName);
 		try {
-			teamResource.setDenseName(MD.md5(fileName));
+			teamResource.setDenseName(denseName);
 		} catch (Exception e) {
 		}
 		teamResource.setIsconvert(1);
@@ -185,17 +199,68 @@ public class TeamResourceController extends BaseController {
 	 */
 	@RequestMapping("/convert")
 	public @ResponseBody Render<Object> convert(HttpServletRequest request) {
+		Render<Object> render = new Render<Object>();
+
 		String path = request.getParameter("path");
-		try {
-			DocConverter.convertTo(path);
-		} catch (Exception e) {
-			log.error("文件转换异常，请检查文件格式，联系技术支持！");
-			Render<Object> render = new Render<Object>();
-			render.setCode("55010");
-			render.setData("文件转换异常，请检查文件格式，联系技术支持！");
+		String id = request.getParameter("id");
+		String type = request.getParameter("type");
+
+		if (!Toolkit.isId(id)) {
+			log.error("参数不合法,id = " + id);
+			render.setCode("45010");
+			render.setData("参数不合法");
 			return render;
 		}
-		Render<Object> render = new Render<Object>();
+
+		if (!Toolkit.contains(false, type, "1", "2", "3", "4")) {
+			log.error("参数不合法,type = " + type);
+			render.setCode("45020");
+			render.setData("参数不合法");
+			return render;
+		}
+
+		// 当前是视频
+		if ("3".equals(type)) {
+			String suffix = path.substring(path.lastIndexOf(".") + 1); // 后缀
+			String flvPath = path.replace(suffix, "flv");
+			String aviPath = path.replace(suffix, "avi");
+			VideoConverter v = new VideoConverter(aviPath);
+			try {
+				boolean r = v.convert(path, flvPath);
+				if (!r) {
+					log.error("视频文件转换失败");
+					render.setCode("45030");
+					render.setData("视频文件转换失败");
+					return render;
+				}
+			} catch (Exception e) {
+				log.error("视频文件转换异常，请检查文件格式，联系技术支持！ ", e);
+				render.setCode("55010");
+				render.setData("文件转换异常，请检查文件格式，联系技术支持！");
+				return render;
+			}
+		} else {
+			try {
+				DocConverter.convertTo(path);
+			} catch (Exception e) {
+				log.error("文件转换异常，请检查文件格式，联系技术支持！ ", e);
+				render.setCode("55010");
+				render.setData("文件转换异常，请检查文件格式，联系技术支持！");
+				return render;
+			}
+		}
+
+		TeamResource teamResource = new TeamResource(Long.parseLong(id));
+		teamResource.setIsconvert(2);
+		try {
+			teamResourceService.save(teamResource);
+		} catch (Exception e) {
+			log.error("更新状态失败！ ", e);
+			render.setCode("55020");
+			render.setData("更新状态失败，联系技术支持！");
+			return render;
+		}
+
 		render.setCode("25010");
 		render.setData("文件已经转换成功");
 		return render;

@@ -31,8 +31,12 @@ public class TeamResourceService {
 	}
 
 	public int save(TeamResource o) throws SQLException {
-		o.setId(IDMaker.make());
-		return teamResourceDao.insert(o);
+		if (o.getId() == null) {
+			o.setId(IDMaker.make());
+			return teamResourceDao.insert(o);
+		} else {
+			return teamResourceDao.update(o);
+		}
 	}
 
 }

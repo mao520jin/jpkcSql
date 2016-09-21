@@ -45,11 +45,11 @@ public class TeamResourceDao implements Dao<TeamResource> {
 			resources.setId(rs.getLong("id"));
 			resources.setTitle(rs.getString("title"));
 			resources.setPath(rs.getString("path"));
-			resources.setPath(rs.getString("name"));
-			resources.setPath(rs.getString("denseName"));
+			resources.setName(rs.getString("name"));
+			resources.setDenseName(rs.getString("denseName"));
 			resources.setType(rs.getInt("type"));
 			resources.setCount(rs.getInt("count"));
-			resources.setCount(rs.getInt("isconvert"));
+			resources.setIsconvert(rs.getInt("isconvert"));
 			resources.setDesc(rs.getString("desc"));
 			resources.setCreatedDate(DateUtil.toDate(rs.getString("createdDate")));
 			resources.setCreatedBy(rs.getString("createdBy"));
@@ -234,6 +234,24 @@ public class TeamResourceDao implements Dao<TeamResource> {
 		sql.append(" WHERE 1 = 1");
 
 		List<Object> params = new ArrayList<Object>();
+
+		Object title = map.get("title");
+		if (title != null) {
+			sql.append(" AND t.`title` LIKE ?");
+			params.add("%" + title + "%");
+		}
+
+		Object type = map.get("type");
+		if (type != null) {
+			sql.append(" AND t.`type` = ?");
+			params.add(type);
+		}
+
+		Object isconvert = map.get("isconvert");
+		if (isconvert != null) {
+			sql.append(" AND t.`isconvert` = ?");
+			params.add(isconvert);
+		}
 
 		sql.append(" ORDER BY");
 		sql.append(" ").append("t.`id` DESC");
