@@ -16,6 +16,7 @@ public class TeamGroup extends Model<Long, String> {
 	private String name; // 名称
 	private Integer type; // 成员类型：1=导师，2=学生
 	private String about; // 简介
+	private String photo; // 成员照片
 	private String email; // 邮箱
 	private String mobile; // 电话
 	private String desc; // 备注
@@ -27,11 +28,13 @@ public class TeamGroup extends Model<Long, String> {
 		super(id);
 	}
 
-	public TeamGroup(Long id, String name, Integer type, String about, String email, String mobile, String desc, String createdBy, Date createdDate, String lastModifiedBy, Date lastModifiedDate) {
+	public TeamGroup(Long id, String name, Integer type, String about, String photo, String email, String mobile,
+			String desc, String createdBy, Date createdDate, String lastModifiedBy, Date lastModifiedDate) {
 		super(id, createdBy, createdDate, lastModifiedBy, lastModifiedDate);
 		this.name = name;
 		this.type = type;
 		this.about = about;
+		this.photo = photo;
 		this.email = email;
 		this.mobile = mobile;
 		this.desc = desc;
@@ -55,6 +58,14 @@ public class TeamGroup extends Model<Long, String> {
 
 	public String getAbout() {
 		return about;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 	public void setAbout(String about) {
@@ -87,7 +98,8 @@ public class TeamGroup extends Model<Long, String> {
 
 	@Override
 	public String toString() {
-		return "TeamGroup [name=" + name + ", type=" + type + ", about=" + about + ", email=" + email + ", mobile=" + mobile + ", desc=" + desc + ", toString()=" + super.toString() + "]";
+		return "TeamGroup [name=" + name + ", type=" + type + ", about=" + about + ", photo=" + photo + ", email="
+				+ email + ", mobile=" + mobile + ", desc=" + desc + ", toString()=" + super.toString() + "]";
 	}
 
 }

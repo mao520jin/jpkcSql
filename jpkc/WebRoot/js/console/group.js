@@ -17,6 +17,10 @@ function doEdit(type, id) {
 	$("#edit_form").submit();
 }
 
+function changePhoto() {
+	$("#photo_img").css({"display": "none"});
+}
+
 function doSave() {
 	
 	var id = $("#id").val();
@@ -26,20 +30,22 @@ function doSave() {
 	var about = $("#editor").val();
 	var mobile = $("#mobile").val();
 	
-	var postData = {
-		"id" : id,
-		"name" : name,
-		"type" : type,
-		"email" : email,
-		"about" : about,
-		"mobile" : mobile
-	};
-	$.ajax({
+	$.ajaxFileUpload({
 		type: "POST",
-		url: basePath + "/console/group/add",
-		data: postData, 
-		dataType: "json",
-		success: function(msg){
+		url: basePath + "/console/group/add?id=" + id + "&name=" + name + "&type=" + type + "&email=" + email + "&about=" + about + "&mobile=" + mobile,
+		secureuri: false,//安全协议  
+	    fileElementId: "image",
+		dataType: "JSON",
+		async : false,
+		success: function(ddd){
+			var start = ddd.indexOf(">");   
+			if(start != -1) {   
+				var end = ddd.indexOf("<", start + 1);   
+				if(end != -1) {   
+					ddd = ddd.substring(start + 1, end);   
+				}   
+			} 
+			var msg = jQuery.parseJSON(ddd);
 			var code = msg.code;
 			var data = msg.data;
 			if(code != "25010") { setRender("console_render", code, data, "warning_render", 5000); return ; }

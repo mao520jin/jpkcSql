@@ -53,6 +53,7 @@ public class TeamGroupDao implements Dao<TeamGroup> {
 			team.setName(rs.getString("name"));
 			team.setType(rs.getInt("type"));
 			team.setAbout(rs.getString("about"));
+			team.setPhoto(rs.getString("photo"));
 			team.setEmail(rs.getString("email"));
 			team.setMobile(rs.getString("mobile"));
 			team.setDesc(rs.getString("desc"));
@@ -74,6 +75,7 @@ public class TeamGroupDao implements Dao<TeamGroup> {
 		sql.append(",").append("`name`");
 		sql.append(",").append("`type`");
 		sql.append(",").append("`about`");
+		sql.append(",").append("`photo`");
 		sql.append(",").append("`email`");
 		sql.append(",").append("`mobile`");
 		sql.append(",").append("`desc`");
@@ -81,13 +83,14 @@ public class TeamGroupDao implements Dao<TeamGroup> {
 		sql.append(",").append("`created_date`");
 		sql.append(",").append("`last_modified_by`");
 		sql.append(",").append("`last_modified_date`");
-		sql.append(") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		sql.append(") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		List<Object> params = new ArrayList<Object>();
 		params.add(o.getId());
 		params.add(o.getName());
 		params.add(o.getType());
 		params.add(o.getAbout());
+		params.add(o.getPhoto());
 		params.add(o.getEmail());
 		params.add(o.getMobile());
 		params.add(o.getDesc());
@@ -145,6 +148,11 @@ public class TeamGroupDao implements Dao<TeamGroup> {
 			paramMap.put("about", o.getAbout());
 		}
 
+		if (o.getPhoto() != null) {
+			sql.append(", `photo` = :photo");
+			paramMap.put("photo", o.getPhoto());
+		}
+
 		if (o.getEmail() != null) {
 			sql.append(", `email` = :email");
 			paramMap.put("email", o.getEmail());
@@ -187,6 +195,7 @@ public class TeamGroupDao implements Dao<TeamGroup> {
 		sql.append(",").append("t.`name`");
 		sql.append(",").append("t.`type`");
 		sql.append(",").append("t.`about`");
+		sql.append(",").append("t.`photo`");
 		sql.append(",").append("t.`email`");
 		sql.append(",").append("t.`mobile`");
 		sql.append(",").append("t.`desc`");
@@ -221,6 +230,7 @@ public class TeamGroupDao implements Dao<TeamGroup> {
 		sql.append(",").append("t.`name`");
 		sql.append(",").append("t.`type`");
 		sql.append(",").append("t.`about`");
+		sql.append(",").append("t.`photo`");
 		sql.append(",").append("t.`email`");
 		sql.append(",").append("t.`mobile`");
 		sql.append(",").append("t.`desc`");
@@ -260,6 +270,7 @@ public class TeamGroupDao implements Dao<TeamGroup> {
 		sql.append(",").append("t.`name`");
 		sql.append(",").append("t.`type`");
 		sql.append(",").append("t.`about`");
+		sql.append(",").append("t.`photo`");
 		sql.append(",").append("t.`email`");
 		sql.append(",").append("t.`mobile`");
 		sql.append(",").append("t.`desc`");
@@ -291,7 +302,8 @@ public class TeamGroupDao implements Dao<TeamGroup> {
 		log.info("sql: " + sql);
 		log.info("params: " + params);
 
-		return new MySQLPage<TeamGroup>(pageNumber, pageSize, jdbcTemplate, sql.toString(), new TeamGroupMapper(), params.toArray());
+		return new MySQLPage<TeamGroup>(pageNumber, pageSize, jdbcTemplate, sql.toString(), new TeamGroupMapper(),
+				params.toArray());
 
 	}
 }

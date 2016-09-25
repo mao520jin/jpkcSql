@@ -12,6 +12,7 @@
 <script charset="utf-8" src="${basePath}/editor/kindeditor.js"></script>
 <script charset="utf-8" src="${basePath}/editor/lang/zh_CN.js"></script>
 <script charset="utf-8" src="${basePath}/editor/plugins/code/prettify.js"></script>
+<script src="<%=basePath%>/js/console/ajaxfileupload.js" type="text/javascript"></script>
 <link rel="stylesheet" href="${basePath}/editor/themes/default/default.css" />
 <link rel="stylesheet" href="${basePath}/editor/plugins/code/prettify.css" />
 
@@ -73,36 +74,54 @@
 			<input type="hidden" name="id" id="id" size="20" style="width: 300px;" value="${teamGroup.id}" />
 			<fieldset>
 				<div class="subcolumns">
-					<div class="c20l" id="memberNameDiv"><div class="subcl type-text">
-						<label for="name">成员名称:</label>
-						<input type="text" name="name" id="name" size="20" value="${teamGroup.name}" />
-					</div></div>
 					
-					<div class="c20l" id="emailDiv"><div class="subc  type-text">
-						<label for="email">邮箱:</label>
-						<input type="text" name="email" id="email" size="20" value="${teamGroup.email}" />
+					<div class="c50l"><div class="subcl type-text">
+						<div class="c50l" id="memberNameDiv"><div class="subcl type-text">
+							<label for="name">成员名称:</label>
+							<input type="text" name="name" id="name" size="20" value="${teamGroup.name}" />
+						</div></div>
+						
+						<div class="c50r" id="emailDiv"><div class="subcr  type-text">
+							<label for="email">邮箱:</label>
+							<input type="text" name="email" id="email" size="20" value="${teamGroup.email}" />
+						</div></div>
+						
+						<div class="c50l" id="telDiv"><div class="subcl  type-text">
+							<label for="mobile">电话:</label>
+							<input type="text" name="mobile" id="mobile" size="20" value="${teamGroup.mobile}" />
+						</div></div>
+						
+						<div class="c50r" id="typeDiv"><div class="subcr type-select"> 
+							<label for="type">成员类别</label>
+							<select id="type" name="type">
+								<option value="0" >-</option>
+								<option value="1" <c:if test="${teamGroup.type eq 1}">selected="selected"</c:if>>导师</option>
+								<option value="2" <c:if test="${teamGroup.type eq 2}">selected="selected"</c:if>>学生</option>
+							</select>
+						</div></div>
 					</div></div>
-					
-					<div class="c20l" id="telDiv"><div class="subc  type-text">
-						<label for="mobile">电话:</label>
-						<input type="text" name="mobile" id="mobile" size="20" value="${teamGroup.mobile}" />
+
+					<div class="c50r"><div class="subcr type-text">
+						<div class="c50l"><div class="subcl ">
+							<label for="photo">成员照片:</label>
+							<input type="file" name="image" id="image" onchange="changePhoto();"/>
+							<p style="margin-top: 15px;" class="important_render">支持上传文件最大尺寸：2 M</p>
+						</div></div>
+						
+						<c:if test="${not empty teamGroup.photo }">
+							<div class="c50r"><div class="subcr type-text">
+								<img id="photo_img" src="${basePath }/file/view?path=${teamGroup.photo}" width="200px;"/>
+							</div></div>
+						</c:if>
 					</div></div>
-					
-					<div class="c20l" id="typeDiv"><div class="subc type-select"> 
-						<label for="type">成员类别</label>
-						<select id="type" name="type">
-							<option value="0" >-</option>
-							<option value="1" <c:if test="${teamGroup.type eq 1}">selected="selected"</c:if>>导师</option>
-							<option value="2" <c:if test="${teamGroup.type eq 2}">selected="selected"</c:if>>学生</option>
-						</select>
-					</div></div>
-					<div class="c20r"><div class="subcr "></div></div>
-				</div>
 				
-				<div class="type-text" id="editorDiv">
-					<label for="editor">成员简介：</label>
-					<textarea id="editor" name="about" style="width:700px;height:300px; visibility:hidden;" >${teamGroup.about}
-					</textarea>
+				</div>
+				<div class="subcolumns">
+					<div class="type-text" id="editorDiv">
+						<label for="editor">成员简介：</label>
+						<textarea id="editor" name="about" style="width:700px;height:300px; visibility:hidden;" >${teamGroup.about}
+						</textarea>
+					</div>
 				</div>
 			
 			</fieldset>

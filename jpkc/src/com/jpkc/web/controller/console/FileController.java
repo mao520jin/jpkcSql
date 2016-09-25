@@ -2,7 +2,6 @@ package com.jpkc.web.controller.console;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -12,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +31,8 @@ import net.sf.json.JSONObject;
 @Controller
 @RequestMapping("/file")
 public class FileController {
+
+	private static Log log = LogFactory.getLog(FileController.class);
 
 	// 允许上传文件后缀MAP数组
 	private static final HashMap<String, String> extMap = new HashMap<String, String>();
@@ -67,13 +70,21 @@ public class FileController {
 	public void view(HttpServletRequest request, HttpServletResponse response) {
 		String path = request.getParameter("path");
 
+		try {
+			path = new String(path.getBytes("ISO-8859-1"), "UTF-8");
+		} catch (Exception e) {
+			log.error("获取读取图片response异常", e);
+			return;
+		}
+
 		String suffix = path.substring(path.lastIndexOf(".") + 1);
 		File file = new File(path);
 		try {
 			BufferedImage bi = ImageIO.read(file);
 			ImageIO.write(bi, suffix, response.getOutputStream());
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			log.error("返回图片异常", e);
+			return;
 		}
 	}
 
@@ -145,7 +156,7 @@ public class FileController {
 		}
 
 		// 创建你要保存的文件的路径
-		String path = "D://" + fileDir + "//" + Toolkit.time() + "//";
+		String path = "D://" + fileDir + "//" + Toolkit.time().substring(0, 9) + "//";
 
 		// 获取该文件的文件名
 		String fileName = imgFile.getOriginalFilename();
@@ -157,26 +168,16 @@ public class FileController {
 		try {
 			imgFile.transferTo(targetFile);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("富文本保存图片失败", e);
+			return;
 		}
 
-		String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+		String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+				+ request.getContextPath();
 
 		obj.put("url", basePath + "/file/view?path=" + path + fileName);
 		out.println(obj.toString());
 
 	}
 
-	/**
-	 * 封住返回参数
-	 * 
-	 * @param message
-	 * @return
-	 */
-	private String getError(String message) {
-		JSONObject obj = new JSONObject();
-		obj.put("error", 1);
-		obj.put("message", message);
-		return obj.toString();
-	}
 }

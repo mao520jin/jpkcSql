@@ -1,5 +1,7 @@
 package com.jpkc.web.controller.console;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,12 +10,15 @@ import java.util.regex.Pattern;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jpkc.commons.JSONRender;
 import com.jpkc.commons.Page;
@@ -118,15 +123,26 @@ public class TeamGroupController extends BaseController {
 	 * 添加
 	 *
 	 *
-	 * @author zhangyi
-	 * @2015-11-12
+	 * @author zhangyi @2015-11-12
 	 */
 	@RequestMapping("/add")
-	public @ResponseBody Render<Object> add(TeamGroup teamGroup, HttpServletRequest request) {
+	public @ResponseBody Render<Object> add(@RequestParam(value = "image") MultipartFile image, TeamGroup teamGroup,
+			HttpServletRequest request) {
+		if (teamGroup == null) {
+			return new Render<Object>("45010", "参数不合法！");
+		}
+
 		String name = teamGroup.getName();
+		String about = teamGroup.getAbout();
+		try {
+			name = new String(name.getBytes("iso-8859-1"), "utf-8");
+			teamGroup.setName(name);
+			about = new String(about.getBytes("iso-8859-1"), "utf-8");
+			teamGroup.setAbout(about);
+		} catch (Exception e) {
+		}
 		String email = teamGroup.getEmail();
 		String mobile = teamGroup.getMobile();
-		String about = teamGroup.getAbout();
 		String type = teamGroup.getType() + "";
 
 		if (!Toolkit.length(name, 1, 64)) {
@@ -148,6 +164,40 @@ public class TeamGroupController extends BaseController {
 
 		if (!Toolkit.contains(false, type, "1", "2")) {
 			return new Render<Object>("45050", "成员类别不合法！");
+		}
+
+		// 允许上传文件后缀MAP数组
+		HashMap<String, String> extMap = new HashMap<String, String>();
+		extMap.put("image", "gif,jpg,jpeg,png,bmp,GIF,JPG,JPEG,PNG,BMP");
+		// sizeMap.put("image", 10 * 1024 * 1024l);
+
+		if (image.getSize() != 0) {
+
+			String ext = FilenameUtils.getExtension(image.getOriginalFilename());
+			// 检查上传文件类型
+			if (!Arrays.<String>asList(extMap.get("image").split(",")).contains(ext)) {
+				return new Render<Object>("45050", "上传文件的格式 只支持:gif, jpg, jpeg, png, bmp, GIF, JPG, JPEG, PNG, BMP ！");
+			}
+
+			// 检查上传文件的大小
+			if (image.getSize() > 1 * 1024 * 1024l) {
+				return new Render<Object>("45050", "上传文件大小最大2M！");
+			}
+
+			String path = "D://personal//" + mobile + "//";
+			// 获取该文件的文件名
+			String fileName = image.getOriginalFilename();
+			File targetFile = new File(path, fileName);
+			if (!targetFile.exists()) {
+				targetFile.mkdirs();
+			}
+			// 保存
+			try {
+				image.transferTo(targetFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			teamGroup.setPhoto(path + fileName);
 		}
 
 		prepare(teamGroup, request.getSession());
