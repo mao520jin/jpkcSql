@@ -1,6 +1,7 @@
 package com.jpkc.service;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -37,6 +38,12 @@ public class TeamResourceService {
 		} else {
 			return teamResourceDao.update(o);
 		}
+	}
+
+	public TeamResource select(Long id) throws SQLException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		return teamResourceDao.select(map);
 	}
 
 }

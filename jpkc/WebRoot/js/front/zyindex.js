@@ -40,7 +40,7 @@ YUI({
 	},
 	modules:{
 		'calendar-skin':{//默认皮肤
-			fullpath:'css/default.css',
+			fullpath:'../css/front/default.css',
 			type:'css'
 		},
 		'calendar':{

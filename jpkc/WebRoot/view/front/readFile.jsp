@@ -3,6 +3,7 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 	request.setAttribute("basePath", basePath);
+	
 	String fileName = request.getParameter("fileName");
 %>
 
@@ -14,9 +15,9 @@
 
 <title>在线阅读</title>
 <style type="text/css"media="screen">
-			html,body	{ height:100%; }
-			body { margin:0; padding:0; overflow:auto; }   
-			#flashContent{ display:none; }
+	html,body	{ height:100%; }
+	body { margin:0; padding:0; overflow:auto; }   
+	#flashContent{ display:none; }
 </style>
 		
 <script type="text/javascript" src="<%=basePath %>/js/flexpaper/flexpaper_flash.js"></script>
@@ -24,7 +25,7 @@
 
 <body>
 <div style="position:absolute;left:20px;top:10px;">
-	<a  id="viewerPlaceHolder" style="width:800px; height:900px; display:block"></a>
+	<a id="viewerPlaceHolder" style="width:800px; height:900px; display:block"></a>
 	<script type="text/javascript">
 			var fp=new FlexPaperViewer(	
 						'FlexPaperViewer',

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,7 +14,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.jpkc.model.TeamResource;
+import com.jpkc.service.TeamResourceService;
 
 /**
  * 预览资源controller
@@ -27,6 +32,9 @@ public class ViewSource {
 
 	private static Log log = LogFactory.getLog(ViewSource.class);
 
+	@Resource
+	private TeamResourceService teamResourceService;
+
 	/**
 	 * 
 	 * 浏览office
@@ -37,12 +45,43 @@ public class ViewSource {
 	 */
 	@RequestMapping("/office")
 	public String viewOffice(HttpServletRequest request, Model model) {
-		String path = request.getParameter("path");
-		String type = request.getParameter("type");
+		String id = request.getParameter("id");
+		TeamResource resource = null;
+		try {
+			resource = teamResourceService.select(Long.parseLong(id));
+		} catch (Exception e) {
+		}
+		model.addAttribute("resource", resource);
+		String url = "/front/index";
+		if (resource == null) {
+			return url;
+		}
+
+		int type = resource.getType();
+		String sType = "";
+
+		if (type == 1) {
+			sType = "dzja";
+		}
+
+		if (type == 2) {
+			sType = "jxkj";
+		}
+
+		if (type == 4) {
+			sType = "jxdg";
+		}
+
+		if (type == 5) {
+			sType = "syjx";
+		}
+		model.addAttribute("type", sType);
+
+		String path = resource.getPath();
 
 		if (path == null) {
 			log.info("转换的path：" + path);
-			return null;
+			return url;
 		}
 
 		String suffix = path.substring(path.lastIndexOf(".") + 1); // 后缀
@@ -51,35 +90,9 @@ public class ViewSource {
 		model.addAttribute("fileName", swfPath);
 		log.info("swfPath:" + swfPath);
 
-		String url = "";
-		if ("1".equals(type)) {
-			url = "/front/jiaoAn";
-		}
-		if ("2".equals(type)) {
-			url = "/front/resourcesDetail";
-		}
-		if ("4".equals(type)) {
-			url = "/front/daGang";
-		}
-		if ("5".equals(type)) {
-			url = "/front/shiYanZiLiao";
-		}
+		// 1=电子教案,2=教学课件,3=教学视频,4=教学大纲 ,5=实验教学资料
+		url = "/front/team_resource_office_detail";
 		return url;
-	}
-
-	/**
-	 * 
-	 * 浏览media
-	 * 
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/media")
-	public String viewMedia(HttpServletRequest request, Model model) {
-		String path = request.getParameter("path");
-		model.addAttribute("path", path);
-		return "/front/mediaDetail";
 	}
 
 	/**
@@ -120,9 +133,20 @@ public class ViewSource {
 	 * @param request
 	 * @param response
 	 */
-	@RequestMapping("/converMedia")
-	public void converMedia(HttpServletRequest request, HttpServletResponse response) {
-		String path = request.getParameter("path");
+	@RequestMapping("/converMedia/{id}")
+	public void converMedia(HttpServletRequest request, HttpServletResponse response, @PathVariable String id) {
+		TeamResource resource = null;
+		try {
+			resource = teamResourceService.select(Long.parseLong(id));
+		} catch (Exception e) {
+
+		}
+
+		if (resource == null) {
+			return;
+		}
+
+		String path = resource.getPath();
 		log.info("path: " + path);
 		InputStream is = null;
 		OutputStream os = null;

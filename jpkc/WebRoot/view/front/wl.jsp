@@ -10,7 +10,6 @@
 		<link rel="stylesheet" href="../css/base.css">
 		<link rel="stylesheet" href="../css/zyindex.css">
 		<link rel="stylesheet" href="//at.alicdn.com/t/font_1474707830_8697941.css">
-		<link rel="stylesheet" href="../css/default.css">
 	</head>
 
 	<body>
