@@ -22,7 +22,6 @@
 			editor1 = K.create('#editor', {
 				cssPath : '${basePath}/editor/plugins/code/prettify.css',// '样式路径',
 				uploadJson : '${basePath}/file/upload',
-				fileManagerJson : '${basePath}/editor/jsp/file_manager_json.jsp',//image  '已上传文件管理程序文件',
 				allowFileManager : true,
 				allowImageRemote:false,
 				width:800,
