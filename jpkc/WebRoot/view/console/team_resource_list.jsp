@@ -55,6 +55,12 @@
 							<option value="3" <c:if test="${type == 3}">selected="selected"</c:if>>教学视频</option>
 							<option value="4" <c:if test="${type == 4}">selected="selected"</c:if>>教学大纲</option>
 							<option value="5" <c:if test="${type == 5}">selected="selected"</c:if>>实验教学资料</option>
+							<option value="6" <c:if test="${type == 6}">selected="selected"</c:if>>学生反馈</option>
+							<option value="7" <c:if test="${type == 7}">selected="selected"</c:if>>校内综合评价</option>
+							<option value="8" <c:if test="${type == 8}">selected="selected"</c:if>>校外专家评价</option>
+							<option value="9" <c:if test="${type == 9}">selected="selected"</c:if>>模拟试题</option>
+							<option value="10" <c:if test="${type == 10}">selected="selected"</c:if>>资料下载</option>
+							<option value="11" <c:if test="${type == 11}">selected="selected"</c:if>>名校专家讲堂</option>
 						</select>
 					</div></div>
 					<div class="c20l"><div class="subc type-select">
@@ -115,6 +121,12 @@
 								<c:when test="${o.type eq 3}">教学视频   	 </c:when> 
 								<c:when test="${o.type eq 4}">教学大纲	 </c:when> 
 								<c:when test="${o.type eq 5}">实验教学资料   </c:when> 
+								<c:when test="${o.type eq 6}">学生反馈   </c:when> 
+								<c:when test="${o.type eq 7}">校内综合评价   </c:when> 
+								<c:when test="${o.type eq 8}">校外专家评价   </c:when> 
+								<c:when test="${o.type eq 9}">模拟试题   </c:when> 
+								<c:when test="${o.type eq 10}">资料下载   </c:when> 
+								<c:when test="${o.type eq 11}">名校专家讲堂   </c:when>
 							</c:choose> 
 						<td>
 							<input type="hidden" id="isconvert_${o.id}" value="${o.isconvert }"/>  
@@ -177,6 +189,12 @@
 					<option value="3">教学视频</option>
 					<option value="4">教学大纲</option>
 					<option value="5">实验教学资料</option>
+					<option value="6">学生反馈</option>
+					<option value="7">校内综合评价</option>
+					<option value="8">校外专家评价</option>
+					<option value="9">模拟试题</option>
+					<option value="10">资料下载</option>
+					<option value="11">名校专家讲堂</option>
 				</select>
 			</div>
 			

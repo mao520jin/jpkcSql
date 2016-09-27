@@ -208,7 +208,10 @@ public class TeamGroupDao implements Dao<TeamGroup> {
 		sql.append(" WHERE 1 = 1");
 
 		List<Object> params = new ArrayList<Object>();
-
+		if (o.getType() != null) {
+			sql.append(" AND t.`type` = ?");
+			params.add(o.getType());
+		}
 		sql.append(" ORDER BY t.`id` asc");
 
 		log.info("sql: " + sql);
@@ -296,14 +299,19 @@ public class TeamGroupDao implements Dao<TeamGroup> {
 			params.add(type);
 		}
 
+		Object nType = map.get("nType");
+		if (nType != null) {
+			sql.append(" AND t.`type` <> ?");
+			params.add(nType);
+		}
+
 		sql.append(" ORDER BY");
 		sql.append(" ").append("t.`id` DESC");
 
 		log.info("sql: " + sql);
 		log.info("params: " + params);
 
-		return new MySQLPage<TeamGroup>(pageNumber, pageSize, jdbcTemplate, sql.toString(), new TeamGroupMapper(),
-				params.toArray());
+		return new MySQLPage<TeamGroup>(pageNumber, pageSize, jdbcTemplate, sql.toString(), new TeamGroupMapper(), params.toArray());
 
 	}
 }

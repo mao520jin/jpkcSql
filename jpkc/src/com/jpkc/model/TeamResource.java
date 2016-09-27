@@ -17,7 +17,12 @@ public class TeamResource extends Model<Long, String> {
 	private String path; // 资源路径
 	private String name; // 文件真实名称
 	private String denseName; // 加密名称
-	private Integer type; // 资源类型: 1=电子教案,2=教学课件,3=教学视频,4=教学大纲 ,5=实验教学资料
+	/**
+	 * 1=电子教案,2=教学课件,3=教学视频,4=教学大纲</br>
+	 * 5=实验教学资料,6=学生反馈,7=校内综合评价,8=校外专家评价</br>
+	 * 9=模拟试题, 10=资料下载, 11=名校专家讲堂</br>
+	 */
+	private Integer type;
 	private Integer isconvert; // 是否已转换格式: 0=未转换 1=已转换
 	private Integer count; // 下载次数
 	private String desc; // 备注

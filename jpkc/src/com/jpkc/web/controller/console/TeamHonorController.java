@@ -92,7 +92,7 @@ public class TeamHonorController extends BaseController {
 		String action = request.getParameter("action");
 		List<TeamGroup> teamGroupList = null;
 		try {
-			teamGroupList = teamGroupService.load();
+			teamGroupList = teamGroupService.load(new TeamGroup());
 		} catch (Exception e) {
 			log.error("加载人员数据异常", e);
 			model.addAttribute("render", new Render<String>("55010", "操作异常，请联系管理员！"));
@@ -132,8 +132,7 @@ public class TeamHonorController extends BaseController {
 	 * 添加
 	 *
 	 *
-	 * @author zhangyi
-	 * @2015-11-12
+	 * @author zhangyi @2015-11-12
 	 */
 	@RequestMapping("/add")
 	public @ResponseBody Render<Object> add(TeamHonor teamHonor, HttpServletRequest request) {
@@ -142,7 +141,7 @@ public class TeamHonorController extends BaseController {
 
 		if (!Toolkit.isId(String.valueOf(teamGroupId))) {
 			log.info("请选择项目人");
-			return new Render<Object>("45010", "请选择项目人");
+			return new Render<Object>("45010", "请选择成果人");
 		}
 
 		if (!Toolkit.contains(false, String.valueOf(type), "1", "2", "3", "4")) {

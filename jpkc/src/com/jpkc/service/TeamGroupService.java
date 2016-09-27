@@ -58,7 +58,7 @@ public class TeamGroupService {
 		return teamGroupDao.delete(id) > 0;
 	}
 
-	public List<TeamGroup> load() throws SQLException {
+	public List<TeamGroup> load(TeamGroup o) throws SQLException {
 		return teamGroupDao.select(new TeamGroup());
 	}
 

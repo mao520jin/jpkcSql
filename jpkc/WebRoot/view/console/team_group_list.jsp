@@ -58,6 +58,7 @@
 							<option value="" <c:if test="">selected="selected"</c:if>>-</option> 
 							<option value="1" <c:if test="${type == 1}">selected="selected"</c:if>>导师</option>
 							<option value="2" <c:if test="${type == 2}">selected="selected"</c:if>>学生</option>
+							<option value="3" <c:if test="${type == 3}">selected="selected"</c:if>>课程负责人</option>
 						</select>
 					</div></div>
 					<div class="c20l"><div class="subc"></div></div>
@@ -106,6 +107,7 @@
 						<td><input type="hidden" id="type_${o.id}" value="${o.type}" />
 							<c:if test="${o.type eq 1 }">导师</c:if>
 							<c:if test="${o.type eq 2 }">学生</c:if>
+							<c:if test="${o.type eq 3 }">课程负责人</c:if>
 						</td>
 						<td>
 							<input type="hidden" id="about_${o.id }" value="${fn:replace(o.about,'\"','\'')}" />

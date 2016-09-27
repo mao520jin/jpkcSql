@@ -1,6 +1,7 @@
 package com.jpkc.front.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jpkc.commons.Page;
 import com.jpkc.controller.BaseController;
+import com.jpkc.model.TeamGroup;
 import com.jpkc.model.TeamResource;
 import com.jpkc.model.WebsiteNotice;
+import com.jpkc.service.TeamGroupService;
 import com.jpkc.service.TeamResourceService;
 import com.jpkc.service.WebsiteNoticeService;
 
@@ -33,6 +36,9 @@ public class FrontController extends BaseController {
 	@Resource
 	private TeamResourceService teamResourceService;
 
+	@Resource
+	private TeamGroupService teamGroupService;
+
 	/**
 	 * 首页index
 	 * 
@@ -49,29 +55,41 @@ public class FrontController extends BaseController {
 		Page<WebsiteNotice> noticePager = noticeService.search(map);
 		model.addAttribute("noticePager", noticePager);
 
+		// 实验教学资料
 		map.put("type", 5);
 		Page<TeamResource> resourcePager = teamResourceService.search(map);
 		model.addAttribute("resourcePager", resourcePager);
 
+		// 滚动图的老师图片
+		TeamGroup o = new TeamGroup();
+		o.setType(2);
+		List<TeamGroup> groupList = null;
+		try {
+			groupList = teamGroupService.load(o);
+		} catch (Exception e) {
+		}
+		model.addAttribute("groupList", groupList);
+
 		return "/front/index";
 	}
-	//
-	// /**
-	// *
-	// * 通告
-	// *
-	// * @param request
-	// * @return
-	// */
-	// @RequestMapping("/loadNotice")
-	// public @ResponseBody Render<Object> loadNotice(HttpServletRequest
-	// request) {
-	//
-	// Notice notice = new Notice();
-	// List<Notice> noticeList = noticeService.select(notice);
-	// Render<Object> render = new Render<Object>();
-	// render.setCode("20000");
-	// render.setData(noticeList);
-	// return render;
-	// }
+
+	/**
+	 * 联系我们
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/contact")
+	public String contact(HttpServletRequest request, Model model) {
+		return "/front/contact";
+	}
+	
+	/**
+	 * 申报材料
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/declare")
+	public String declare(HttpServletRequest request, Model model) {
+		return "/front/declare";
+	}
 }

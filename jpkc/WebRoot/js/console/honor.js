@@ -20,16 +20,19 @@ function doEdit(type, id) {
 function doSave() {
 	
 	var id = $("#id").val();
+	var title = $("#title").val();
 	var teamGroupId = $("#name").val();
 	var about = $("#editor").val();
 	var type = $("#type").val();
-	
+
 	var postData = {
 		"id" : id,
+		"title" : title,
 		"teamGroupId" : teamGroupId,
 		"about" : about,
 		"type" : type
 	};
+	
 	$.ajax({
 		type: "POST",
 		url: basePath + "/console/honor/add",
@@ -79,7 +82,7 @@ function doDelete(type, val) {
 //标记是否已加载成员
 var names = new Array();
 
-// 加载网关通道
+// 加载
 function load() {
 	if(isLoad) { return; }
 	$.ajax({

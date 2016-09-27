@@ -146,6 +146,7 @@ public class DocConverter {
 
 		if (!pdfFile.exists()) {
 			log.info("PDF文件不存在，无法转换");
+			return;
 		}
 
 		if (swfFile.exists() && swfFile.length() == 0) {

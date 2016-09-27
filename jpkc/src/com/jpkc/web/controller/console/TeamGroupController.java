@@ -64,7 +64,7 @@ public class TeamGroupController extends BaseController {
 			name = null;
 		}
 
-		if (!Toolkit.contains(false, type, "1", "2")) {
+		if (!Toolkit.contains(false, type, "1", "2", "3")) {
 			type = null;
 		}
 
@@ -126,8 +126,7 @@ public class TeamGroupController extends BaseController {
 	 * @author zhangyi @2015-11-12
 	 */
 	@RequestMapping("/add")
-	public @ResponseBody Render<Object> add(@RequestParam(value = "image") MultipartFile image, TeamGroup teamGroup,
-			HttpServletRequest request) {
+	public @ResponseBody Render<Object> add(@RequestParam(value = "image") MultipartFile image, TeamGroup teamGroup, HttpServletRequest request) {
 		if (teamGroup == null) {
 			return new Render<Object>("45010", "参数不合法！");
 		}
@@ -162,7 +161,7 @@ public class TeamGroupController extends BaseController {
 			return new Render<Object>("45040", "成员简介不合法，不能为空！");
 		}
 
-		if (!Toolkit.contains(false, type, "1", "2")) {
+		if (!Toolkit.contains(false, type, "1", "2", "3")) {
 			return new Render<Object>("45050", "成员类别不合法！");
 		}
 
@@ -255,7 +254,7 @@ public class TeamGroupController extends BaseController {
 	@RequestMapping("/load")
 	public @ResponseBody Render<Object> load(HttpServletRequest request) {
 		try {
-			List<TeamGroup> list = teamGroupService.load();
+			List<TeamGroup> list = teamGroupService.load(new TeamGroup());
 			return new JSONRender<Object>("25010", list);
 		} catch (Exception e) {
 			log.error("删除团队成员记录异常", e);

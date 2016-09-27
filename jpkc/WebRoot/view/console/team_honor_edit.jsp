@@ -71,7 +71,7 @@ KindEditor.ready(function(K) {
 <!-- begin: #col3 static column -->
 <div id="col3" role="main">
 	<div id="col3_content" class="clearfix">
-		<form method="post" action="${basePath}/console/honor/add" class="yform" role="application" id="addResultForm">
+		<form method="post" class="yform" role="application">
 			<input type="hidden" name="id" id="id" size="20" value="${teamHonor.id}" />
 			<input type="hidden" name="groupId" id="groupId" size="20" value="${teamHonor.teamGroupId}" />
 			<div class="subcolumns">
@@ -79,7 +79,7 @@ KindEditor.ready(function(K) {
 				<div class="subcolumns" >
 					
 					<div class="c33l"><div class="subcl type-select">
-						<label for="name">项目人:</label>
+						<label for="name">成果人:</label>
 						<select name="name" id="name" style="width: 200px;" >
 							<option value="">-</option>
 							<c:forEach var="o" items="${list }">
@@ -88,18 +88,21 @@ KindEditor.ready(function(K) {
 						</select>
 					</div></div>
 					
-					<div class="c33l"><div class="subc type-select">
+					<div class="c33l"><div class="subc type-text">
+						<label for="type">成果标题:</label>
+						<input type="text" name="title" id="title" size="20" value="${teamHonor.title}" />
+					</div></div>
+					
+					<div class="c33r"><div class="subcr type-select">
 						<label for="type">成果类别:</label>
 						<select id="type" name="type">
 							<option value="" >-</option>
-							<option value="1" <c:if test="${teamHonor.type eq 1}">selected="selected"</c:if>>主持项目</option>
-							<option value="2" <c:if test="${teamHonor.type eq 2}">selected="selected"</c:if>>发表论文</option>
-							<option value="3" <c:if test="${teamHonor.type eq 3}">selected="selected"</c:if>>出版教材</option>
-							<option value="4" <c:if test="${teamHonor.type eq 4}">selected="selected"</c:if>>奖励情况</option>
+							<option value="1" <c:if test="${teamHonor.type eq 1}">selected="selected"</c:if>>科研项目</option>
+							<option value="2" <c:if test="${teamHonor.type eq 2}">selected="selected"</c:if>>学术著作</option>
+							<option value="3" <c:if test="${teamHonor.type eq 3}">selected="selected"</c:if>>奖励资助</option>
+							<option value="4" <c:if test="${teamHonor.type eq 4}">selected="selected"</c:if>>学生成果展示</option>
 						</select>
 					</div></div>
-					
-					<div class="c33r"><div class="subcr "></div></div>
 				</div>
 				<div class="type-text" id="editorDiv">
 					<label for="editor">成果简介：</label>

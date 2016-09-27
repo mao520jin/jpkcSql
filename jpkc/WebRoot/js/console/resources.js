@@ -54,7 +54,7 @@ function doSave() {
 	if(title == "" || title == null) { setRender("edit_render", "", "标题不能为空！", "warning_render", 5000);  return; }
 	if(path == "" || path == null) { setRender("edit_render", "", "请选择文件！！", "warning_render", 5000);  return;}
 	if(type == "") { setRender("edit_render", "", "请选择资源类别！", "warning_render", 5000); }
-	if(type == 3) {
+	if(type == 3 || type == 11) {
 		var filetype = new Array();
 		filetype.push("flv");
 		filetype.push("wav");
@@ -67,7 +67,7 @@ function doSave() {
 		filetype.push("rm");
 		filetype.push("mp4");
 		filetype.push("rmvb");
-		if(filetype.indexOf(suffix) == -1) { 
+		if(filetype.indexOf(suffix) == -1) {
 			setRender("edit_render", "", "允许上传的文件格式为：flv, wav, wma, wmv, mid, avi, mpg, asf, rm, mp4, rmvb！", "warning_render", 5000);
 			return; 
 		}

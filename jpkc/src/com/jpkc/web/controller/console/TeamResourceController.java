@@ -67,7 +67,7 @@ public class TeamResourceController extends BaseController {
 			title = null;
 		}
 
-		if (!Toolkit.contains(false, type, "1", "2", "3", "4")) {
+		if (!Toolkit.contains(false, type, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11")) {
 			type = null;
 		}
 
@@ -89,24 +89,6 @@ public class TeamResourceController extends BaseController {
 	}
 
 	/**
-	 * 分页查询
-	 * 
-	 * @param model
-	 * @param pageNumber
-	 * @param pageSize
-	 * @return
-	 */
-	// @RequestMapping("/list/{pageNumber}/{pageSize}")
-	// public String resourcesList(Model model, @PathVariable int pageNumber,
-	// @PathVariable int pageSize) {
-	// TeamResource resources = new TeamResource();
-	// Page<TeamResource> page = resourcesService.getResourcesByPage(resources,
-	// pageSize, pageNumber);
-	// model.addAttribute("page", page);
-	// return "console/resources/resourceslist";
-	// }
-
-	/**
 	 * 
 	 * 保存资源
 	 * 
@@ -116,6 +98,9 @@ public class TeamResourceController extends BaseController {
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, String title, String resourcesType) {
+		// 资源类型: 1=电子教案,2=教学课件,3=教学视频,4=教学大纲
+		// ,5=实验教学资料,6=学生反馈,7=校内综合评价,8=校外专家评价,9=模拟试题, 10=资料下载, 11=名校专家讲堂
+
 		// 创建你要保存的文件的路径
 		String path = "D://upload//" + Toolkit.time() + "//";
 		// 获取该文件的文件名
@@ -147,7 +132,12 @@ public class TeamResourceController extends BaseController {
 			teamResource.setDenseName(denseName);
 		} catch (Exception e) {
 		}
-		teamResource.setIsconvert(1);
+
+		if ("9".equals(resourcesType) || "10".equals(resourcesType)) { // 直接下载
+			teamResource.setIsconvert(2);
+		} else {
+			teamResource.setIsconvert(1);
+		}
 		prepare(teamResource, request.getSession());
 		try {
 			teamResourceService.save(teamResource);
@@ -212,7 +202,7 @@ public class TeamResourceController extends BaseController {
 			return render;
 		}
 
-		if (!Toolkit.contains(false, type, "1", "2", "3", "4")) {
+		if (!Toolkit.contains(false, type, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11")) {
 			log.error("参数不合法,type = " + type);
 			render.setCode("45020");
 			render.setData("参数不合法");
@@ -220,7 +210,7 @@ public class TeamResourceController extends BaseController {
 		}
 
 		// 当前是视频
-		if ("3".equals(type)) {
+		if ("3".equals(type) || "11".equals(type)) {
 			String suffix = path.substring(path.lastIndexOf(".") + 1); // 后缀
 			String flvPath = path.replace(suffix, "flv");
 			String aviPath = path.replace(suffix, "avi");

@@ -49,6 +49,7 @@ public class TeamHonorDao implements Dao<TeamHonor> {
 		public TeamHonor mapRow(ResultSet rs, int rowNum) throws SQLException {
 			TeamHonor teamHonor = new TeamHonor();
 			teamHonor.setId(rs.getLong("id"));
+			teamHonor.setTitle(rs.getString("title"));
 			teamHonor.setTeamGroupId(rs.getLong("teamGroupId"));
 			teamHonor.setAbout(rs.getString("about"));
 			teamHonor.setType(rs.getInt("type"));
@@ -68,6 +69,7 @@ public class TeamHonorDao implements Dao<TeamHonor> {
 		StringBuffer sql = new StringBuffer();
 		sql.append("INSERT INTO `team_honor` (");
 		sql.append(" ").append("`id`");
+		sql.append(",").append("`title`");
 		sql.append(",").append("`team_group_id`");
 		sql.append(",").append("`about`");
 		sql.append(",").append("`type`");
@@ -76,10 +78,11 @@ public class TeamHonorDao implements Dao<TeamHonor> {
 		sql.append(",").append("`created_date`");
 		sql.append(",").append("`last_modified_by`");
 		sql.append(",").append("`last_modified_date`");
-		sql.append(") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		sql.append(") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		List<Object> params = new ArrayList<Object>();
 		params.add(o.getId());
+		params.add(o.getTitle());
 		params.add(o.getTeamGroupId());
 		params.add(o.getAbout());
 		params.add(o.getType());
@@ -121,6 +124,11 @@ public class TeamHonorDao implements Dao<TeamHonor> {
 
 		sql.append("UPDATE `team_honor` SET `id` = :id");
 		paramMap.put("id", o.getId());
+
+		if (o.getTitle() != null) {
+			sql.append(", `title` = :title");
+			paramMap.put("title", o.getTitle());
+		}
 
 		if (o.getTeamGroupId() != null) {
 			sql.append(", `team_group_id` = :team_group_id");
@@ -167,6 +175,7 @@ public class TeamHonorDao implements Dao<TeamHonor> {
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT");
 		sql.append(" ").append("t.`id`");
+		sql.append(",").append("t.`title`");
 		sql.append(",").append("t.`team_group_id`").append(" AS ").append("teamGroupId");
 		sql.append(",").append("t.`about`");
 		sql.append(",").append("t.`type`");
@@ -204,6 +213,7 @@ public class TeamHonorDao implements Dao<TeamHonor> {
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT");
 		sql.append(" ").append("t.`id`");
+		sql.append(",").append("t.`title`");
 		sql.append(",").append("t.`team_group_id`").append(" AS ").append("teamGroupId");
 		sql.append(",").append("t.`about`");
 		sql.append(",").append("t.`type`");
@@ -246,6 +256,7 @@ public class TeamHonorDao implements Dao<TeamHonor> {
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT");
 		sql.append(" ").append("t.`id`");
+		sql.append(",").append("t.`title`");
 		sql.append(",").append("t.`team_group_id`").append(" AS ").append("teamGroupId");
 		sql.append(",").append("t.`about`");
 		sql.append(",").append("t.`type`");

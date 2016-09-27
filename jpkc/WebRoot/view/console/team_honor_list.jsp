@@ -54,10 +54,10 @@
 						<label for="type">类型</label>
 						<select id="type" name="type">
 							<option value="">-</option>
-							<option value="1" <c:if test="${type == 1}">selected="selected"</c:if>>主持项目</option>
-							<option value="2" <c:if test="${type == 2}">selected="selected"</c:if>>发表论文</option>
-							<option value="3" <c:if test="${type == 3}">selected="selected"</c:if>>出版教材</option>
-							<option value="4" <c:if test="${type == 4}">selected="selected"</c:if>>奖励情况</option>
+							<option value="1" <c:if test="${type == 1}">selected="selected"</c:if>>科研项目</option>
+							<option value="2" <c:if test="${type == 2}">selected="selected"</c:if>>学术著作</option>
+							<option value="3" <c:if test="${type == 3}">selected="selected"</c:if>>奖励资助</option>
+							<option value="4" <c:if test="${type == 4}">selected="selected"</c:if>>学生成果展示</option>
 						</select>
 					</div></div>
 					<div class="c20l"><div class="subc"></div></div>
@@ -85,6 +85,7 @@
 				<tr>
 					<th scope="col" style="width: 20px;"><input type="checkbox" id="checkAll" name="checkAll" onclick="setSelected(this,'checkAll','item_');" /></th>
 					<th scope="col">成员名称</th>
+					<th scope="col">标题</th>
 					<th scope="col">简介</th>
 					<th scope="col">荣誉类型</th>
 					<th scope="col">备注</th>
@@ -98,18 +99,18 @@
 					<tr>    
 						<td ><input type="checkbox" id="item_${o.id }" value="${o.id }" onclick="setSelected(this,'checkAll','item_');" /></td>
 						<td><input type="hidden" id="name_${o.id}" value="${o.name}" />${o.name }</td>
+						<td><input type="hidden" id="title_${o.id}" value="${o.title}" />${o.title }</td>
 						<td>
 							<input type="hidden" id="about_${o.id }" value="${fn:replace(o.about,'\"','\'')}" />
 							<a href="javascript:;" onclick="doView('${o.id }');">详情</a>
 						</td>
 						<td>
 							<input type="hidden" id="type_${o.id}" value="${o.type}" />
-							<c:if test="${o.type == 1}">主持项目</c:if>
-							<c:if test="${o.type == 2}">发表论文</c:if>
-							<c:if test="${o.type == 3}">出版教材</c:if>
-							<c:if test="${o.type == 4}">奖励情况</c:if>
+							<c:if test="${o.type == 1}">科研项目</c:if>
+							<c:if test="${o.type == 2}">学术著作</c:if>
+							<c:if test="${o.type == 3}">奖励资助</c:if>
+							<c:if test="${o.type == 4}">学生成果展示</c:if>
 						</td>
-						
 						<td><input type="hidden" id="desc_${o.id}" value="${o.desc }" />${o.desc }</td>
 						<td><input type="hidden" id="createdBy_${o.id}" value="${o.createdBy }" />${o.createdBy }</td>
 						<td><input type="hidden" id="createdDate_${o.id}" value="${o.createdDate }" /><fmt:formatDate value="${o.createdDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>

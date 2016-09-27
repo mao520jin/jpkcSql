@@ -97,6 +97,7 @@
 								<option value="0" >-</option>
 								<option value="1" <c:if test="${teamGroup.type eq 1}">selected="selected"</c:if>>导师</option>
 								<option value="2" <c:if test="${teamGroup.type eq 2}">selected="selected"</c:if>>学生</option>
+								<option value="3" <c:if test="${teamGroup.type eq 3}">selected="selected"</c:if>>课程负责人</option>
 							</select>
 						</div></div>
 					</div></div>

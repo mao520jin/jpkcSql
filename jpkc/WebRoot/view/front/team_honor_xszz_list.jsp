@@ -14,19 +14,19 @@
 		<jsp:include page="/view/front/include/header.jsp"></jsp:include>
 		
 		<jsp:include page="/view/front/include/nav.jsp" flush="true">
-			<jsp:param name="navActive" value="notice" />
+			<jsp:param name="navActive" value="kyxm" />
 		</jsp:include>
 		
 		<article class="main">
 			
 			<jsp:include page="/view/front/include/left.jsp" flush="true">
-				<jsp:param name="menuActive" value="notice" />
+				<jsp:param name="menuActive" value="kyxm" />
 			</jsp:include>
 		
 			<section class="wlmain wlmain_item1">
 				<c:forEach items="${pager.content}" var="o">
 					<div>
-						<span><a href="${basePath }/front/notice/detail/${o.id }">${o.title }</a></span>
+						<span><a href="${basePath }/front/honor/detail/${o.id }">${o.title }</a></span>
 						<span><fmt:formatDate value="${o.createdDate}" pattern="yyyy-MM-dd hh:mm:ss" /></span>
 					</div>
 				</c:forEach>

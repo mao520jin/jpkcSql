@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +28,9 @@ import com.jpkc.service.WebsiteNoticeService;
 @Controller
 @RequestMapping("/front/notice")
 public class NoticeController extends BaseController {
+
+	private static Log log = LogFactory.getLog(NoticeController.class);
+
 	@Resource
 	private WebsiteNoticeService noticeService;
 
@@ -57,7 +62,8 @@ public class NoticeController extends BaseController {
 		try {
 			notice = noticeService.select(Long.parseLong(id));
 		} catch (Exception e) {
-
+			log.error("查看notice详细", e);
+			return null;
 		}
 		model.addAttribute("notice", notice);
 		return "front/website_notice_detail";

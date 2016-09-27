@@ -5,3 +5,8 @@
 	<p><span>Joomlal</span>是遵循<span>GNU通用公共授权（第二版）</span>的自由软件</p>
 	<p>单位地址：山东省青岛技术开发区前弯港路579号 邮政编码：266590</p>
 </footer>
+
+<script src="${basePath }/js/front/yui-min.js" charset="utf-8"></script>
+<script src="${basePath }/js/front/calendar.js" charset="utf-8"></script>
+<script src="${basePath }/js/front/jquery3.min.js" charset="utf-8"></script>
+<script src="${basePath }/js/front/zyindex.js" charset="utf-8"></script>

@@ -75,6 +75,18 @@ public class ViewSource {
 		if (type == 5) {
 			sType = "syjx";
 		}
+
+		if (type == 6) {
+			sType = "xsfk";
+		}
+
+		if (type == 7) {
+			sType = "xnzhpj";
+		}
+
+		if (type == 8) {
+			sType = "xwzjpj";
+		}
 		model.addAttribute("type", sType);
 
 		String path = resource.getPath();
@@ -90,7 +102,7 @@ public class ViewSource {
 		model.addAttribute("fileName", swfPath);
 		log.info("swfPath:" + swfPath);
 
-		// 1=电子教案,2=教学课件,3=教学视频,4=教学大纲 ,5=实验教学资料
+		// 1=电子教案,2=教学课件,3=教学视频,4=教学大纲 ,5=实验教学资料,6=学生反馈,7=校内综合评价,8=校外专家评价
 		url = "/front/team_resource_office_detail";
 		return url;
 	}

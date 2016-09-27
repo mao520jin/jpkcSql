@@ -92,30 +92,19 @@
 			<h3 class="maintitle">教师风采</h3>
 			<div class="teach-box">
 				<div class="teach-lb">
-					<div class="teachImg-box"><img src="${basePath}/images/front/R222YOHDXHYTDR8_129_130.jpg"> <span>任大伟</span></div>
-					<div class="teachImg-box"><img src="${basePath}/images/front/QNQR_PA00PZZ7BIUE9R_130_130.jpg"> <span>高海东（兼职）</span></div>
-					<div class="teachImg-box"><img src="${basePath}/images/front/2_130_130.jpg"> <span>陈连军</span></div>
-					<div class="teachImg-box"><img src="${basePath}/images/front/whl_130_130.jpg"> <span>王海亮</span></div>
-					<div class="teachImg-box"><img src="${basePath}/images/front/B_8KOCFMNVI6JW1Q_130_130.jpg"> <span>陈连军</span></div>
-					<div class="teachImg-box"><img src="${basePath}/images/front/111111_130_130.jpg"> <span>王海亮</span></div>
-					<div class="teachImg-box"><img src="${basePath}/images/front/QP_Y6V_NSK4D3YDPDV_106_116.jpg"> <span>XXX</span></div>
-					<div class="teachImg-box"><img src="${basePath}/images/front/R222YOHDXHYTDR8_129_130.jpg"> <span>任大伟</span></div>
-					<div class="teachImg-box"><img src="${basePath}/images/front/QNQR_PA00PZZ7BIUE9R_130_130.jpg"> <span>高海东（兼职）</span></div>
-					<div class="teachImg-box"><img src="${basePath}/images/front/2_130_130.jpg"> <span>陈连军</span></div>
-					<div class="teachImg-box"><img src="${basePath}/images/front/whl_130_130.jpg"> <span>王海亮</span></div>
-					<div class="teachImg-box"><img src="${basePath}/images/front/B_8KOCFMNVI6JW1Q_130_130.jpg"> <span>陈连军</span></div>
-					<div class="teachImg-box"><img src="${basePath}/images/front/111111_130_130.jpg"> <span>王海亮</span></div>
-					<div class="teachImg-box"><img src="${basePath}/images/front/QP_Y6V_NSK4D3YDPDV_106_116.jpg"> <span>XXX</span></div>
+					<c:forEach items="${groupList}" var="o">
+						<c:if test="${not empty o.photo }">
+							<div class="teachImg-box">
+								<a href="${basePath}/front/group/detail/${o.id}"><img src="${basePath}/image/view?path=${o.photo}"></a>
+								<span>${o.name}</span>
+							</div>
+						</c:if>
+					</c:forEach>
 				</div>
 			</div>
 		</article>
 		
 		<jsp:include page="/view/front/include/footer.jsp"></jsp:include>
-		
-		<script src="${basePath }/js/front/yui-min.js" charset="utf-8"></script>
-		<script src="${basePath }/js/front/calendar.js" charset="utf-8"></script>
-		<script src="${basePath }/js/front/jquery3.min.js" charset="utf-8"></script>
-		<script src="${basePath }/js/front/zyindex.js" charset="utf-8"></script>
 	</body>
 
 </html>
