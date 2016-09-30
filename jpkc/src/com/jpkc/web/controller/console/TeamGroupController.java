@@ -183,7 +183,8 @@ public class TeamGroupController extends BaseController {
 				return new Render<Object>("45050", "上传文件大小最大2M！");
 			}
 
-			String path = "D://personal//" + mobile + "//";
+//			String path = "D://upload//group//" + type + File.separator + mobile + "//"; //win
+			String path = "//home//upload//group//" + type + File.separator + mobile + "//"; //linux
 			// 获取该文件的文件名
 			String fileName = image.getOriginalFilename();
 			File targetFile = new File(path, fileName);

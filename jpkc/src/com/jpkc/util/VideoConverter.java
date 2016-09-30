@@ -9,8 +9,8 @@ import java.util.List;
 
 public class VideoConverter {
 
-	private static String mencoder_home = "D:\\pc_tool\\mencoder\\mencoder.exe";// mencoder.exe所放的路径
-	private static String ffmpeg_home = "D:\\pc_tool\\ffmpeg\\ffmpeg-20160510-git-c8c14d0-win64-static\\bin\\ffmpeg.exe";// ffmpeg.exe所放的路径
+	private static String mencoder_home = "D:\\pc_tool\\mencoder\\mencoder.exe";// mencoder.exe所放的路径(win)
+	private static String ffmpeg_home = "D:\\pc_tool\\ffmpeg\\ffmpeg-20160510-git-c8c14d0-win64-static\\bin\\ffmpeg.exe";// ffmpeg.exe所放的路径(win)
 	private String tempFile_home;// 存放rm,rmvb等无法使用ffmpeg直接转换为flv文件先转成的avi文件
 
 	public VideoConverter(String tempFilePath) {

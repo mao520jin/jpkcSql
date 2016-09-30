@@ -102,7 +102,8 @@ public class TeamResourceController extends BaseController {
 		// ,5=实验教学资料,6=学生反馈,7=校内综合评价,8=校外专家评价,9=模拟试题, 10=资料下载, 11=名校专家讲堂
 
 		// 创建你要保存的文件的路径
-		String path = "D://upload//" + Toolkit.time() + "//";
+//		String path = "D://upload//resource//" + Integer.parseInt(resourcesType) + "//" + Toolkit.time() + "//"; win
+		String path = "//home//upload//resource//" + Integer.parseInt(resourcesType) + "//" + Toolkit.time() + "//"; // linux
 		// 获取该文件的文件名
 		String fileName = file.getOriginalFilename();
 

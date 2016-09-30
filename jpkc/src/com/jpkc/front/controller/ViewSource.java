@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jpkc.model.TeamResource;
 import com.jpkc.service.TeamResourceService;
+import com.jpkc.util.Toolkit;
 
 /**
  * 预览资源controller
@@ -50,6 +51,7 @@ public class ViewSource {
 		try {
 			resource = teamResourceService.select(Long.parseLong(id));
 		} catch (Exception e) {
+			log.error("查询异常！", e);
 		}
 		model.addAttribute("resource", resource);
 		String url = "/front/index";
@@ -88,19 +90,7 @@ public class ViewSource {
 			sType = "xwzjpj";
 		}
 		model.addAttribute("type", sType);
-
-		String path = resource.getPath();
-
-		if (path == null) {
-			log.info("转换的path：" + path);
-			return url;
-		}
-
-		String suffix = path.substring(path.lastIndexOf(".") + 1); // 后缀
-		String swfPath = path.replace(suffix, "swf");
-		swfPath = swfPath.replaceAll("\\\\", "//");
-		model.addAttribute("fileName", swfPath);
-		log.info("swfPath:" + swfPath);
+		model.addAttribute("id", resource.getId());
 
 		// 1=电子教案,2=教学课件,3=教学视频,4=教学大纲 ,5=实验教学资料,6=学生反馈,7=校内综合评价,8=校外专家评价
 		url = "/front/team_resource_office_detail";
@@ -114,14 +104,35 @@ public class ViewSource {
 	 * @param response
 	 */
 	@RequestMapping("/convert")
-	public void convert(HttpServletRequest request, HttpServletResponse response) {
-		String path = request.getParameter("path");
+	public void convert(HttpServletRequest request, HttpServletResponse response, String id) {
+		if (!Toolkit.isId(id)) {
+			log.info("参数ID异常");
+			return;
+		}
+
+		TeamResource resource = null;
+		try {
+			resource = teamResourceService.select(Long.parseLong(id));
+		} catch (Exception e) {
+			log.info("读取异常！");
+		}
+		if (resource == null) {
+			log.info("读取异常！");
+			return;
+		}
+
+		String path = resource.getPath();
+		String suffix = path.substring(path.lastIndexOf(".") + 1); // 后缀
+		String swfPath = path.replace(suffix, "swf");
+		swfPath = swfPath.replaceAll("\\\\", "//");
+
+		log.info("swfPath:" + swfPath);
+
 		InputStream is = null;
 		OutputStream os = null;
 
 		response.setContentType("application/x-shockwave-flash");
-
-		File file = new File(path);
+		File file = new File(swfPath);
 		try {
 			os = response.getOutputStream();
 			is = new FileInputStream(file);
@@ -137,6 +148,8 @@ public class ViewSource {
 		} catch (IOException e) {
 			log.error("读取异常！", e);
 		}
+
+		log.info("读取结束！");
 	}
 
 	/**
@@ -151,7 +164,7 @@ public class ViewSource {
 		try {
 			resource = teamResourceService.select(Long.parseLong(id));
 		} catch (Exception e) {
-
+			log.error("查询异常", e);
 		}
 
 		if (resource == null) {

@@ -312,6 +312,9 @@ public class TeamResourceDao implements Dao<TeamResource> {
 			params.add(id);
 		}
 
+		log.info("sql: " + sql);
+		log.info("params: " + params);
+
 		return jdbcTemplate.queryForObject(sql.toString(), params.toArray(), new TeamResourceMapper());
 	}
 

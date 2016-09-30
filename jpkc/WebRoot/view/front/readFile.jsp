@@ -4,7 +4,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 	request.setAttribute("basePath", basePath);
 	
-	String fileName = request.getParameter("fileName");
+	String id = request.getParameter("id");
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -30,7 +30,7 @@
 			var fp=new FlexPaperViewer(	
 						'FlexPaperViewer',
 						'viewerPlaceHolder',{config:{
-						SwfFile:escape('<%=basePath %>/view/convert?path=<%=fileName%>'),
+						SwfFile:escape('<%=basePath %>/view/convert?id=<%=id%>'),
 						Scale:1.0,
 						ZoomTransition:'easeOut',
 						ZoomTime:0.5,

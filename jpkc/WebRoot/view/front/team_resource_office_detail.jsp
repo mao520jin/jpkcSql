@@ -27,7 +27,7 @@
 		<section class="wlmain wlmain_item1">
 			<div>
 				<div>
-					<iframe id="iframe" style="width:785px;height: 800px;" src="<%=basePath %>/view/front/readFile.jsp?fileName=${fileName}"></iframe>
+					<iframe id="iframe" style="width:785px;height: 800px;" src="<%=basePath %>/view/front/readFile.jsp?id=${id}"></iframe>
 				</div>
 			</div>
 		</section>

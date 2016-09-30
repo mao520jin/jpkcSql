@@ -59,7 +59,10 @@ public class DocConverter {
 	public static void convertPdfToSwf(File pdfFile, File swfFile) throws InterruptedException, IOException {
 		Runtime r = Runtime.getRuntime();
 		Process p;
-		p = r.exec("D:/pc_tool/swftools/pdf2swf.exe " + pdfFile.getPath() + " -o " + swfFile.getPath() + " -T 9");
+		// p = r.exec("D:/pc_tool/swftools/pdf2swf.exe " + pdfFile.getPath() + "
+		// -o " + swfFile.getPath() + " -T 9"); // win
+		p = r.exec("pdf2swf " + pdfFile.getPath() + " -o " + swfFile.getPath() + " -T 9"); // linux
+
 		// 获取进程的标准输入流
 		final InputStream is1 = p.getInputStream();
 		// 获取进城的错误流
