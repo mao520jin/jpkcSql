@@ -11,7 +11,7 @@
 			<a href="javascript:;"><span class="iconfont">&#xe601;</span>课程概况</a>
 			<div class="item1-menu menu">
 				<ul>
-					<li><a href="javascript:;">课程简介</a></li>
+					<li><a href="${basePath }/front/about">课程简介</a></li>
 					<li><a href="javascript:;">课程特色</a></li>
 					<li><a href="${basePath }/front/resource/list?type=jxdg">教学大纲</a></li>
 				</ul>

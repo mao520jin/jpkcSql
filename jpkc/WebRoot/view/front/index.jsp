@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<title>首页-工程爆破精品课程</title>
+	<title>首页 - 物流工程</title>
 	<jsp:include page="/view/front/include/style.jsp"></jsp:include>
 	<jsp:include page="/view/front/include/script.jsp" flush="true" />
 </head>
@@ -33,47 +33,48 @@
 					<div class="main-info">
 						<h3 class="maintitle">课程介绍</h3>
 						<div class="box">
-							<div class="imgbox"><img src="${basePath}/images/front/06 .JPG"></div>
-							<p class="p1">大师傅开关时看见是会计师大师傅开关时看见是会计师大师傅开关时看见是会计师大师傅开关时看见是会计师大师傅开关时看见是会计师大师傅开关时看见是会计师大师傅开关时看见是会计师</p>
-							<p class="p2">的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可</p>
+							<div class="imgbox"><a href="${basePath }/front/about"><img src="${basePath}/images/front/KCJS.png"></a></div>
+							<p class="p1">《物流工程》是以物流系统为研究对象，研究物流系统的规划设计与资源优化配置、物流运作过程的计划与控制以及经营管理的工程领域。现代物流作为一门新兴的综合性边缘科学，在发达国家已有较早、较全面的研究，并形成了一系列的理论和方法，在指导其物流产业的发展中发挥了重要作用</p>
 						</div>
 					</div>
 					<div class="main-info">
 						<h3 class="maintitle">课程特色</h3>
 						<div class="box">
-							<div class="imgbox"><img src="${basePath}/images/front/abc.jpg"></div>
-							<p class="p1">大师傅开关时看见是会计师大师傅开关时看见是会计师大师傅开关时看见是会计师大师傅开关时看见是会计师大师傅开关时看见是会计师大师傅开关时看见是会计师大师傅开关时看见是会计师</p>
-							<p class="p2">的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可的思考近代史上即可</p>
-							<p class="p3">过法国的进口空间的更快更丰富的时间紧都深深地过法国的进口空间的更快更丰富的时间紧都深深地过法国的进口空间的更快更丰富的时间紧都深深地过法国的进口空间的更快更丰富的时间紧都深深地过法国的进口空间的更快更丰富的时间紧都深深地过法国的进口空间的更快更丰富的时间紧都深深地</p>
+							<div class="imgbox"><img src="${basePath}/images/front/KCTS.png"></div>
+							<p class="p1">《物流工程》课程的授课形式以系统讲解为主，辅以启发式、案例式、讨论式等教学模式，形成了课堂讲授、课程设计、课外辅导、校企合作、实验教学、现场教学等相结合的教学体系；系统开发了具有独立知识产权的教学课件和教学模具。</p>
+							<p class="p2">依托在物流管理与成本核算方向的科研优势，选择合适的素材，扩展该课程的教学内容，加强了现代物流管理方法的教学。</p>
 						</div>
 					</div>
 				</div>
-				<div class="center-msg2">2222</div>
-				<div class="center-msg3">3333</div>
 			</section>
 			
 			<section class="right">
+				<div class="iconfont icon-more more01"></div>
 				<div class="right-proclaim right-info">
 					<h3 class="maintitle">通知公告</h3>
 					<ul>
 						<c:forEach begin="0" end="3" items="${noticePager.content}" var="o">
-							<a href="${basePath }/front/notice/detail/${o.id }">${o.title }</a>
-							<p><fmt:formatDate value="${o.createdDate}" pattern="yyyy-MM-dd hh:mm:ss" /></p>
+							<li><a href="${basePath }/front/notice/detail/${o.id }">${o.title }</a>
+							<p><fmt:formatDate value="${o.createdDate}" pattern="yyyy-MM-dd hh:mm:ss" /></p></li>
 						</c:forEach>
 					</ul>
 				</div>
 				
 				<div class="right-teach right-info">
+					<div class="iconfont icon-more more01"></div>
 					<h3 class="maintitle">试验教学</h3>
 					<ul>
 						<c:forEach begin="0" end="2" items="${resourcePager.content}" var="o">
-							<a href="#">${o.title }</a>
-							<p><fmt:formatDate value="${o.createdDate}" pattern="yyyy-MM-dd hh:mm:ss" /></p>
+							<li>
+								<a href="${basePath }/view/office?id=${o.id }">${o.title }</a>
+								<p><fmt:formatDate value="${o.createdDate}" pattern="yyyy-MM-dd hh:mm:ss" /></p>
+							</li>
 						</c:forEach>
 					</ul>
 				</div>
 				
 				<div class="right-link right-info">
+					<div class="iconfont icon-more more01"></div>
 					<h3 class="maintitle">相关链接</h3>
 					<ul>
 						<li><a href="http://csl.chinawuliu.com.cn/" target="blank">中国物流学会</a></li>

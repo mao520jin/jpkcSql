@@ -59,9 +59,12 @@ public class DocConverter {
 	public static void convertPdfToSwf(File pdfFile, File swfFile) throws InterruptedException, IOException {
 		Runtime r = Runtime.getRuntime();
 		Process p;
-		// p = r.exec("D:/pc_tool/swftools/pdf2swf.exe " + pdfFile.getPath() + "
-		// -o " + swfFile.getPath() + " -T 9"); // win
-		p = r.exec("pdf2swf " + pdfFile.getPath() + " -o " + swfFile.getPath() + " -T 9"); // linux
+		String cmd = "D:/pc_tool/swftools/pdf2swf.exe " + pdfFile.getPath() + " -o " + swfFile.getPath() + " -T 9";
+		// p = r.exec(cmd); // win
+		cmd = "pdf2swf -s languagedir=/usr/share/xpdf/ " + pdfFile.getPath() + " -o " + swfFile.getPath() + " -T 9";
+		p = r.exec(cmd); // linux
+
+		log.info("cmd: " + cmd);
 
 		// 获取进程的标准输入流
 		final InputStream is1 = p.getInputStream();
@@ -112,9 +115,9 @@ public class DocConverter {
 		p.waitFor();
 		swfFile.createNewFile();
 		log.info("第三步：转换为SWF格式路径：" + swfFile.getPath());
-		if (pdfFile.exists()) {
-			pdfFile.delete();
-		}
+//		if (pdfFile.exists() && pdfFile.length() == 0) {
+//			pdfFile.delete();
+//		}
 	}
 
 	/**

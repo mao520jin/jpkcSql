@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>${WEB_APP_CONSOLE_DISPLAY_NAME}</title>
+<title>系统管理员 - 物流工程控制台</title>
 
 <jsp:include page="/view/console/include/style.jsp" flush="true" />
 <jsp:include page="/view/console/include/script.jsp" flush="true" />

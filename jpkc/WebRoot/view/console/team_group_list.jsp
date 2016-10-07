@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>教学成员 ${APP_CONSOLE_NAME_CN}  ${APP_NAME_CN}</title> 
+<title>团队成员列表 - 物流工程控制台</title> 
 
 <jsp:include page="/view/console/include/style.jsp"></jsp:include>
 <jsp:include page="/view/console/include/script.jsp" flush="true" />
@@ -89,16 +89,16 @@
 				<tr>
 					<th scope="col" style="width: 20px;"><input type="checkbox" id="checkAll" name="checkAll" onclick="setSelected(this,'checkAll','item_');" /></th>
 					<th scope="col">名称</th>
-					<th scope="col">类型</th>
-					<th scope="col">简介</th>
+					<th scope="col" style="width: 30px;">类型</th>
+					<th scope="col" style="width: 30px;">简介</th>
 					<th scope="col">邮箱</th>
 					<th scope="col">电话</th>
 					<th scope="col">备注</th>
 					<th scope="col" style="width: 80px;">创建人</th>
-					<th scope="col" style="width: 150px;">创建时间</th>
+					<th scope="col" style="width: 120px;">创建时间</th>
 					<th scope="col" style="width: 80px;">最后更新人</th>
-					<th scope="col" style="width: 150px;">最后更新时间</th>	
-					<th scope="col">操作</th>
+					<th scope="col" style="width: 120px;">最后更新时间</th>	
+					<th scope="col" style="width: 80px;">操作</th>
 				</tr>
 				<c:forEach items="${pager.content}" var="o">
 					<tr>    

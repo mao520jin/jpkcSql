@@ -13,7 +13,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title>在线阅读</title>
+<title>在线阅读 - 物流工程</title>
 <style type="text/css"media="screen">
 	html,body	{ height:100%; }
 	body { margin:0; padding:0; overflow:auto; }   

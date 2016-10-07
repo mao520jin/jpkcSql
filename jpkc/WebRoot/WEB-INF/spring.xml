@@ -18,7 +18,7 @@
 	<!-- ========== 数据源 ============================== -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://192.168.3.168:3306/jpkc" />
+		<property name="url" value="jdbc:mysql://localhost:3306/jpkc" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>

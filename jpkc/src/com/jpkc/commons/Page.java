@@ -15,7 +15,7 @@ import java.util.List;
 public abstract class Page<T> {
 
 	private int pageNumber = 1; // 页码
-	private int pageSize = 10; // 页码大小（显示数量）
+	private int pageSize = 20; // 页码大小（显示数量）
 	private int totalPages; // 总页数
 	private int totalElements; // 总记录数
 

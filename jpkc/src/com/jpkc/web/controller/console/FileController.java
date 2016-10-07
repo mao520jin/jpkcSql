@@ -157,7 +157,7 @@ public class FileController {
 
 		// 创建你要保存的文件的路径
 		// String path = "D://upload//fwb//" + fileDir + "//" +
-		// Toolkit.time().substring(0, 9) + "//"; win
+		// Toolkit.time().substring(0, 9) + "//"; // win
 		String path = "//home//upload//fwb//" + fileDir + "//" + Toolkit.time().substring(0, 9) + "//"; // linux
 
 		// 获取该文件的文件名
@@ -174,7 +174,8 @@ public class FileController {
 			return;
 		}
 
-		String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+		String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+				+ request.getContextPath();
 
 		obj.put("url", basePath + "/file/view?path=" + path + fileName);
 		out.println(obj.toString());

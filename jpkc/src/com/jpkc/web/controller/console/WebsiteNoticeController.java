@@ -1,11 +1,13 @@
 package com.jpkc.web.controller.console;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -113,12 +115,21 @@ public class WebsiteNoticeController extends BaseController {
 	 * @2015-11-12
 	 */
 	@RequestMapping("/add")
-	public @ResponseBody Render<Object> add(WebsiteNotice websiteNotice, HttpServletRequest request) {
+	public @ResponseBody Render<Object> add(WebsiteNotice websiteNotice, HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		String title = request.getParameter("title");
 
 		if (!Toolkit.length(title, 1, 64)) {
 			return new Render<Object>("45010", "标题不合法");
 		}
+		
+		log.info("title:" + title);
 
 		prepare(websiteNotice, request.getSession());
 		try {

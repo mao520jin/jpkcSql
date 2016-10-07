@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<link rel="shortcut icon" href="${basePath}/images/favicon/favicon48.ico" />
 <link type="text/css" rel="stylesheet" href="${basePath}/css/front/base.css" />
 <link type="text/css" rel="stylesheet" href="${basePath}/css/front/default.css" />
 <link type="text/css" rel="stylesheet" href="${basePath}/css/front/zyindex.css" />

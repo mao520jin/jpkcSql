@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>添加公告 </title>
+<title>公告通知编辑 - 物流工程控制台 </title>
 
 <jsp:include page="/view/console/include/style.jsp"></jsp:include>
 <jsp:include page="/view/console/include/script.jsp"></jsp:include>
@@ -77,13 +77,12 @@
 			<fieldset>
 				<jsp:include page="/view/console/include/render.jsp" />
 				<div class="subcolumns" >
-					<div class="c33l"><div class="subcl type-text">
+					<div class="c80l"><div class="subcl type-text">
 						<label for="title">公告标题：</label>
 						<input type="text" name="title" id="title" size="20" value="${websiteNotice.title}" />
 					</div></div>
 					
-					<div class="c33l"><div class="subc "></div></div>
-					<div class="c33r"><div class="subcr "></div></div>
+					<div class="c20r"><div class="subcr "></div></div>
 				</div>
 				<div class="type-text" id="editorDiv">
 					<label for="content">公告内容：</label>

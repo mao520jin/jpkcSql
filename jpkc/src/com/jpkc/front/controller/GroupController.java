@@ -69,6 +69,7 @@ public class GroupController extends BaseController {
 
 		Page<TeamGroup> pager = teamGroupService.search(map);
 		model.addAttribute("pager", pager);
+		model.addAttribute("type", type);
 
 		return "front/team_group_list";
 	}

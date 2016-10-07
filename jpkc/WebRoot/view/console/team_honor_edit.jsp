@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>添加公告 </title>
+<title>教学荣誉编辑 - 物流工程控制台 </title>
 
 <jsp:include page="/view/console/include/style.jsp"></jsp:include>
 <jsp:include page="/view/console/include/script.jsp"></jsp:include>

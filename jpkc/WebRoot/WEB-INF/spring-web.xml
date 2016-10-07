@@ -31,13 +31,12 @@
        
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/notice/**"/>
-			<mvc:mapping path="/resources/**"/>
-			<mvc:mapping path="/result/**"/>
-			<mvc:mapping path="/team/**"/>
-			<mvc:mapping path="/user/**"/>
-			<mvc:exclude-mapping path="/user/login"/>
-			<mvc:exclude-mapping path="/notice/noticeList"/>
+			<mvc:mapping path="/file/**"/>
+			<mvc:mapping path="/console/**"/>
+			<mvc:exclude-mapping path="/console/sysadmin/loginIn"/>
+			<mvc:exclude-mapping path="/console/sysadmin/login"/>
+			<mvc:exclude-mapping path="/console/sysadmin/logout"/>
+			<mvc:exclude-mapping path="/front/*"/>
 			<bean id="loginInteceptor" class="com.jpkc.inteceptor.LoginInteceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

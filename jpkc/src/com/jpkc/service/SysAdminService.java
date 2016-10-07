@@ -41,4 +41,18 @@ public class SysAdminService {
 	public boolean delete(Long id) throws SQLException {
 		return sysAdminDao.delete(id) > 0;
 	}
+
+	/**
+	 * 
+	 * 登录
+	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 * @throws SQLException
+	 * 
+	 */
+	public SysAdmin login(String username, String password) throws SQLException {
+		return sysAdminDao.login(username, password);
+	}
 }

@@ -80,8 +80,7 @@ public class BaseController {
 
 		// 从Session中获取当前用户
 		SysAdmin user = (SysAdmin) session.getAttribute("sysAdmin");
-//		String name = user == null ? "" : user.getUsername();
-		String name = "admin";
+		String name = user == null ? "" : user.getUsername();
 		Date date = new Date();
 
 		if (model.getId() == null) {

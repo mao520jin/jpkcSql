@@ -57,6 +57,7 @@ public class FrontController extends BaseController {
 
 		// 实验教学资料
 		map.put("type", 5);
+		map.put("isconvert", 2);
 		Page<TeamResource> resourcePager = teamResourceService.search(map);
 		model.addAttribute("resourcePager", resourcePager);
 
@@ -71,6 +72,16 @@ public class FrontController extends BaseController {
 		model.addAttribute("groupList", groupList);
 
 		return "/front/index";
+	}
+
+	/**
+	 * 课程简介
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/about")
+	public String kcjs(HttpServletRequest request, Model model) {
+		return "/front/kcjs";
 	}
 
 	/**

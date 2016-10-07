@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>资源列表 ${APP_CONSOLE_NAME_CN}  ${APP_NAME_CN}</title>
+<title>教学资源列表 - 物流工程控制台</title>
 
 <jsp:include page="/view/console/include/style.jsp"></jsp:include>
 <jsp:include page="/view/console/include/script.jsp" flush="true" />

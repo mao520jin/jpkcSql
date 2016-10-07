@@ -126,7 +126,8 @@ public class TeamGroupController extends BaseController {
 	 * @author zhangyi @2015-11-12
 	 */
 	@RequestMapping("/add")
-	public @ResponseBody Render<Object> add(@RequestParam(value = "image") MultipartFile image, TeamGroup teamGroup, HttpServletRequest request) {
+	public @ResponseBody Render<Object> add(@RequestParam(value = "image") MultipartFile image, TeamGroup teamGroup,
+			HttpServletRequest request) {
 		if (teamGroup == null) {
 			return new Render<Object>("45010", "参数不合法！");
 		}
@@ -183,8 +184,9 @@ public class TeamGroupController extends BaseController {
 				return new Render<Object>("45050", "上传文件大小最大2M！");
 			}
 
-//			String path = "D://upload//group//" + type + File.separator + mobile + "//"; //win
-			String path = "//home//upload//group//" + type + File.separator + mobile + "//"; //linux
+			// String path = "D://upload//group//" + type + File.separator +
+			// mobile + "//"; //win
+			String path = "//home//upload//group//" + type + File.separator + mobile + "//"; // linux
 			// 获取该文件的文件名
 			String fileName = image.getOriginalFilename();
 			File targetFile = new File(path, fileName);

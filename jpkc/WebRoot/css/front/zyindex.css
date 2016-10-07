@@ -2,7 +2,7 @@ body {
   background: #13a5a7;
 }
 header {
-  width: 980px;
+  width: 1180px;
   height: 184px;
   background-image: url(../../images/front/logo1.png), url(../../images/front/logo2.jpg);
   background-repeat: no-repeat;
@@ -38,7 +38,8 @@ header .headerSearch {
   right: 0;
 }
 header .headerSearch #searchInp {
-  width: 168px;
+  width: 165px;
+  padding-right: 3px;
   height: 30px;
   padding-right: 12px;
   color: #9dbbd5;
@@ -49,6 +50,8 @@ header .headerSearch #searchInp {
   padding-left: 12px;
 }
 header .headerSearch #searchBtn {
+  position: absolute;
+  right: 0px;
   float: right;
   width: 37px;
   height: 30px;
@@ -76,7 +79,7 @@ header .headerMsg {
   line-height: 20px;
 }
 nav {
-  width: 980px;
+  width: 1180px;
   height: 50px;
   margin: 0 auto;
 }
@@ -85,12 +88,13 @@ nav ul li {
   height: 49px;
   border-bottom: solid 2px #21bfb9;
   float: left;
-  padding: 0 27px;
+  padding: 0 38px;
   text-align: center;
   line-height: 49px;
   box-shadow: 0 0 10px #000;
   font-weight: bold;
   border-right: solid 6px #21bfb9;
+  border-bottom: solid 4px #21bfb9 ;
   border-bottom: solid 5px #21bfb9;
   position: relative;
 }
@@ -164,8 +168,8 @@ nav .item5:hover .item5-menu {
   display: block;
 }
 .main {
-  width: 980px;
-  height: 897px;
+  width: 1180px;
+  min-height: 897px;
   box-sizing: border-box;
   padding: 30px 10px 0 10px;
   background: #ffffff;
@@ -176,13 +180,14 @@ nav .item5:hover .item5-menu {
 }
 .main .left {
   width: 226px ;
-  height: 854px ;
+  min-height: 854px ;
   float: left;
   padding-right: 20px;
 }
 .main .left .leftnav {
   width: 100%;
   height: 490px;
+  padding-bottom: 10px;
 }
 .main .left .leftnav ul {
   box-sizing: border-box;
@@ -213,9 +218,12 @@ nav .item5:hover .item5-menu {
   background: #21BFB9 ;
   font-size: 18px;
 }
+.main .left .calendar-container {
+  margin-top: 10px;
+}
 .main .center {
-  width: 470px;
-  height: 854px;
+  width: 670px;
+  min-height: 854px;
   float: left;
   padding-right: 20px !important;
   position: relative;
@@ -238,18 +246,11 @@ nav .item5:hover .item5-menu {
 .main .center .bottom-fy li .activeli {
   background: #e09b0f;
 }
-.main .center .center-msg1,
-.main .center .center-msg2,
-.main .center .center-msg3 {
-  display: none;
-  width: 100%;
-  height: 100%;
-}
 .main .center .main-info {
-  height: 370px;
+  min-height: 370px;
 }
 .main .center .main-info .box {
-  height: 337px;
+  min-height: 337px;
   box-sizing: border-box;
   padding-top: 14px;
   padding-right: 12px;
@@ -267,19 +268,28 @@ nav .item5:hover .item5-menu {
   display: block;
 }
 .main .center .main-info .box p {
-  font-size: 12px;
+  font-size: 14px;
   color: #333333;
-  line-height: 20px;
-  text-indent: 24px;
+  line-height: 28px;
+  text-indent: 28px;
 }
 .main .right {
   width: 224px;
-  height: 854px;
+  min-height: 854px;
   float: left;
 }
 .main .right .right-info {
   height: 370px;
   box-sizing: border-box;
+  position: relative;
+}
+.main .right .right-info .more01 {
+  position: absolute;
+  top: 26px;
+  right: 0;
+  color: #000;
+  font-size: 30px;
+  cursor: pointer;
 }
 .main .right .right-info ul {
   padding-top: 14px;
@@ -292,14 +302,19 @@ nav .item5:hover .item5-menu {
 .main .right .right-info li a {
   line-height: 22px;
   font-size: 14px;
-  color: #333333;
+  color: #284e6c;
 }
 .main .right .right-info li p {
   font-size: 10px;
   color: #999999;
+  padding-top: 5px;
 }
 .main .right .right-teach {
   height: 260px;
+}
+.main .right .right-link {
+  margin-top: 20px;
+  min-height: 200px !important;
 }
 .main .right .right-link ul {
   padding-left: 22px;
@@ -315,7 +330,7 @@ nav .item5:hover .item5-menu {
   font-size: 14px ;
 }
 .main .main-bottom {
-  width: 980px;
+  width: 1180px;
   height: 1px;
   background: #efece1;
   position: absolute;
@@ -330,7 +345,7 @@ nav .item5:hover .item5-menu {
   background: #23b6b4;
 }
 .teacherShow {
-  width: 980px;
+  width: 1180px;
   height: 256px;
   margin: 0 auto;
 }
@@ -374,7 +389,7 @@ nav .item5:hover .item5-menu {
   line-height: 35px;
 }
 footer {
-  width: 980px;
+  width: 1180px;
   height: 73px ;
   margin: 0 auto;
   background: #23b6b4;
@@ -393,12 +408,30 @@ footer p span {
 a:hover {
   text-decoration: underline;
 }
+
+.wlLeft{
+	float: left !important;	
+}
+
 .wlmain {
-  position: absolute;
-  right: 0;
-  top: 30px;
-  width: 734px;
-  height: 854px;
+ float:right;
+ margin-top: -8px;
+ width:910px;
+}
+
+.wlmain p {
+  float: left;
+  width: 875px;
+  line-height: 36px;
+  font-size: 16px;
+  padding-right: 50px;
+}
+.wlmain p a {
+  font-size: 16px;
+  float: left;
+}
+.wlmain p .wlmain_alink {
+  float: right;
 }
 .wlmain .fyBtn {
   position: absolute;

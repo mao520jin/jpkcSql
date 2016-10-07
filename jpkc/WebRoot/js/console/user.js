@@ -49,7 +49,38 @@ function doSubmit() {
 }
 
 function loginSubmit() {
-	$("#loginForm").submit();
+	var username = $("#username").val();
+	var password = $("#password").val();
+	
+	var data = { "username": username, "password": password };
+	
+	if(!isUsername(username)) { 
+		setRender("console_render", "", "用户名应为3~32位，由字母、数字、下划线组成！", "warning_render", 5000);
+		return false; 
+	}
+	if(!isPassword(password)) { 
+		setRender("console_render", "", "密码应为3~32位，由字母、数字、下划线组成！", "warning_render", 5000);
+		return false; 
+	}
+	
+	$.ajax({
+		type: "POST",
+		url: basePath + "/console/sysadmin/loginIn",
+		data: data,
+		dataType: "json",
+		async: false,
+		cache: false,
+		beforeSend: function(XMLHttpRequest) { },
+		success: function(data, textStatus) {
+			if(data.code != "25001") {
+				setRender("console_render", "", data.data, "warning_render", 5000);
+				return;
+			}
+			window.location.href = basePath + "/console/resource/list";
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) { },
+		complete: function(XMLHttpRequest, textStatus) { }
+	});
 }
 
 function goPage(pageNumber,pageSize) {

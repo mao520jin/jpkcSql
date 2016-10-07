@@ -97,13 +97,17 @@ public class TeamResourceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, String title, String resourcesType) {
+	public String save(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request,
+			String title, String resourcesType) {
 		// 资源类型: 1=电子教案,2=教学课件,3=教学视频,4=教学大纲
 		// ,5=实验教学资料,6=学生反馈,7=校内综合评价,8=校外专家评价,9=模拟试题, 10=资料下载, 11=名校专家讲堂
 
 		// 创建你要保存的文件的路径
-//		String path = "D://upload//resource//" + Integer.parseInt(resourcesType) + "//" + Toolkit.time() + "//"; win
-		String path = "//home//upload//resource//" + Integer.parseInt(resourcesType) + "//" + Toolkit.time() + "//"; // linux
+		// String path = "D://upload//resource//" +
+		// Integer.parseInt(resourcesType) + "//" + Toolkit.time() + "//"; //
+		// win
+		String path = "//home//upload//resource//" + Integer.parseInt(resourcesType) + "//" + Toolkit.time() + "//"; //
+		// linux
 		// 获取该文件的文件名
 		String fileName = file.getOriginalFilename();
 
@@ -121,7 +125,7 @@ public class TeamResourceController extends BaseController {
 		try {
 			file.transferTo(targetFile);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("上传资源文件异常，", e);
 		}
 
 		TeamResource teamResource = new TeamResource();
@@ -143,6 +147,7 @@ public class TeamResourceController extends BaseController {
 		try {
 			teamResourceService.save(teamResource);
 		} catch (Exception e) {
+			log.error("保存资源文件异常，", e);
 		}
 
 		return "redirect:/console/resource/list";

@@ -5,11 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>登录 -  精品课程</title>
+<title>登录 - 物流工程控制台</title>
 
 <jsp:include page="/view/console/include/style.jsp"></jsp:include>
 <jsp:include page="/view/console/include/script.jsp"></jsp:include>
-<script type="text/javascript" src="${basePath}/js/user.js"></script>
+<script type="text/javascript" src="${basePath}/js/console/user.js"></script>
 </head>
 
 <body>
@@ -32,7 +32,7 @@
 <!-- begin: #col3 static column -->
 <div id="col3" role="main">
 	<div id="col3_content" class="clearfix">
-		<form method="post" action="<%=basePath %>/user/login" class="yform" role="application" id="loginForm">
+		<form method="post" action="<%=basePath %>/console/sysadmin/loginIn" class="yform" role="application" id="loginForm">
 			<fieldset>
 				<legend>管理控制台登录</legend>
 				<strong class='message' id='"+id+"Msg' style="color: red;">${errorMsg }</strong>
@@ -45,8 +45,13 @@
 					<input type="password" name="password" id="password" size="20" value="${user.password }"/>
 				</div>
 			</fieldset>
+			
+			<div class="subcolumns"><div class="c80l"><div class="subcl">
+					<div id="console_render">&nbsp;</div>
+				</div></div><div class="c20r"><div class="subcr">&nbsp;</div></div></div>
+				
 			<div class="type-button">
-					<a href="javascrip:;" onclick="loginSubmit();" class="ui-button">登录</a>
+				<a href="javascrip:;" onclick="loginSubmit();" class="ui-button">登录</a>
 			</div>
 		</form>
 	</div>

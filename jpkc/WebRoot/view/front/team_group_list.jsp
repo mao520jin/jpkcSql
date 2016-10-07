@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<title>首页-工程爆破精品课程</title>
+	<title>教学团队 - 物流工程</title>
 	<jsp:include page="/view/front/include/style.jsp"></jsp:include>
 	<jsp:include page="/view/front/include/script.jsp" flush="true" />
 </head>
@@ -25,13 +25,13 @@
 		
 			<section class="wlmain wlmain_item1">
 				<c:forEach items="${pager.content}" var="o">
-					<div>
-						<span><a href="${basePath }/front/notice/detail/${o.id }">${o.name }</a></span>
-						<span><fmt:formatDate value="${o.createdDate}" pattern="yyyy-MM-dd hh:mm:ss" /></span>
-					</div>
+					<p>
+						<a href="${basePath }/front/group/detail/${o.id }">${o.name }</a>
+						<span class="wlmain_alink"><fmt:formatDate value="${o.createdDate}" pattern="yyyy-MM-dd hh:mm:ss" /></span>
+					</p>
 				</c:forEach>
 				<jsp:include page="/view/front/include/pager.jsp" flush="true">
-					<jsp:param name="pagePath" value="/front/group/list" />
+					<jsp:param name="pagePath" value="/front/group/list?type=${type }" />
 				</jsp:include>
 			</section>
 			
@@ -39,8 +39,6 @@
 		</article>
 		
 		<jsp:include page="/view/front/include/footer.jsp"></jsp:include>
-		
-		<script src="${basePath }/js/front/jquery3.min.js" charset="utf-8"></script>
 	</body>
 
 </html>

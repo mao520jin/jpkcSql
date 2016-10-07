@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<title>首页-工程爆破精品课程</title>
+	<title>公告详情 - 物流工程</title>
 	<jsp:include page="/view/front/include/style.jsp"></jsp:include>
 	<jsp:include page="/view/front/include/script.jsp" flush="true" />
 </head>
@@ -25,8 +25,8 @@
 		
 			<section class="wlmain wlmain_item1">
 				<div>
-				<p align="center">${notice.title }</p>
-				<span>${notice.content }</span>
+					<p align="center">${notice.title }</p>
+					<span>${notice.content }</span>
 				</div>
 			</section>
 			
@@ -35,7 +35,6 @@
 		
 		<jsp:include page="/view/front/include/footer.jsp"></jsp:include>
 		
-		<script src="${basePath }/js/front/jquery3.min.js" charset="utf-8"></script>
 	</body>
 
 </html>
