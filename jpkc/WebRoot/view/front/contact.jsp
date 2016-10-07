@@ -24,7 +24,32 @@
 			</jsp:include>
 		
 			<section class="wlmain wlmain_item1">
-				联系我们:120
+				<div class="leftnav">
+					<p class="MsoNormal" style="text-indent:80pt;">
+						冯夕文
+						办公电话：0532-86057073       邮箱：fxw6380@163.com
+					</p>
+					<p class="MsoNormal" style="text-indent:80pt;">
+						李美燕
+						办公电话：0532-86057163       邮箱：limeiyanqdu@163.com
+					</p>
+					<p class="MsoNormal" style="text-indent:80pt;">
+						任大伟
+						办公电话：0532-86057163       邮箱：dawei_ren_2000@163.com
+					</p>
+					<p class="MsoNormal" style="text-indent:80pt;">
+						祝朱武
+						办公电话：0532-86057036       邮箱：skdzzw@sdust.edu.cn
+					</p>
+					<p class="MsoNormal" style="text-indent:80pt;">
+						贾　顺
+						办公电话：0532-86057044       邮箱：herojiashun@163.com
+					</p>
+					<p class="MsoNormal" style="text-indent:80pt;">
+						颜　伟
+						办公电话：0532-86057044       邮箱：yanwei_sdust@163.com
+					</p>
+				</div>
 			</section>
 			
 			<div class="main-bottom"></div>

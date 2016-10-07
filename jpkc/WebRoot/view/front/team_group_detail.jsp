@@ -25,7 +25,6 @@
 		
 			<section class="wlmain wlmain_item1">
 				<div class="leftnav">
-					<p align="center">${group.name }</p>
 					<span>${group.about }</span>
 				</div>
 			</section>
