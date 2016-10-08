@@ -72,8 +72,7 @@
 						</c:forEach>
 					</ul>
 				</div>
-				
-				<div class="right-link right-info">
+				<div class="right-link" style="box-sizing: border-box;position: relative">
 					<div class="iconfont icon-more more01"></div>
 					<h3 class="maintitle">相关链接</h3>
 					<ul>

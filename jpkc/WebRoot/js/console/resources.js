@@ -68,7 +68,7 @@ function doSave() {
 		filetype.push("mp4");
 		filetype.push("rmvb");
 		if(filetype.indexOf(suffix) == -1) {
-			setRender("edit_render", "", "允许上传的文件格式为：flv, wav, wma, wmv, mid, avi, mpg, asf, rm, mp4, rmvb！", "warning_render", 5000);
+			setRender("edit_render", "", "允许上传的文件格式为：flv", "warning_render", 5000);
 			return; 
 		}
 	} else {
@@ -84,6 +84,7 @@ function doSave() {
 		}
 	}
 	$("#resource_edit_form").submit();
+	$("#wait_image_div").css({"display": "block"});
 }
 
 

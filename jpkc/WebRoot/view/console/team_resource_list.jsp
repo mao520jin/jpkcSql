@@ -201,6 +201,11 @@
 			<div class="subcolumns"><div class="c80l"><div class="subcl">
 				<div id="edit_render">&nbsp;</div>
 			</div></div><div class="c20r"><div class="subcr">&nbsp;</div></div></div>
+			
+			<div class="div_input" id="wait_image_div" style="display: none;">
+				<img id="license_pic_img" src="${basePath }/images/w01.gif" style="width: 25px; height: 25px;" />
+				<span class="important_render">　提交中...</span>
+			</div>
 		
 		</fieldset>
 	</form>

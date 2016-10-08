@@ -26,7 +26,6 @@ import com.jpkc.service.TeamResourceService;
 import com.jpkc.util.DocConverter;
 import com.jpkc.util.MD;
 import com.jpkc.util.Toolkit;
-import com.jpkc.util.VideoConverter;
 
 /**
  * 
@@ -97,8 +96,7 @@ public class TeamResourceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request,
-			String title, String resourcesType) {
+	public String save(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, String title, String resourcesType) {
 		// 资源类型: 1=电子教案,2=教学课件,3=教学视频,4=教学大纲
 		// ,5=实验教学资料,6=学生反馈,7=校内综合评价,8=校外专家评价,9=模拟试题, 10=资料下载, 11=名校专家讲堂
 
@@ -138,7 +136,7 @@ public class TeamResourceController extends BaseController {
 		} catch (Exception e) {
 		}
 
-		if ("9".equals(resourcesType) || "10".equals(resourcesType)) { // 直接下载
+		if ("3".equals(resourcesType) || "9".equals(resourcesType) || "10".equals(resourcesType) || "11".equals(resourcesType)) { // 直接下载
 			teamResource.setIsconvert(2);
 		} else {
 			teamResource.setIsconvert(1);
@@ -208,42 +206,21 @@ public class TeamResourceController extends BaseController {
 			return render;
 		}
 
-		if (!Toolkit.contains(false, type, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11")) {
+		// 其余的不用转换，@see save
+		if (!Toolkit.contains(false, type, "1", "2", "4", "5", "6", "7", "8")) {
 			log.error("参数不合法,type = " + type);
 			render.setCode("45020");
 			render.setData("参数不合法");
 			return render;
 		}
 
-		// 当前是视频
-		if ("3".equals(type) || "11".equals(type)) {
-			String suffix = path.substring(path.lastIndexOf(".") + 1); // 后缀
-			String flvPath = path.replace(suffix, "flv");
-			String aviPath = path.replace(suffix, "avi");
-			VideoConverter v = new VideoConverter(aviPath);
-			try {
-				boolean r = v.convert(path, flvPath);
-				if (!r) {
-					log.error("视频文件转换失败");
-					render.setCode("45030");
-					render.setData("视频文件转换失败");
-					return render;
-				}
-			} catch (Exception e) {
-				log.error("视频文件转换异常，请检查文件格式，联系技术支持！ ", e);
-				render.setCode("55010");
-				render.setData("文件转换异常，请检查文件格式，联系技术支持！");
-				return render;
-			}
-		} else {
-			try {
-				DocConverter.convertTo(path);
-			} catch (Exception e) {
-				log.error("文件转换异常，请检查文件格式，联系技术支持！ ", e);
-				render.setCode("55010");
-				render.setData("文件转换异常，请检查文件格式，联系技术支持！");
-				return render;
-			}
+		try {
+			DocConverter.convertTo(path);
+		} catch (Exception e) {
+			log.error("文件转换异常，请检查文件格式，联系技术支持！ ", e);
+			render.setCode("55010");
+			render.setData("文件转换异常，请检查文件格式，联系技术支持！");
+			return render;
 		}
 
 		TeamResource teamResource = new TeamResource(Long.parseLong(id));

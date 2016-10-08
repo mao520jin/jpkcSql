@@ -25,29 +25,62 @@
 		
 			<section class="wlmain wlmain_item1">
 				<div class="leftnav">
-					<p class="MsoNormal" style="text-indent:80pt;">
-						冯夕文
-						办公电话：0532-86057073       邮箱：fxw6380@163.com
+					<p class="MsoTitle">
+						<span style="font-family:宋体;font-size:30px;">课程联系人</span>
 					</p>
-					<p class="MsoNormal" style="text-indent:80pt;">
-						李美燕
-						办公电话：0532-86057163       邮箱：limeiyanqdu@163.com
+					<p class="MsoNormal">
+						<span>&nbsp;</span>
 					</p>
-					<p class="MsoNormal" style="text-indent:80pt;">
-						任大伟
-						办公电话：0532-86057163       邮箱：dawei_ren_2000@163.com
+					<p class="MsoNormal">
+						<b><span style="font-family:宋体;">冯夕文</span><span></span></b>
 					</p>
-					<p class="MsoNormal" style="text-indent:80pt;">
-						祝朱武
-						办公电话：0532-86057036       邮箱：skdzzw@sdust.edu.cn
+					<p class="MsoNormal">
+						<span style="font-family:宋体;">办公电话：</span><span>0532-86057073 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:宋体;">邮箱：</span><span>fxw6380@163.com</span>
 					</p>
-					<p class="MsoNormal" style="text-indent:80pt;">
-						贾　顺
-						办公电话：0532-86057044       邮箱：herojiashun@163.com
+					<p class="MsoNormal">
+						<span>&nbsp;</span>
 					</p>
-					<p class="MsoNormal" style="text-indent:80pt;">
-						颜　伟
-						办公电话：0532-86057044       邮箱：yanwei_sdust@163.com
+					<p class="MsoNormal">
+						<b><span style="font-family:宋体;">李美燕</span><span></span></b>
+					</p>
+					<p class="MsoNormal">
+						<span style="font-family:宋体;">办公电话：</span><span>0532-86057163 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:宋体;">邮箱：</span><span>limeiyanqdu@163.com</span>
+					</p>
+					<p class="MsoNormal">
+						<span>&nbsp;</span>
+					</p>
+					<p class="MsoNormal">
+						<b><span style="font-family:宋体;">任大伟</span><span></span></b>
+					</p>
+					<p class="MsoNormal">
+						<span style="font-family:宋体;">办公电话：</span><span>0532-86057163 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:宋体;">邮箱：</span><span>dawei_ren_2000@163.com</span>
+					</p>
+					<p class="MsoNormal">
+						<span>&nbsp;</span>
+					</p>
+					<p class="MsoNormal">
+						<b><span style="font-family:宋体;">朱祝武</span><span></span></b>
+					</p>
+					<p class="MsoNormal">
+						<span style="font-family:宋体;">办公电话：</span><span>0532-86057036 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:宋体;">邮箱：</span><span>skdzzw@sdust.edu.cn</span>
+					</p>
+					<p class="MsoNormal">
+						<span>&nbsp;</span>
+					</p>
+					<p class="MsoNormal">
+						<b><span style="font-family:宋体;">贾　顺</span><span></span></b>
+					</p>
+					<p class="MsoNormal">
+						<span style="font-family:宋体;">办公电话：</span><span>0532-86057044 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:宋体;">邮箱：</span><span>herojiashun@163.com</span>
+					</p>
+					<p class="MsoNormal">
+						<span>&nbsp;</span>
+					</p>
+					<p class="MsoNormal">
+						<b><span style="font-family:宋体;">颜　伟</span><span></span></b>
+					</p>
+					<p class="MsoNormal">
+						<span style="font-family:宋体;">办公电话：</span><span>0532-86057044 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:宋体;">邮箱：</span><span>yanwei_sdust@163.com</span>
 					</p>
 				</div>
 			</section>

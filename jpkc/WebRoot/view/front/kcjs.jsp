@@ -14,13 +14,13 @@
 		<jsp:include page="/view/front/include/header.jsp"></jsp:include>
 		
 		<jsp:include page="/view/front/include/nav.jsp" flush="true">
-			<jsp:param name="navActive" value="tzgg" />
+			<jsp:param name="navActive" value="kcjs" />
 		</jsp:include>
 		
 		<article class="main">
 			
 			<jsp:include page="/view/front/include/left.jsp" flush="true">
-				<jsp:param name="menuActive" value="tzgg" />
+				<jsp:param name="menuActive" value="kcjs" />
 			</jsp:include>
 		
 			<section class="wlmain wlmain_item1">
