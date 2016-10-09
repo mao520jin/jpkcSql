@@ -90,26 +90,28 @@
 					<th scope="col"><a href="javascript:;" onclick="setColumnModel();">...</a></th>
 				</tr>
 				<c:forEach items="${pager.content}" var="o">
-				<tr>
-					<td><input type="checkbox" id="item_${o.id}" value="${o.id}" onclick="setSelected(this, 'checkAll', 'item_');" /></td>
-					<td><input type="hidden" id="id_${o.id}" value="${o.id}" />${o.id}</td>
-					<td><input type="hidden" id="username_${o.id}" value="${o.username}" />${o.username}</td>
-					<td>
-						<input type="hidden" id="status_${o.id}" value="${o.status}" />
-						<c:if test="${o.status == 0}"><span style="color: #7f7f7f;">禁用</span></c:if>
-						<c:if test="${o.status == 1}"><span style="color: #22b14c;">启用</span></c:if>
-					</td>
-					<td><input type="hidden" id="desc_${o.id}" value="${o.desc}" />${o.desc}</td>
-					<td><input type="hidden" id="createdBy_${o.id}" value="${o.createdBy}" />${o.createdBy}</td>
-					<td><input type="hidden" id="createdDate_${o.id}" value="${o.createdDateString}" />${o.createdDateString}</td>
-					<td><input type="hidden" id="lastModifiedBy_${o.id}" value="${o.lastModifiedBy}" />${o.lastModifiedBy}</td>
-					<td><input type="hidden" id="lastModifiedDate_${o.id}" value="${o.lastModifiedDateString}" />${o.lastModifiedDateString}</td>
-					<td>
-						<a href="javascript:;" onclick="doEdit('${o.id}');">编辑</a>
-						<span>&nbsp;|&nbsp;</span>
-						<a href="javascript:;" onclick="doDelete('id', '${o.id}');">删除</a>
-					</td>
-				</tr>
+				<c:if test="${o.username ne admin }">
+					<tr>
+						<td><input type="checkbox" id="item_${o.id}" value="${o.id}" onclick="setSelected(this, 'checkAll', 'item_');" /></td>
+						<td><input type="hidden" id="id_${o.id}" value="${o.id}" />${o.id}</td>
+						<td><input type="hidden" id="username_${o.id}" value="${o.username}" />${o.username}</td>
+						<td>
+							<input type="hidden" id="status_${o.id}" value="${o.status}" />
+							<c:if test="${o.status == 0}"><span style="color: #7f7f7f;">禁用</span></c:if>
+							<c:if test="${o.status == 1}"><span style="color: #22b14c;">启用</span></c:if>
+						</td>
+						<td><input type="hidden" id="desc_${o.id}" value="${o.desc}" />${o.desc}</td>
+						<td><input type="hidden" id="createdBy_${o.id}" value="${o.createdBy}" />${o.createdBy}</td>
+						<td><input type="hidden" id="createdDate_${o.id}" value="${o.createdDateString}" />${o.createdDateString}</td>
+						<td><input type="hidden" id="lastModifiedBy_${o.id}" value="${o.lastModifiedBy}" />${o.lastModifiedBy}</td>
+						<td><input type="hidden" id="lastModifiedDate_${o.id}" value="${o.lastModifiedDateString}" />${o.lastModifiedDateString}</td>
+						<td>
+							<a href="javascript:;" onclick="doEdit('${o.id}');">编辑</a>
+							<span>&nbsp;|&nbsp;</span>
+							<a href="javascript:;" onclick="doDelete('id', '${o.id}');">删除</a>
+						</td>
+					</tr>
+				</c:if>
 				</c:forEach>
 			</tbody>
 		</table>

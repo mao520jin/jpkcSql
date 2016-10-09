@@ -89,7 +89,7 @@
 				<tr>
 					<th scope="col" style="width: 20px;"><input type="checkbox" id="checkAll" name="checkAll" onclick="setSelected(this,'checkAll','item_');" /></th>
 					<th scope="col">名称</th>
-					<th scope="col" style="width: 30px;">类型</th>
+					<th scope="col" style="width: 80px;">类型</th>
 					<th scope="col" style="width: 30px;">简介</th>
 					<th scope="col">邮箱</th>
 					<th scope="col">电话</th>

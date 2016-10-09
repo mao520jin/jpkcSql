@@ -76,11 +76,11 @@
 					<div class="iconfont icon-more more01"></div>
 					<h3 class="maintitle">相关链接</h3>
 					<ul>
-						<li><a href="http://csl.chinawuliu.com.cn/" target="blank">中国物流学会</a></li>
-						<li><a href="http://www.chinawuliu.com.cn/" target="blank">中国物流与采购联合会</a></li>
-						<li><a href="http://www.jpkcw.com/" target="blank">国家精品课程网</a></li>
-						<li><a href="http://sync.cctr.net.cn/" target="blank">中国高等学校教学资源网</a></li>
-						<li><a href="http://www.sdust.edu.cn/" target="blank">山东科技大学</a></li>
+						<li><a style="color: #284e6c;" href="http://csl.chinawuliu.com.cn/" target="blank">中国物流学会</a></li>
+						<li><a style="color: #284e6c;" href="http://www.chinawuliu.com.cn/" target="blank">中国物流与采购联合会</a></li>
+						<li><a style="color: #284e6c;" href="http://www.jpkcw.com/" target="blank">国家精品课程网</a></li>
+						<li><a style="color: #284e6c;" href="http://sync.cctr.net.cn/" target="blank">中国高等学校教学资源网</a></li>
+						<li><a style="color: #284e6c;" href="http://www.sdust.edu.cn/" target="blank">山东科技大学</a></li>
 					</ul>
 				</div>
 			</section>
