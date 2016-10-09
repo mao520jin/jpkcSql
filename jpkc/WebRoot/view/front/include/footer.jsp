@@ -10,3 +10,4 @@
 <script src="${basePath }/js/front/calendar.js" charset="utf-8"></script>
 <script src="${basePath }/js/front/jquery3.min.js" charset="utf-8"></script>
 <script src="${basePath }/js/front/zyindex.js" charset="utf-8"></script>
+<script>$(function(){$(".wlkc li a").click(function(){$(this).addClass("leftnav_active"),$(this).parent().siblings().find("a").removeClass("leftnav_active")}),$(".indexNavUl > li").click(function(){$(".indexNavUl > li").removeClass("firstLi"),$(this).addClass("firstLi")})})</script>

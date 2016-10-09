@@ -5,36 +5,19 @@
 %>
 
 <nav>
-	<ul>
-		<% if("index".equalsIgnoreCase(navActive)) { %>
-			<li class="first-li"><a href="${basePath}/front/index">首页</a></li> 
-		<% } else { %> 
-			<li><a href="${basePath}/front/index">首页</a></li> 
-		<% } %>
-		
-		<% if("kcjs".equalsIgnoreCase(navActive) || "kcts".equalsIgnoreCase(navActive) || "jxdg".equalsIgnoreCase(navActive)) { %>
-			<li class="item1 first-li">
-				<a href="javascript:;"><span class="iconfont">&#xe601;</span>课程概况</a>
-				<div class="item1-menu menu">
-					<ul>
-						<li><a href="${basePath }/front/about">课程简介</a></li>
-						<li><a href="javascript:;">课程特色</a></li>
-						<li><a href="${basePath }/front/resource/list?type=jxdg">教学大纲</a></li>
-					</ul>
-				</div>
-			</li>
-		<% } else { %> 
-			<li class="item1 "> 
-				<a href="javascript:;"><span class="iconfont">&#xe601;</span>课程概况</a>
-				<div class="item1-menu menu">
-					<ul>
-						<li><a href="${basePath }/front/about">课程简介</a></li>
-						<li><a href="javascript:;">课程特色</a></li>
-						<li><a href="${basePath }/front/resource/list?type=jxdg">教学大纲</a></li>
-					</ul>
-				</div>
-			</li>
-		<% } %>
+
+	<ul class="indexNavUl">
+		<li class="firstLi indexFirst"><a href="${basePath}/front/index">首页</a></li> 
+		<li class="item1">
+			<a href="javascript:;"><span class="iconfont">&#xe601;</span>课程概况</a>
+			<div class="item1-menu menu">
+				<ul>
+					<li><a href="${basePath }/front/about">课程简介</a></li>
+					<li><a href="javascript:;">课程特色</a></li>
+					<li><a href="${basePath }/front/resource/list?type=jxdg">教学大纲</a></li>
+				</ul>
+			</div>
+		</li>
 			
 		<li class="item2">
 			<a href="javascript:;"><span class="iconfont">&#xe601;</span>师资队伍</a>
@@ -46,7 +29,7 @@
 				</ul>
 			</div>
 		</li>
-		<li class="item3 first-li">
+		<li class="item3">
 			<a href="javascript:;"><span class="iconfont">&#xe601;</span>教学成果</a>
 			<div class="item3-menu menu">
 				<ul>

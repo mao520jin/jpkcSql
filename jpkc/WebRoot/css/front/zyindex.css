@@ -112,7 +112,7 @@ nav ul li a span {
 nav ul li div {
   position: absolute;
   left: 0;
-  top: 49px;
+  top: 44px;
   width: 180px;
   padding: 0 10px;
   background: #21BFB9;
@@ -133,9 +133,10 @@ nav ul li div li a {
   font-size: 14px;
   font-weight: normal;
 }
-nav .first-li {
+nav .firstLi {
   border-top: solid 4px #e09b0f;
   background: #21bfb9;
+  heigh:40px !important;
 }
 nav .item1:hover {
   background: #21BFB9 ;

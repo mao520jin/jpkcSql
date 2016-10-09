@@ -70,6 +70,7 @@ public class FrontController extends BaseController {
 		} catch (Exception e) {
 		}
 		model.addAttribute("groupList", groupList);
+		model.addAttribute("size", groupList.size());
 
 		return "/front/index";
 	}
