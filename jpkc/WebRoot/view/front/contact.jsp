@@ -82,6 +82,15 @@
 					<p class="MsoNormal">
 						<span style="font-family:宋体;">办公电话：</span><span>0532-86057044 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:宋体;">邮箱：</span><span>yanwei_sdust@163.com</span>
 					</p>
+					<p class="MsoNormal">
+						<span>&nbsp;</span>
+					</p>
+					<p class="MsoNormal">
+						<b><span style="font-family:宋体;">刘兆霞</span><span></span></b>
+					</p>
+					<p class="MsoNormal">
+						<span style="font-family:宋体;">办公电话：</span><span>0532-86057044 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:宋体;">邮箱：</span><span>zhaoxialiu@163.com</span>
+					</p>
 				</div>
 			</section>
 			

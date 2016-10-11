@@ -1,10 +1,25 @@
-			function teachLb() {
-				m -= 163, $(".teach-lb").stop().animate({
-					left: m + "px"
-				}, 3e3, "linear", function() {
-					m == -1131 && ($(".teach-lb").css("left", "10px"), m = 10, console.log("????")), setTimeout(function() {
-						teachLb();
-					}, 1e3)
+//			function teachLb(l) {
+//				m -= 163, $(".teach-lb").stop().animate({
+//					left: m + "px"
+//				}, 3e3, "linear", function() {
+//					m == -l*163+10 && ($(".teach-lb").css("left", "10px"), m = 10, setTimeout(function() {
+//						teachLb(l);
+//					}, 1e3)
+//				})
+//			}
+//下面是轮播图设置函数，l是照片个数
+
+			function teachLb(l){
+				m-=163;
+				$(".teach-lb").stop().animate({left:m+"px"},8000,"linear",function(){
+					
+					if(m==(-l*163+10)){
+						$(".teach-lb").css("left", "10px");
+						 m = 10;
+					};
+					setTimeout(function(){
+					   teachLb(l)
+					},2000);
 				})
 			}
 
@@ -20,9 +35,15 @@
 					i = i < 10 ? "0" + i : i, c = c < 10 ? "0" + c : c, o = o < 10 ? "0" + o : o, $(".headerTime").text(t + "年" + n + "月" + a + "日 " + o + ":" + c + ":" + i)
 				}, 1e3)
 			}
+			var size  =$("#size").val();
 			var m = 10;
-			teachLb(), topTime()
+			teachLb(size), topTime()
 //...........................................................
+//下面写上部导航点击添加first-li样式
+$(".indexNavUl > li").click(function(){
+	$(".indexNavUl > li").removeClass("firstLi");
+	$(this).addClass("firstLi");
+})
 //下面配置日历的js
 var c = {};
 var showdate = function(n,d){//计算d天的前几天或者后几天，返回date,注：chrome下不支持date构造时的天溢出
@@ -40,7 +61,7 @@ YUI({
 	},
 	modules:{
 		'calendar-skin':{//默认皮肤
-			fullpath:'../css/front/default.css',
+			fullpath:'css/default.css',
 			type:'css'
 		},
 		'calendar':{

@@ -87,18 +87,20 @@
 			
 			<div class="main-bottom"></div>
 		</article>
-		
+		<input type="hidden" id="size" value="${size }" />
 		<article class="teacherShow">
 			<h3 class="maintitle">教师风采</h3>
 			<div class="teach-box">
 				<div class="teach-lb">
-					<c:forEach items="${groupList}" var="o">
-						<c:if test="${not empty o.photo }">
-							<div class="teachImg-box">
-								<a href="${basePath}/front/group/detail/${o.id}"><img src="${basePath}/image/view?path=${o.photo}"></a>
-								<span>${o.name}</span>
-							</div>
-						</c:if>
+					<c:forEach begin="0" end="2">
+						<c:forEach items="${groupList}" var="o">
+							<c:if test="${not empty o.photo }">
+								<div class="teachImg-box">
+									<a href="${basePath}/front/group/detail/${o.id}"><img src="${basePath}/image/view?path=${o.photo}"></a>
+									<span>${o.name}</span>
+								</div>
+							</c:if>
+						</c:forEach>
 					</c:forEach>
 				</div>
 			</div>
