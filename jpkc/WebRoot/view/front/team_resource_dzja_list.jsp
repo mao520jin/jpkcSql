@@ -14,7 +14,7 @@
 		<jsp:include page="/view/front/include/header.jsp"></jsp:include>
 		
 		<jsp:include page="/view/front/include/nav.jsp" flush="true">
-			<jsp:param name="navActive" value="dzja" />
+			<jsp:param name="navActive" value="index" />
 		</jsp:include>
 		
 		<article class="main">

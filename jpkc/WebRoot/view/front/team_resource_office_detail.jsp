@@ -15,7 +15,7 @@
 	<jsp:include page="/view/front/include/header.jsp"></jsp:include>
 
 	<jsp:include page="/view/front/include/nav.jsp" flush="true">
-		<jsp:param name="navActive" value="${type }" />
+		<jsp:param name="navActive" value="jxts" />
 	</jsp:include>
 
 	<article class="main">

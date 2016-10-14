@@ -14,7 +14,7 @@
 		<jsp:include page="/view/front/include/header.jsp"></jsp:include>
 		
 		<jsp:include page="/view/front/include/nav.jsp" flush="true">
-			<jsp:param name="navActive" value="jxtd" />
+			<jsp:param name="navActive" value="szdw" />
 		</jsp:include>
 		
 		<article class="main">

@@ -7,8 +7,8 @@
 <nav>
 
 	<ul class="indexNavUl">
-		<li class="firstLi indexFirst"><a href="${basePath}/front/index">首页</a></li> 
-		<li class="item1">
+		<% if("index".equalsIgnoreCase(navActive)) { %> <li class="firstLi indexFirst"><a href="${basePath}/front/index">首页</a></li> <% } else { %> <li class="indexFirst"><a href="${basePath}/front/index">首页</a></li> <% } %>
+		<% if("kcgk".equalsIgnoreCase(navActive)) { %> <li class="firstLi item1"> <% } else { %> <li class="item1"> <% } %>
 			<a href="javascript:;"><span class="iconfont">&#xe601;</span>课程概况</a>
 			<div class="item1-menu menu">
 				<ul>
@@ -18,8 +18,8 @@
 				</ul>
 			</div>
 		</li>
-			
-		<li class="item2">
+		
+		<% if("szdw".equalsIgnoreCase(navActive)) { %> <li class="firstLi item2"> <% } else { %> <li class="item2"> <% } %>
 			<a href="javascript:;"><span class="iconfont">&#xe601;</span>师资队伍</a>
 			<div class="item2-menu menu">
 				<ul>
@@ -29,7 +29,8 @@
 				</ul>
 			</div>
 		</li>
-		<li class="item3">
+		
+		<% if("jxcg".equalsIgnoreCase(navActive)) { %> <li class="firstLi item3"> <% } else { %> <li class="item3"> <% } %>
 			<a href="javascript:;"><span class="iconfont">&#xe601;</span>教学成果</a>
 			<div class="item3-menu menu">
 				<ul>
@@ -40,7 +41,8 @@
 				</ul>
 			</div>
 		</li>
-		<li class="item4">
+		
+		<% if("jxts".equalsIgnoreCase(navActive)) { %> <li class="firstLi item4"> <% } else { %> <li class="item4"> <% } %>
 			<a href="javascript:;"><span class="iconfont">&#xe601;</span>教学特色</a>
 			<div class="item4-menu menu">
 				<ul>
@@ -50,7 +52,8 @@
 				</ul>
 			</div>
 		</li>
-		<li class="item5">
+		
+		<% if("jxpj".equalsIgnoreCase(navActive)) { %> <li class="firstLi item5"> <% } else { %> <li class="item5"> <% } %>
 			<a href="javascript:;"><span class="iconfont">&#xe601;</span>教学评价</a>
 			<div class="item5-menu menu">
 				<ul>
@@ -60,8 +63,8 @@
 				</ul>
 			</div>
 		</li>
-		<li><a href="${basePath }/front/declare">申报材料</a></li>
-		<li><a href="${basePath }/front/contact">联系我们</a></li>
+		<% if("declare".equalsIgnoreCase(navActive)) { %> <li class="firstLi"><a href="${basePath }/front/declare">申报材料</a></li> <% } else { %> <li><a href="${basePath }/front/declare">申报材料</a></li> <% } %>
+		<% if("lxwm".equalsIgnoreCase(navActive)) { %> <li class="firstLi"><a href="${basePath }/front/contact">联系我们</a></li> <% } else { %> <li><a href="${basePath }/front/contact">联系我们</a></li> <% } %>
 	</ul>
 </nav>
 

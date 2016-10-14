@@ -14,7 +14,7 @@
 		<jsp:include page="/view/front/include/header.jsp"></jsp:include>
 		
 		<jsp:include page="/view/front/include/nav.jsp" flush="true">
-			<jsp:param name="navActive" value="jxdg" />
+			<jsp:param name="navActive" value="kcgk" />
 		</jsp:include>
 		
 		<article class="main">

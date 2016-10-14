@@ -14,7 +14,7 @@
 		<jsp:include page="/view/front/include/header.jsp"></jsp:include>
 		
 		<jsp:include page="/view/front/include/nav.jsp" flush="true">
-			<jsp:param name="navActive" value="kyxm" />
+			<jsp:param name="navActive" value="jxcg" />
 		</jsp:include>
 		
 		<article class="main">
@@ -31,7 +31,7 @@
 					</p>
 				</c:forEach>
 				<jsp:include page="/view/front/include/pager.jsp" flush="true">
-					<jsp:param name="pagePath" value="/front/notice/list" />
+					<jsp:param name="pagePath" value="/front/honor/list?type=kyxm" />
 				</jsp:include>
 			</section>
 			
