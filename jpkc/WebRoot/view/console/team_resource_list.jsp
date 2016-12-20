@@ -102,7 +102,6 @@
 					<th scope="col">标题</th>
 					<th scope="col">名称</th>
 					<th scope="col">资源类型</th>
-					<th scope="col">是否已转换</th>
 					<th scope="col">发布时间</th>
 					<th scope="col">操作</th>
 				</tr>
@@ -128,19 +127,10 @@
 								<c:when test="${o.type eq 10}">资料下载   </c:when> 
 								<c:when test="${o.type eq 11}">名校专家讲堂   </c:when>
 							</c:choose> 
-						<td>
-							<input type="hidden" id="isconvert_${o.id}" value="${o.isconvert }"/>  
-							<c:choose> 
-								<c:when test="${o.isconvert eq 2}">已转换</c:when>
-								<c:when test="${o.isconvert eq 1}">未转换</c:when> 
-							</c:choose>
-						</td> 
 						</td>
 						<td><fmt:formatDate value="${o.createdDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						<td>
-							<c:if test="${o.isconvert eq 1 }">
-								<span><a href="javascript:;" onclick="convert('${o.path}', '${o.id }', '${o.type }');">转换</a>&nbsp;|&nbsp;</span>
-							</c:if>
+							<span><a href="javascript:;" onclick="doEdit('${o.id }');">编辑</a>&nbsp;|&nbsp;<span>
 							<span><a href="javascript:;" onclick="doDelete('id', '${o.id }');">删除</a></span>
 						</td>
 					</tr>
@@ -206,6 +196,40 @@
 				<img id="license_pic_img" src="${basePath }/images/w01.gif" style="width: 25px; height: 25px;" />
 				<span class="important_render">　提交中...</span>
 			</div>
+		
+		</fieldset>
+	</form>
+</div>
+
+<div id="resource_edit_edit_div" style="display: none;">
+	<form id="resource_edit_edit_form" method="post" action="${basePath }/console/resource/editSave" class="yform full" role="application" style="text-align: left;">
+		<fieldset>
+			<div class="type-text">
+				<label for="edit_title">标题</label>
+				<input type="text" id="edit_edit_title" name="edit_edit_title" />
+			</div>
+			
+			<div class="type-select">
+				<label for="edit_edit_type">资源类别</label>
+				<select id="edit_edit_type" name="edit_edit_resourcesType">
+					<option value="">-</option>
+					<option value="1">电子教案</option>
+					<option value="2">教学课件</option>
+					<option value="3">教学视频</option>
+					<option value="4">教学大纲</option>
+					<option value="5">实验教学资料</option>
+					<option value="6">学生反馈</option>
+					<option value="7">校内综合评价</option>
+					<option value="8">校外专家评价</option>
+					<option value="9">模拟试题</option>
+					<option value="10">资料下载</option>
+					<option value="11">名校专家讲堂</option>
+				</select>
+			</div>
+			
+			<div class="subcolumns"><div class="c80l"><div class="subcl">
+				<div id="edit_edit_render">&nbsp;</div>
+			</div></div><div class="c20r"><div class="subcr">&nbsp;</div></div></div>
 		
 		</fieldset>
 	</form>

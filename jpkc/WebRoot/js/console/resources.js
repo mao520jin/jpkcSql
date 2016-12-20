@@ -57,29 +57,15 @@ function doSave() {
 	if(type == 3 || type == 11) {
 		var filetype = new Array();
 		filetype.push("flv");
-		filetype.push("wav");
-		filetype.push("wma");
-		filetype.push("wmv");
-		filetype.push("mid");
-		filetype.push("avi");
-		filetype.push("mpg");
-		filetype.push("asf");
-		filetype.push("rm");
-		filetype.push("mp4");
-		filetype.push("rmvb");
 		if(filetype.indexOf(suffix) == -1) {
 			setRender("edit_render", "", "允许上传的文件格式为：flv", "warning_render", 5000);
 			return; 
 		}
 	} else {
 		var filetype = new Array();
-		filetype.push("docx");
-		filetype.push("xlsx");
-		filetype.push("pptx");
-		filetype.push("pdf");
 		filetype.push("swf");
 		if(filetype.indexOf(suffix) == -1) { 
-			setRender("edit_render", "", "允许上传的文件格式为：docx, xlsx, pptx, swf, pdf！", "warning_render", 5000);
+			setRender("edit_render", "", "允许上传的文件格式为：swf！", "warning_render", 5000);
 			return; 
 		}
 	}
@@ -110,6 +96,51 @@ function convert(path, id, type) {
 			error: function(XMLHttpRequest, textStatus, errorThrown) { },
 			complete: function(XMLHttpRequest, textStatus) { }
 		});
+	});
+}
+
+// 编辑
+function doEdit(id) {
+	beforeEdit(id);
+	$("#resource_edit_edit_div").dialog({
+		modal: true,
+		resizable: false,
+		title: "编辑",
+		width: 400,
+		buttons: [
+			{ text: "清空", click: function() { doClear("resource_edit_edit_form"); } },
+			{ text: "取消", click: function() { $( this ).dialog("close"); } },
+			{ text: "保存", click: function() { doEditSave(id); } }
+		          ]
+	});
+}
+
+function beforeEdit(id) {
+	var title = $("#title_" + id).val();
+	var type = $("#type_" + id).val();
+	console.log(id);
+	console.log(type);
+	$("#edit_edit_title").val(title);
+	$("#edit_edit_type").val(type);
+}
+
+function doEditSave(id) {
+	var title = $("#edit_edit_title").val();
+	var type = $("#edit_edit_type").val();
+	$.ajax({
+		type: "POST",
+		url: basePath + "/console/resource/editSave",
+		data: { "title": title, "type": type, "id": id }, 
+		dataType: "json",
+		success: function(msg){
+			var code = msg.code;
+			var data = msg.data;
+			if(code != "25010") {
+				setRender("edit_edit_render", "", "编辑失败，请联系技术支持！", "warning_render", 5000);
+				return;
+			}
+			location.href = basePath + "/console/resource/list/";
+		}
 	});
 }
 

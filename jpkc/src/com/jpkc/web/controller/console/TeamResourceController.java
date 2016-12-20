@@ -136,11 +136,7 @@ public class TeamResourceController extends BaseController {
 		} catch (Exception e) {
 		}
 
-		if ("3".equals(resourcesType) || "9".equals(resourcesType) || "10".equals(resourcesType) || "11".equals(resourcesType)) { // 直接下载
-			teamResource.setIsconvert(2);
-		} else {
-			teamResource.setIsconvert(1);
-		}
+		teamResource.setIsconvert(2);
 		prepare(teamResource, request.getSession());
 		try {
 			teamResourceService.save(teamResource);
@@ -191,6 +187,44 @@ public class TeamResourceController extends BaseController {
 	 * @param request
 	 * @return
 	 */
+	@RequestMapping("/editSave")
+	public @ResponseBody Render<Object> editSave(HttpServletRequest request) {
+		Render<Object> render = new Render<Object>();
+
+		String id = request.getParameter("id");
+		String title = request.getParameter("title");
+		String type = request.getParameter("type");
+
+		if (!Toolkit.isId(id)) {
+			log.error("参数不合法,id = " + id);
+			render.setCode("45010");
+			render.setData("参数不合法");
+			return render;
+		}
+
+		TeamResource teamResource = new TeamResource(Long.parseLong(id));
+		teamResource.setTitle(title);
+		teamResource.setType(Integer.parseInt(type));
+		try {
+			teamResourceService.save(teamResource);
+		} catch (Exception e) {
+			log.error("更新失败！ ", e);
+			render.setCode("55020");
+			render.setData("更新，联系技术支持！");
+			return render;
+		}
+
+		render.setCode("25010");
+		render.setData("更新成功");
+		return render;
+	}
+
+	/**
+	 * 转换文件
+	 * 
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/convert")
 	public @ResponseBody Render<Object> convert(HttpServletRequest request) {
 		Render<Object> render = new Render<Object>();
@@ -214,14 +248,14 @@ public class TeamResourceController extends BaseController {
 			return render;
 		}
 
-		try {
-			DocConverter.convertTo(path);
-		} catch (Exception e) {
-			log.error("文件转换异常，请检查文件格式，联系技术支持！ ", e);
-			render.setCode("55010");
-			render.setData("文件转换异常，请检查文件格式，联系技术支持！");
-			return render;
-		}
+		// try {
+		// DocConverter.convertTo(path);
+		// } catch (Exception e) {
+		// log.error("文件转换异常，请检查文件格式，联系技术支持！ ", e);
+		// render.setCode("55010");
+		// render.setData("文件转换异常，请检查文件格式，联系技术支持！");
+		// return render;
+		// }
 
 		TeamResource teamResource = new TeamResource(Long.parseLong(id));
 		teamResource.setIsconvert(2);

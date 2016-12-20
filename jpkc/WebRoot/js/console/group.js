@@ -38,11 +38,11 @@ function doSave() {
 		dataType: "JSON",
 		async : false,
 		success: function(ddd){
-			var start = ddd.indexOf(">");   
+			var start = ddd.indexOf(">");
 			if(start != -1) {   
 				var end = ddd.indexOf("<", start + 1);   
-				if(end != -1) {   
-					ddd = ddd.substring(start + 1, end);   
+				if(end != -1) {
+					ddd = ddd.substring(start + 1, end);
 				}   
 			} 
 			var msg = jQuery.parseJSON(ddd);
