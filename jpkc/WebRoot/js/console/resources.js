@@ -100,7 +100,7 @@ function convert(path, id, type) {
 }
 
 // 编辑
-function doEdit(id) {
+function doEditEdit(id) {
 	beforeEdit(id);
 	$("#resource_edit_edit_div").dialog({
 		modal: true,

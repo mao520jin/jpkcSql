@@ -63,14 +63,7 @@
 							<option value="11" <c:if test="${type == 11}">selected="selected"</c:if>>名校专家讲堂</option>
 						</select>
 					</div></div>
-					<div class="c20l"><div class="subc type-select">
-						<label for="isconvert">是否已转换</label>
-						<select id="isconvert" name="isconvert">
-							<option value="">-</option>
-							<option value="2" <c:if test="${isconvert == 2}">selected="selected"</c:if>>已转换</option>
-							<option value="1" <c:if test="${isconvert == 1}">selected="selected"</c:if>>未转换</option>
-						</select>
-					</div></div>
+					<div class="c20l"><div class="subc"></div></div>
 					<div class="c20l"><div class="subc"></div></div>
 					<div class="c20r"><div class="subcr"></div></div>
 				</div>
@@ -130,7 +123,7 @@
 						</td>
 						<td><fmt:formatDate value="${o.createdDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						<td>
-							<span><a href="javascript:;" onclick="doEdit('${o.id }');">编辑</a>&nbsp;|&nbsp;<span>
+							<span><a href="javascript:;" onclick="doEditEdit('${o.id }');">编辑</a>&nbsp;|&nbsp;<span>
 							<span><a href="javascript:;" onclick="doDelete('id', '${o.id }');">删除</a></span>
 						</td>
 					</tr>

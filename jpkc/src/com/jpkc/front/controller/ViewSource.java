@@ -122,17 +122,18 @@ public class ViewSource {
 		}
 
 		String path = resource.getPath();
-		String suffix = path.substring(path.lastIndexOf(".") + 1); // 后缀
-		String swfPath = path.replace(suffix, "swf");
-		swfPath = swfPath.replaceAll("\\\\", "//");
+		// String suffix = path.substring(path.lastIndexOf(".") + 1); // 后缀
+		// String swfPath = path.replace(suffix, "swf");
+		// swfPath = swfPath.replaceAll("\\\\", "//");
 
-		log.info("swfPath:" + swfPath);
+//		path = path.replaceAll("\\\\", "//");
+		log.info("path:" + path);
 
 		InputStream is = null;
 		OutputStream os = null;
 
-		response.setContentType("application/x-shockwave-flash");
-		File file = new File(swfPath);
+		response.setContentType("application/swf");
+		File file = new File(path);
 		try {
 			os = response.getOutputStream();
 			is = new FileInputStream(file);
