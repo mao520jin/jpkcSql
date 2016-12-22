@@ -82,10 +82,12 @@
 		
 		<table border="0" cellpadding="0" cellspacing="0" class="full"> 
 			<thead>
-				<tr><th scope="col" colspan="7">
+				<tr><th scope="col" colspan="8">
 					<a href="javascript:;" onclick="doEdit();" >添加</a>
 					<span>&nbsp;|&nbsp;</span>
 					<a href="javascript:;" onclick="doDelete('ids', '');">删除</a>
+					<span>&nbsp;|&nbsp;</span>
+					<a href="${basePath }/res/upload_info.zip" target="blank">使用手册</a>
 				</th></tr>
 			</thead>
 			<tbody>
@@ -95,6 +97,7 @@
 					<th scope="col">标题</th>
 					<th scope="col">名称</th>
 					<th scope="col">资源类型</th>
+					<th scope="col">发布者</th>
 					<th scope="col">发布时间</th>
 					<th scope="col">操作</th>
 				</tr>
@@ -121,6 +124,7 @@
 								<c:when test="${o.type eq 11}">名校专家讲堂   </c:when>
 							</c:choose> 
 						</td>
+						<td>${o.createdBy }</td>
 						<td><fmt:formatDate value="${o.createdDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						<td>
 							<span><a href="javascript:;" onclick="doEditEdit('${o.id }');">编辑</a>&nbsp;|&nbsp;<span>
