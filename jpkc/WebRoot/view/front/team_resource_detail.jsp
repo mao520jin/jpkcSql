@@ -25,7 +25,6 @@
 		
 			<section class="wlmain wlmain_item1">
 				<div class="leftnav">
-					<p align="center">${teamHonor.title }</p>
 					<span>${teamHonor.about }</span>
 				</div>
 			</section>

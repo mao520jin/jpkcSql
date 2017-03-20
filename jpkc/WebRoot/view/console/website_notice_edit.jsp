@@ -24,6 +24,7 @@
 				uploadJson : '${basePath}/file/upload',
 				allowFileManager : true,
 				allowImageRemote:false,
+				filterMode : false,
 				width:800,
 				height:400,
 				afterBlur: function() {

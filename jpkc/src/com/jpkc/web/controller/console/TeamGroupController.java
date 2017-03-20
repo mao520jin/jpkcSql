@@ -126,8 +126,7 @@ public class TeamGroupController extends BaseController {
 	 * @author zhangyi @2015-11-12
 	 */
 	@RequestMapping("/add")
-	public @ResponseBody Render<Object> add(@RequestParam(value = "image") MultipartFile image, TeamGroup teamGroup,
-			HttpServletRequest request) {
+	public @ResponseBody Render<Object> add(@RequestParam(value = "image") MultipartFile image, TeamGroup teamGroup, HttpServletRequest request) {
 		if (teamGroup == null) {
 			return new Render<Object>("45010", "参数不合法！");
 		}

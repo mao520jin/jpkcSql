@@ -25,7 +25,6 @@
 		
 			<section class="wlmain wlmain_item1">
 				<div>
-					<p align="center">${notice.title }</p>
 					<span>${notice.content }</span>
 				</div>
 			</section>

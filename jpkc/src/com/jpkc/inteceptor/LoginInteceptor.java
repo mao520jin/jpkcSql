@@ -11,12 +11,12 @@ public class LoginInteceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-//		HttpSession session = request.getSession(true);
-//		Object obj = session.getAttribute("sysAdmin");
-//		String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-//		if (obj == null || "".equals(obj.toString())) {
-//			response.sendRedirect(basePath + "/console/sysadmin/login");
-//		}
+		HttpSession session = request.getSession(true);
+		Object obj = session.getAttribute("sysAdmin");
+		String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+		if (obj == null || "".equals(obj.toString())) {
+			response.sendRedirect(basePath + "/console/sysadmin/login");
+		}
 		return true;
 	}
 
