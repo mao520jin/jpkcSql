@@ -94,7 +94,7 @@ public class FrontController extends BaseController {
 	public String contact(HttpServletRequest request, Model model) {
 		return "/front/contact";
 	}
-	
+
 	/**
 	 * 申报材料
 	 * 

@@ -2,7 +2,7 @@
 
 <header>
 	<h2>物流工程学</h2>
-	<h3>负 责 人 ： 冯 夕 文</h3>
+	<h3 style="margin-right: 100px;">负责人 ：冯夕文</h3>
 	<div class="headerSearch"><input type="search" name="headerSearch" id="searchInp" placeholder="搜索..">
 		<a href="javascript:;" id="searchBtn" class="iconfont">&#xe600;</a>
 	</div>
