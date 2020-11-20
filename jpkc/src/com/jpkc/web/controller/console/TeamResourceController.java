@@ -28,9 +28,9 @@ import com.jpkc.util.MD;
 import com.jpkc.util.Toolkit;
 
 /**
- * 
+ *
  * 资源Controller
- * 
+ *
  * @author zhangyi
  * @version 1.0 2015年12月28日
  */
@@ -44,8 +44,113 @@ public class TeamResourceController extends BaseController {
 	private TeamResourceService teamResourceService;
 
 	/**
+	 *
+	 * 列表
+	 *
+	 * @param model
+	 * @param title
+	 * @param resourcesType
+	 * @return
+	 */
+	@RequestMapping("/list")
+	public String resourcesList(Model model, HttpServletRequest request) {
+		String title = request.getParameter("title");
+		String type = request.getParameter("type");
+		String isconvert = request.getParameter("isconvert");
+
+		model.addAttribute("title", title);
+		model.addAttribute("type", type);
+		model.addAttribute("isconvert", isconvert);
+
+		if (!Toolkit.length(title, 1, 64)) {
+			title = null;
+		}
+
+		if (!Toolkit.contains(false, type, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11")) {
+			type = null;
+		}
+
+		if (!Toolkit.contains(false, isconvert, "1", "2")) {
+			isconvert = null;
+		}
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("title", title);
+		map.put("type", type);
+		map.put("isconvert", isconvert);
+		map.put("pageNumber", getPageNumber(request));
+		map.put("pageSize", getPageSize(request));
+
+		Page<TeamResource> pager = teamResourceService.search(map);
+		model.addAttribute("pager", pager);
+
+		return "console/team_resource_list";
+	}
+
+	/**
+	 *
+	 * 保存资源
+	 *
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public String save(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, String title, String resourcesType) {
+		// 资源类型: 1=电子教案,2=教学课件,3=教学视频,4=教学大纲
+		// ,5=实验教学资料,6=学生反馈,7=校内综合评价,8=校外专家评价,9=模拟试题, 10=资料下载, 11=名校专家讲堂
+
+		// 创建你要保存的文件的路径
+		String path = "D://upload//resource//" + Integer.parseInt(resourcesType) + "//" + Toolkit.time() + "//"; //
+		// win
+		// String path = "//home//upload//resource//" +
+		// Integer.parseInt(resourcesType) + "//" + Toolkit.time() + "//"; //
+		// linux
+		// 获取该文件的文件名
+		String fileName = file.getOriginalFilename();
+
+		String denseName = null;
+		try {
+			denseName = MD.md5(fileName);
+		} catch (Exception e) {
+		}
+
+		File targetFile = new File(path, fileName);
+		if (!targetFile.exists()) {
+			targetFile.mkdirs();
+		}
+		// 保存
+		try {
+			file.transferTo(targetFile);
+		} catch (Exception e) {
+			log.error("上传资源文件异常，", e);
+		}
+
+		TeamResource teamResource = new TeamResource();
+		teamResource.setTitle(title);
+		teamResource.setType(Integer.parseInt(resourcesType));
+		teamResource.setPath(path + fileName);
+		teamResource.setName(fileName);
+		try {
+			teamResource.setDenseName(denseName);
+		} catch (Exception e) {
+		}
+
+		teamResource.setIsconvert(2);
+		prepare(teamResource, request.getSession());
+		try {
+			teamResourceService.save(teamResource);
+		} catch (Exception e) {
+			log.error("保存资源文件异常，", e);
+		}
+
+		return "redirect:/console/resource/list";
+
+	}
+
+	/**
 	 * 删除
-	 * 
+	 *
 	 * @param request
 	 * @return
 	 */
@@ -78,7 +183,7 @@ public class TeamResourceController extends BaseController {
 
 	/**
 	 * 转换文件
-	 * 
+	 *
 	 * @param request
 	 * @return
 	 */
@@ -116,7 +221,7 @@ public class TeamResourceController extends BaseController {
 
 	/**
 	 * 转换文件
-	 * 
+	 *
 	 * @param request
 	 * @return
 	 */
