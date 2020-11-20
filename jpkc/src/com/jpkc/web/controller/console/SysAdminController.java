@@ -37,64 +37,6 @@ public class SysAdminController extends BaseController {
 	@Resource
 	private SysAdminService sysAdminService;
 
-	/**
-	 * 分页
-	 * 
-	 * @param model
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping("/list")
-	public String list(Model model, HttpServletRequest request) {
-
-		String username = request.getParameter("username");
-		String status = request.getParameter("status");
-
-		model.addAttribute("username", username);
-
-		if (!Toolkit.length(username, 1, 64)) {
-			username = null;
-		}
-
-		if (!Toolkit.contains(false, status, "0", "1")) {
-			status = null;
-		}
-
-		model.addAttribute("status", status);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("pageNumber", getPageNumber(request));
-		map.put("pageSize", getPageSize(request));
-		map.put("username", username);
-		map.put("status", status);
-
-		Page<SysAdmin> pager = sysAdminService.search(map);
-		model.addAttribute("pager", pager);
-
-		return "console/sys_admin";
-	}
-
-	/**
-	 * 添加
-	 *
-	 * @author zhangyi @2015-11-12
-	 */
-	@RequestMapping("/save")
-	public @ResponseBody Render<Object> save(SysAdmin sysAdmin, HttpServletRequest request) {
-		prepare(sysAdmin, request.getSession());
-		try {
-			sysAdmin.setPassword(MD.md5(sysAdmin.getPassword()));
-		} catch (Exception e) {
-			log.error("保存异常", e);
-			return new Render<Object>("45010", "系统异常");
-		}
-		try {
-			sysAdminService.save(sysAdmin);
-		} catch (Exception e) {
-			log.error("保存异常", e);
-			return new Render<Object>("45010", "系统异常");
-		}
-		return new Render<Object>("25010", "保存成功");
-	}
 
 	/**
 	 *

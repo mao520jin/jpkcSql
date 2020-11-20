@@ -55,6 +55,7 @@ public class TeamGroupController extends BaseController {
 	public String list(Model model, HttpServletRequest request) {
 
 		String name = request.getParameter("name");
+		String name = request.getParameter("name");
 		String type = request.getParameter("type");
 
 		model.addAttribute("name", name);

@@ -50,6 +50,7 @@ public class TeamGroupDao implements Dao<TeamGroup> {
 
 			TeamGroup team = new TeamGroup();
 			team.setId(rs.getLong("id"));
+			team.setId(rs.getLong("id"));
 			team.setName(rs.getString("name"));
 			team.setType(rs.getInt("type"));
 			team.setAbout(rs.getString("about"));
@@ -71,6 +72,8 @@ public class TeamGroupDao implements Dao<TeamGroup> {
 	public int insert(TeamGroup o) throws SQLException {
 		StringBuffer sql = new StringBuffer();
 		sql.append("INSERT INTO `team_group` (");
+		sql.append(" ").append("`id`");
+		sql.append(" ").append("`id`");
 		sql.append(" ").append("`id`");
 		sql.append(",").append("`name`");
 		sql.append(",").append("`type`");
