@@ -34,6 +34,22 @@ public class SysAdminService {
 		} else {
 			row = sysAdminDao.update(o);
 		}
+		if (o.getId() == null) {
+			o.setId(IDMaker.make());
+			row = sysAdminDao.insert(o);
+		} else {
+			row = sysAdminDao.update(o);
+		}
+		if (o.getId() == null) {
+			o.setId(IDMaker.make());
+			row = sysAdminDao.insert(o);
+		} else {
+			row = sysAdminDao.update(o);
+		}
+		log.info("row: " + row);
+		log.info("row: " + row);
+		log.info("row: " + row);
+		log.info("row: " + row);
 		log.info("row: " + row);
 		return row > 0 ? o : null;
 	}

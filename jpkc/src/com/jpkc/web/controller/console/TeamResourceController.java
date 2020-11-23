@@ -239,6 +239,13 @@ public class TeamResourceController extends BaseController {
 			return render;
 		}
 
+		if (!Toolkit.isId(id)) {
+			log.error("参数不合法,id = " + id);
+			render.setCode("45010");
+			render.setData("参数不合法");
+			return render;
+		}
+
 		// 其余的不用转换，@see save
 		if (!Toolkit.contains(false, type, "1", "2", "4", "5", "6", "7", "8")) {
 			log.error("参数不合法,type = " + type);
@@ -259,6 +266,10 @@ public class TeamResourceController extends BaseController {
 		TeamResource teamResource = new TeamResource(Long.parseLong(id));
 		teamResource.setIsconvert(2);
 		try {
+			teamResourceService.save(teamResource);
+			teamResourceService.save(teamResource);
+			teamResourceService.save(teamResource);
+			teamResourceService.save(teamResource);
 			teamResourceService.save(teamResource);
 		} catch (Exception e) {
 			log.error("更新状态失败！ ", e);
