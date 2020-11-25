@@ -93,4 +93,17 @@ public class GroupController extends BaseController {
 		return "front/team_group_detail";
 	}
 
+	@RequestMapping("/detail1/{id}")
+	public String groupDetail1(@PathVariable String id, Model model) {
+		TeamGroup teamGroup = null;
+		try {
+			teamGroup = teamGroupService.select(Long.parseLong(id));
+		} catch (Exception e) {
+			log.error("查看group详细", e);
+			return null;
+		}
+		model.addAttribute("group", teamGroup);
+		return "front/team_group_detail";
+	}
+
 }
