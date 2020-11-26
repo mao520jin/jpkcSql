@@ -53,6 +53,30 @@ public class TeamGroupService {
 		log.info("row: " + row);
 		return row > 0 ? o : null;
 	}
+	public TeamGroup save(TeamGroup o) throws SQLException {
+		int row = 0;
+		if (o.getId() == null) {
+			o.setId(IDMaker.make());
+			row = teamGroupDao.insert(o);
+		} else {
+			row = teamGroupDao.update(o);
+		}
+		log.info("row: " + row);
+		return row > 0 ? o : null;
+	}
+
+	public TeamGroup save(TeamGroup o) throws SQLException {
+		int row = 0;
+		if (o.getId() == null) {
+			o.setId(IDMaker.make());
+			row = teamGroupDao.insert(o);
+		} else {
+			row = teamGroupDao.update(o);
+		}
+		log.info("row: " + row);
+		return row > 0 ? o : null;
+	}
+
 
 	public boolean delete(Long id) throws SQLException {
 		return teamGroupDao.delete(id) > 0;
