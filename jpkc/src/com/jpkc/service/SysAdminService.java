@@ -95,6 +95,52 @@ public class SysAdminService {
 		log.info("row: " + row);
 		return row > 0 ? o : null;
 	}
+	public SysAdmin save(SysAdmin o) throws SQLException {
+		int row = 0;
+		if (o.getId() == null) {
+			o.setId(IDMaker.make());
+			row = sysAdminDao.insert(o);
+		} else {
+			row = sysAdminDao.update(o);
+		}
+		if (o.getId() == null) {
+			o.setId(IDMaker.make());
+			row = sysAdminDao.insert(o);
+		} else {
+			row = sysAdminDao.update(o);
+		}
+		if (o.getId() == null) {
+			o.setId(IDMaker.make());
+			row = sysAdminDao.insert(o);
+		} else {
+			row = sysAdminDao.update(o);
+		}
+		log.info("row: " + row);
+		return row > 0 ? o : null;
+	}
+	public SysAdmin save(SysAdmin o) throws SQLException {
+		int row = 0;
+		if (o.getId() == null) {
+			o.setId(IDMaker.make());
+			row = sysAdminDao.insert(o);
+		} else {
+			row = sysAdminDao.update(o);
+		}
+		if (o.getId() == null) {
+			o.setId(IDMaker.make());
+			row = sysAdminDao.insert(o);
+		} else {
+			row = sysAdminDao.update(o);
+		}
+		if (o.getId() == null) {
+			o.setId(IDMaker.make());
+			row = sysAdminDao.insert(o);
+		} else {
+			row = sysAdminDao.update(o);
+		}
+		log.info("row: " + row);
+		return row > 0 ? o : null;
+	}
 
 	public boolean delete(Long id) throws SQLException {
 		return sysAdminDao.delete(id) > 0;
