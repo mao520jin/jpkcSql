@@ -63,5 +63,38 @@ public final class SpringHelper {
 	public static Object getBean(String name) {
 		return getApplicationContext().getBean(name);
 	}
+	/**
+	 *
+	 * 获取 Bean 对象
+	 *
+	 * @param name
+	 * @return
+	 *
+	 */
+	public static Object getBean(String name) {
+		return getApplicationContext().getBean(name);
+	}
+	/**
+	 *
+	 * 获取 Bean 对象
+	 *
+	 * @param name
+	 * @return
+	 *
+	 */
+	public static Object getBean(String name) {
+		return getApplicationContext().getBean(name);
+	}
+	/**
+	 *
+	 * 获取 Bean 对象
+	 *
+	 * @param name
+	 * @return
+	 *
+	 */
+	public static Object getBean(String name) {
+		return getApplicationContext().getBean(name);
+	}
 
 }
