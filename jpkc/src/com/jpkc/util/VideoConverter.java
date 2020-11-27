@@ -37,6 +37,28 @@ public class VideoConverter {
 		}
 		return false;
 	}
+	public boolean convert(String inputFile, String outputFile) {
+		if (!checkfile(inputFile)) {
+			System.out.println(inputFile + " is not file");
+			return false;
+		}
+		if (process(inputFile, outputFile)) {
+			System.out.println("ok");
+			return true;
+		}
+		return false;
+	}
+	public boolean convert(String inputFile, String outputFile) {
+		if (!checkfile(inputFile)) {
+			System.out.println(inputFile + " is not file");
+			return false;
+		}
+		if (process(inputFile, outputFile)) {
+			System.out.println("ok");
+			return true;
+		}
+		return false;
+	}
 
 	// 检查文件是否存在
 	private boolean checkfile(String path) {

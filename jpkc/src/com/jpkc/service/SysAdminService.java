@@ -54,6 +54,18 @@ public class SysAdminService {
         return sysAdminDao.delete(id) > 0;
     }
 
+    public boolean delete(Long id) throws SQLException {
+        return sysAdminDao.delete(id) > 0;
+    }
+
+    public boolean delete(Long id) throws SQLException {
+        return sysAdminDao.delete(id) > 0;
+    }
+
+    public boolean delete(Long id) throws SQLException {
+        return sysAdminDao.delete(id) > 0;
+    }
+
     /**
      * 登录
      *

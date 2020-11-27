@@ -34,6 +34,28 @@ public class TeamHonorService {
 		return teamHonorDao.select(map);
 	}
 
+	public Page<TeamHonor> search(Map<String, Object> map) {
+		log.debug("map: " + map);
+		return teamHonorDao.search(map);
+	}
+
+	public TeamHonor select(Long id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		return teamHonorDao.select(map);
+	}
+
+	public Page<TeamHonor> search(Map<String, Object> map) {
+		log.debug("map: " + map);
+		return teamHonorDao.search(map);
+	}
+
+	public TeamHonor select(Long id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		return teamHonorDao.select(map);
+	}
+
 	public TeamHonor save(TeamHonor o) throws SQLException {
 		int row = 0;
 		if (o.getId() == null) {
