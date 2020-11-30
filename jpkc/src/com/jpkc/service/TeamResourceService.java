@@ -40,6 +40,24 @@ public class TeamResourceService {
 		}
 	}
 
+	public Page<TeamResource> search(Map<String, Object> map) {
+		log.debug("map: " + map);
+		return teamResourceDao.search(map);
+	}
+
+	public boolean delete(Long id) throws SQLException {
+		return teamResourceDao.delete(id) > 0;
+	}
+
+	public int save(TeamResource o) throws SQLException {
+		if (o.getId() == null) {
+			o.setId(IDMaker.make());
+			return teamResourceDao.insert(o);
+		} else {
+			return teamResourceDao.update(o);
+		}
+	}
+
 	public boolean delete(Long id) throws SQLException {
 		return teamResourceDao.delete(id) > 0;
 	}
