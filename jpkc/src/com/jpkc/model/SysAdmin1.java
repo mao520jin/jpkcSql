@@ -58,6 +58,54 @@ public class SysAdmin extends Model<Long, String> {
 		this.desc = desc;
 	}
 
+	public SysAdmin(Long id, String username, String password, Integer status, String desc, String createdBy, Date createdDate, String lastModifiedBy, Date lastModifiedDate) {
+		super(id, createdBy, createdDate, lastModifiedBy, lastModifiedDate);
+		this.username = username;
+		this.password = password;
+		this.status = status;
+		this.desc = desc;
+	}
+
+	public SysAdmin(Long id, String username, String password, Integer status, String desc, String createdBy, Date createdDate, String lastModifiedBy, Date lastModifiedDate) {
+		super(id, createdBy, createdDate, lastModifiedBy, lastModifiedDate);
+		this.username = username;
+		this.password = password;
+		this.status = status;
+		this.desc = desc;
+	}
+
+	public SysAdmin(Long id, String username, String password, Integer status, String desc, String createdBy, Date createdDate, String lastModifiedBy, Date lastModifiedDate) {
+		super(id, createdBy, createdDate, lastModifiedBy, lastModifiedDate);
+		this.username = username;
+		this.password = password;
+		this.status = status;
+		this.desc = desc;
+	}
+
+	public SysAdmin(Long id, String username, String password, Integer status, String desc, String createdBy, Date createdDate, String lastModifiedBy, Date lastModifiedDate) {
+		super(id, createdBy, createdDate, lastModifiedBy, lastModifiedDate);
+		this.username = username;
+		this.password = password;
+		this.status = status;
+		this.desc = desc;
+	}
+
+	public SysAdmin(Long id, String username, String password, Integer status, String desc, String createdBy, Date createdDate, String lastModifiedBy, Date lastModifiedDate) {
+		super(id, createdBy, createdDate, lastModifiedBy, lastModifiedDate);
+		this.username = username;
+		this.password = password;
+		this.status = status;
+		this.desc = desc;
+	}
+
+	public SysAdmin(Long id, String username, String password, Integer status, String desc, String createdBy, Date createdDate, String lastModifiedBy, Date lastModifiedDate) {
+		super(id, createdBy, createdDate, lastModifiedBy, lastModifiedDate);
+		this.username = username;
+		this.password = password;
+		this.status = status;
+		this.desc = desc;
+	}
+
 	public String getUsername() {
 		return username;
 	}
