@@ -55,6 +55,20 @@ public class MD {
 	}
 
 	/**
+	 *
+	 * MD5(32位)
+	 *
+	 * @param input
+	 * @return
+	 * @throws NoSuchAlgorithmException
+	 * @throws IOException
+	 *
+	 */
+	public static String md5(String input) throws NoSuchAlgorithmException, IOException {
+		return digest("MD5", input);
+	}
+
+	/**
 	 * 
 	 * SHA-1(40位)
 	 * 

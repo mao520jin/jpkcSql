@@ -268,4 +268,150 @@ public class VideoConverter {
 			return null;
 		}
 	}
+	private String processAVI(int type, String inputFile) {
+		File file = new File(tempFile_home);
+		if (file.exists()) {
+			System.out.println("avi文件已经存在！无需转换");
+			return tempFile_home;
+		}
+		List<String> commend = new java.util.ArrayList<String>();
+		commend.add(mencoder_home);
+		commend.add(inputFile);
+		commend.add("-oac");
+		commend.add("mp3lame");
+		commend.add("-lameopts");
+		commend.add("preset=64");
+		commend.add("-ovc");
+		commend.add("xvid");
+		commend.add("-xvidencopts");
+		commend.add("bitrate=600");
+		commend.add("-of");
+		commend.add("avi");
+		commend.add("-o");
+		commend.add(tempFile_home);
+		StringBuffer test = new StringBuffer();
+		for (int i = 0; i < commend.size(); i++)
+			test.append(commend.get(i) + " ");
+		System.out.println(test);
+		try {
+			ProcessBuilder builder = new ProcessBuilder();
+			builder.command(commend);
+			Process p = builder.start();
+			/**
+			 * 清空Mencoder进程 的输出流和错误流 因为有些本机平台仅针对标准输入和输出流提供有限的缓冲区大小，
+			 * 如果读写子进程的输出流或输入流迅速出现失败，则可能导致子进程阻塞，甚至产生死锁。
+			 */
+			final InputStream is1 = p.getInputStream();
+			final InputStream is2 = p.getErrorStream();
+			new Thread() {
+				public void run() {
+					BufferedReader br = new BufferedReader(new InputStreamReader(is1));
+					try {
+						String lineB = null;
+						while ((lineB = br.readLine()) != null) {
+							if (lineB != null)
+								System.out.println(lineB);
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}.start();
+			new Thread() {
+				public void run() {
+					BufferedReader br2 = new BufferedReader(new InputStreamReader(is2));
+					try {
+						String lineC = null;
+						while ((lineC = br2.readLine()) != null) {
+							if (lineC != null)
+								System.out.println(lineC);
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}.start();
+
+			// 等Mencoder进程转换结束，再调用ffmpeg进程
+			p.waitFor();
+			System.out.println("who cares");
+			return tempFile_home;
+		} catch (Exception e) {
+			System.err.println(e);
+			return null;
+		}
+	}
+	private String processAVI(int type, String inputFile) {
+		File file = new File(tempFile_home);
+		if (file.exists()) {
+			System.out.println("avi文件已经存在！无需转换");
+			return tempFile_home;
+		}
+		List<String> commend = new java.util.ArrayList<String>();
+		commend.add(mencoder_home);
+		commend.add(inputFile);
+		commend.add("-oac");
+		commend.add("mp3lame");
+		commend.add("-lameopts");
+		commend.add("preset=64");
+		commend.add("-ovc");
+		commend.add("xvid");
+		commend.add("-xvidencopts");
+		commend.add("bitrate=600");
+		commend.add("-of");
+		commend.add("avi");
+		commend.add("-o");
+		commend.add(tempFile_home);
+		StringBuffer test = new StringBuffer();
+		for (int i = 0; i < commend.size(); i++)
+			test.append(commend.get(i) + " ");
+		System.out.println(test);
+		try {
+			ProcessBuilder builder = new ProcessBuilder();
+			builder.command(commend);
+			Process p = builder.start();
+			/**
+			 * 清空Mencoder进程 的输出流和错误流 因为有些本机平台仅针对标准输入和输出流提供有限的缓冲区大小，
+			 * 如果读写子进程的输出流或输入流迅速出现失败，则可能导致子进程阻塞，甚至产生死锁。
+			 */
+			final InputStream is1 = p.getInputStream();
+			final InputStream is2 = p.getErrorStream();
+			new Thread() {
+				public void run() {
+					BufferedReader br = new BufferedReader(new InputStreamReader(is1));
+					try {
+						String lineB = null;
+						while ((lineB = br.readLine()) != null) {
+							if (lineB != null)
+								System.out.println(lineB);
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}.start();
+			new Thread() {
+				public void run() {
+					BufferedReader br2 = new BufferedReader(new InputStreamReader(is2));
+					try {
+						String lineC = null;
+						while ((lineC = br2.readLine()) != null) {
+							if (lineC != null)
+								System.out.println(lineC);
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}.start();
+
+			// 等Mencoder进程转换结束，再调用ffmpeg进程
+			p.waitFor();
+			System.out.println("who cares");
+			return tempFile_home;
+		} catch (Exception e) {
+			System.err.println(e);
+			return null;
+		}
+	}
 }

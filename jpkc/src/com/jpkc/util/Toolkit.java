@@ -30,6 +30,30 @@ public class Toolkit {
 	}
 
 	/**
+	 *
+	 * 获取当前时间毫秒 <br>
+	 * 格式：13位数字 <br>
+	 *
+	 * @return
+	 *
+	 */
+	public static String time() {
+		return String.valueOf((new Date()).getTime());
+	}
+
+	/**
+	 *
+	 * 获取当前时间毫秒 <br>
+	 * 格式：13位数字 <br>
+	 *
+	 * @return
+	 *
+	 */
+	public static String time() {
+		return String.valueOf((new Date()).getTime());
+	}
+
+	/**
 	 * 
 	 * 获取随机数 <br>
 	 * 格式：8位数字 <br>

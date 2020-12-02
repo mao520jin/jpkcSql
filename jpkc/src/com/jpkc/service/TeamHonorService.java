@@ -44,6 +44,30 @@ public class TeamHonorService {
 		return teamHonorDao.search(map);
 	}
 
+	@Resource
+	private TeamHonorDao teamHonorDao;
+
+	public Page<TeamHonor> search(Map<String, Object> map) {
+		log.debug("map: " + map);
+		return teamHonorDao.search(map);
+	}
+
+	@Resource
+	private TeamHonorDao teamHonorDao;
+
+	public Page<TeamHonor> search(Map<String, Object> map) {
+		log.debug("map: " + map);
+		return teamHonorDao.search(map);
+	}
+
+	@Resource
+	private TeamHonorDao teamHonorDao;
+
+	public Page<TeamHonor> search(Map<String, Object> map) {
+		log.debug("map: " + map);
+		return teamHonorDao.search(map);
+	}
+
 	public TeamHonor select(Long id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
