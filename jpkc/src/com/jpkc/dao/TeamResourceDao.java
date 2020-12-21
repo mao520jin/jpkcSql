@@ -55,6 +55,24 @@ public class TeamResourceDao implements Dao<TeamResource> {
 			resources.setCreatedBy(rs.getString("createdBy"));
 			resources.setLastModifiedBy(rs.getString("lastModifiedBy"));
 			resources.setLastModifiedDate(DateUtil.toDate(rs.getString("lastModifiedDate")));
+			resources.setDenseName(rs.getString("denseName"));
+			resources.setType(rs.getInt("type"));
+			resources.setCount(rs.getInt("count"));
+			resources.setIsconvert(rs.getInt("isconvert"));
+			resources.setDesc(rs.getString("desc"));
+			resources.setCreatedDate(DateUtil.toDate(rs.getString("createdDate")));
+			resources.setCreatedBy(rs.getString("createdBy"));
+			resources.setLastModifiedBy(rs.getString("lastModifiedBy"));
+			resources.setLastModifiedDate(DateUtil.toDate(rs.getString("lastModifiedDate")));
+			resources.setDenseName(rs.getString("denseName"));
+			resources.setType(rs.getInt("type"));
+			resources.setCount(rs.getInt("count"));
+			resources.setIsconvert(rs.getInt("isconvert"));
+			resources.setDesc(rs.getString("desc"));
+			resources.setCreatedDate(DateUtil.toDate(rs.getString("createdDate")));
+			resources.setCreatedBy(rs.getString("createdBy"));
+			resources.setLastModifiedBy(rs.getString("lastModifiedBy"));
+			resources.setLastModifiedDate(DateUtil.toDate(rs.getString("lastModifiedDate")));
 
 			return resources;
 		}

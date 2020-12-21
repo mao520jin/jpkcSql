@@ -63,6 +63,20 @@ public class TeamGroupDao implements Dao<TeamGroup> {
 			team.setLastModifiedBy(rs.getString("lastModifiedBy"));
 			team.setLastModifiedDate(DateUtil.toDate(rs.getString("lastModifiedDate")));
 
+			team.setId(rs.getLong("id"));
+			team.setId(rs.getLong("id"));
+			team.setName(rs.getString("name"));
+			team.setType(rs.getInt("type"));
+			team.setAbout(rs.getString("about"));
+			team.setPhoto(rs.getString("photo"));
+			team.setEmail(rs.getString("email"));
+			team.setMobile(rs.getString("mobile"));
+			team.setDesc(rs.getString("desc"));
+			team.setCreatedDate(DateUtil.toDate(rs.getString("createdDate")));
+			team.setCreatedBy(rs.getString("createdBy"));
+			team.setLastModifiedBy(rs.getString("lastModifiedBy"));
+			team.setLastModifiedDate(DateUtil.toDate(rs.getString("lastModifiedDate")));
+
 			return team;
 		}
 
@@ -75,6 +89,22 @@ public class TeamGroupDao implements Dao<TeamGroup> {
 		sql.append(" ").append("`id`");
 		sql.append(" ").append("`id`");
 		sql.append(" ").append("`id`");
+		sql.append(",").append("`name`");
+		sql.append(",").append("`type`");
+		sql.append(",").append("`about`");
+		sql.append(",").append("`photo`");
+		sql.append(",").append("`email`");
+		sql.append(",").append("`mobile`");
+		sql.append(",").append("`desc`");
+		sql.append(",").append("`created_by`");
+		sql.append(",").append("`name`");
+		sql.append(",").append("`type`");
+		sql.append(",").append("`about`");
+		sql.append(",").append("`photo`");
+		sql.append(",").append("`email`");
+		sql.append(",").append("`mobile`");
+		sql.append(",").append("`desc`");
+		sql.append(",").append("`created_by`");
 		sql.append(",").append("`name`");
 		sql.append(",").append("`type`");
 		sql.append(",").append("`about`");
