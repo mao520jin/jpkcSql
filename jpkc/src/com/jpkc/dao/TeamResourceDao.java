@@ -211,20 +211,6 @@ public class TeamResourceDao implements Dao<TeamResource> {
 		sql.append(" FROM");
 		sql.append(" ").append("`team_resource`").append(" AS ").append("t");
 		sql.append(" WHERE 1 = 1");
-		sql.append(",").append("t.`created_by`").append(" AS ").append("createdBy");
-		sql.append(",").append("t.`created_date`").append(" AS ").append("createdDate");
-		sql.append(",").append("t.`last_modified_by`").append(" AS ").append("lastModifiedBy");
-		sql.append(",").append("t.`last_modified_date`").append(" AS ").append("lastModifiedDate");
-		sql.append(" FROM");
-		sql.append(" ").append("`team_resource`").append(" AS ").append("t");
-		sql.append(" WHERE 1 = 1");
-		sql.append(",").append("t.`created_by`").append(" AS ").append("createdBy");
-		sql.append(",").append("t.`created_date`").append(" AS ").append("createdDate");
-		sql.append(",").append("t.`last_modified_by`").append(" AS ").append("lastModifiedBy");
-		sql.append(",").append("t.`last_modified_date`").append(" AS ").append("lastModifiedDate");
-		sql.append(" FROM");
-		sql.append(" ").append("`team_resource`").append(" AS ").append("t");
-		sql.append(" WHERE 1 = 1");
 
 		List<Object> params = new ArrayList<Object>();
 
@@ -247,6 +233,23 @@ public class TeamResourceDao implements Dao<TeamResource> {
 		int pageSize = Integer.parseInt("" + map.get("pageSize"));
 
 		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT");
+		sql.append(" ").append("t.`id`");
+		sql.append(",").append("t.`title`");
+		sql.append(",").append("t.`path`");
+		sql.append(",").append("t.`name`");
+		sql.append(",").append("t.`dense_name`").append(" AS ").append("denseName");
+		sql.append(",").append("t.`type`");
+		sql.append(",").append("t.`count`");
+		sql.append(",").append("t.`isconvert`");
+		sql.append(",").append("t.`desc`");
+		sql.append(",").append("t.`created_by`").append(" AS ").append("createdBy");
+		sql.append(",").append("t.`created_date`").append(" AS ").append("createdDate");
+		sql.append(",").append("t.`last_modified_by`").append(" AS ").append("lastModifiedBy");
+		sql.append(",").append("t.`last_modified_date`").append(" AS ").append("lastModifiedDate");
+		sql.append(" FROM");
+		sql.append(" ").append("`team_resource`").append(" AS ").append("t");
+		sql.append(" WHERE 1 = 1");
 		sql.append("SELECT");
 		sql.append(" ").append("t.`id`");
 		sql.append(",").append("t.`title`");
